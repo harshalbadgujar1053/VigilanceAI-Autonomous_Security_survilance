@@ -1,0 +1,9 @@
+# Raw dataset files - too large for GitHub
+# Regenerate using the exploration scripts
+enterprise-attack.json
+nvd_sample.json
+CICIDS2018_sample.csv
+*.zip
+*.csv
+*.json
+!../**/*.py

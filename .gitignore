@@ -1,0 +1,35 @@
+# Large binary files - never commit these
+*.restore
+*.deb
+*.bin
+*.exe
+*.iso
+
+# ChromaDB binary files - too large, regenerated locally
+agent/chroma_db/
+rag/chroma_db/
+**/chroma_db/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Raw datasets - too large for GitHub
+datasets/enterprise-attack.json
+datasets/nvd_sample.json
+datasets/CICIDS2018_sample.csv
+datasets/*.csv
+datasets/*.json
+
+# SSL private keys - security risk
+*.key
+
+# Environment files
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
