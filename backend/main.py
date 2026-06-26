@@ -40,7 +40,7 @@ def classify(alert: NormalizedAlert):
     try:
         result = classify_alert(alert.dict())
         return ClassificationResponse(
-            alert_id=alert.id,
+            alert_id=alert.alert_id,
             classification=result
         )
     except Exception as e:
@@ -64,6 +64,6 @@ def classify_sample(sample_name: str):
         )
     result = classify_alert(SAMPLE_ALERTS[sample_name])
     return ClassificationResponse(
-        alert_id=SAMPLE_ALERTS[sample_name]["id"],
+        alert_id=SAMPLE_ALERTS[sample_name]["alert_id"],
         classification=result
     )

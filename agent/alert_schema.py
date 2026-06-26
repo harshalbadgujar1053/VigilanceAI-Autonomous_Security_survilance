@@ -1,16 +1,62 @@
 """
 alert_schema.py
 ----------------
-Project: VigilanceAI
+Project: VigilanceAI — Autonomous Security Surveillance
 
-Sample Wazuh-style alert objects for testing the classification chain.
-These match the normalized alert schema defined in docs/alert_schema.md
+Pydantic models for NormalizedAlert schema (used by FastAPI for
+request validation) plus SAMPLE_ALERTS dict for testing.
 
-Three samples covering the main attack types we simulate in Phase 1:
-  - ssh_brute_force   (Hydra attack — rule 5710/5712)
-  - rootkit_detection (Wazuh rootcheck — rule 510)
-  - low_disk          (system health — rule 531, low severity)
+Shared between:
+  - backend/main.py        (FastAPI request validation)
+  - agent/classify_alert.py (LangChain classification chain)
+  - agent/tools/query_siem.py (alert normalization)
 """
+
+from pydantic import BaseModel
+from typing import Optional
+
+
+# ─────────────────────────────────────────────────────────
+# PYDANTIC MODELS
+# ─────────────────────────────────────────────────────────
+
+class RuleInfo(BaseModel):
+    id: str
+    description: str
+    level: int
+
+class AgentInfo(BaseModel):
+    agent_name: str
+    agent_ip: str
+
+class Indicators(BaseModel):
+    src_ip: Optional[str] = None
+    dst_ip: Optional[str] = None
+    src_port: Optional[int] = None
+    dst_port: Optional[int] = None
+    username: Optional[str] = None
+    process_name: Optional[str] = None
+    file_hash: Optional[str] = None
+
+class MitreHint(BaseModel):
+    technique_id: Optional[str] = None
+    technique_name: Optional[str] = None
+
+class NormalizedAlert(BaseModel):
+    alert_id: str
+    timestamp: str
+    source: AgentInfo
+    rule: RuleInfo
+    category: str
+    raw_log: str
+    indicators: Indicators
+    mitre_hint: MitreHint
+    status: str = "new"
+
+
+# ─────────────────────────────────────────────────────────
+# SAMPLE ALERTS — for testing classify_alert.py and FastAPI
+# ─────────────────────────────────────────────────────────
 
 SAMPLE_ALERTS = {
 

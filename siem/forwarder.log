@@ -1,0 +1,22 @@
+2026-06-24 19:37:25,332 [INFO] ============================================================
+2026-06-24 19:37:25,339 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-24 19:37:25,339 [INFO]   Wazuh container: wazuh-docker-wazuh.manager-1
+2026-06-24 19:37:25,339 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-24 19:37:25,339 [INFO]   Min alert level: 5
+2026-06-24 19:37:25,339 [INFO]   Poll interval: 5s
+2026-06-24 19:37:25,339 [INFO] ============================================================
+2026-06-24 19:37:25,406 [INFO] ✓ FastAPI backend is reachable
+2026-06-24 19:37:25,477 [INFO] ✓ Bookmarked alerts.json at line 1555
+2026-06-24 19:37:25,477 [INFO]   Watching for new alerts...
+2026-06-24 19:37:25,477 [INFO] 
+2026-06-25 21:47:14,306 [INFO] ============================================================
+2026-06-25 21:47:14,316 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-25 21:47:14,316 [INFO]   Wazuh container: wazuh-docker-wazuh.manager-1
+2026-06-25 21:47:14,316 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-25 21:47:14,317 [INFO]   Min alert level: 5
+2026-06-25 21:47:14,317 [INFO]   Poll interval: 5s
+2026-06-25 21:47:14,318 [INFO] ============================================================
+2026-06-25 21:47:14,342 [INFO] ✓ FastAPI backend is reachable
+2026-06-25 21:47:14,443 [INFO] ✓ Bookmarked alerts.json at line 1555
+2026-06-25 21:47:14,443 [INFO]   Watching for new alerts...
+2026-06-25 21:47:14,443 [INFO] 
