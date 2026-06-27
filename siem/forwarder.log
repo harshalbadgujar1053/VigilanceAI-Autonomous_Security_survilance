@@ -20,3 +20,1373 @@
 2026-06-25 21:47:14,443 [INFO] ✓ Bookmarked alerts.json at line 1555
 2026-06-25 21:47:14,443 [INFO]   Watching for new alerts...
 2026-06-25 21:47:14,443 [INFO] 
+2026-06-27 11:01:59,107 [INFO] ============================================================
+2026-06-27 11:01:59,108 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 11:01:59,108 [INFO]   Wazuh container: wazuh-docker-wazuh.manager-1
+2026-06-27 11:01:59,108 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 11:01:59,108 [INFO]   Min alert level: 5
+2026-06-27 11:01:59,109 [INFO]   Poll interval: 5s
+2026-06-27 11:01:59,109 [INFO] ============================================================
+2026-06-27 11:01:59,148 [WARNING] ⚠ FastAPI backend not reachable at localhost:8000
+2026-06-27 11:01:59,149 [WARNING]   Alerts will be collected but forwarding will fail
+2026-06-27 11:01:59,151 [WARNING]   Start FastAPI: cd backend && uvicorn main:app --reload
+2026-06-27 11:01:59,395 [INFO] ✓ Bookmarked alerts.json at line 0
+2026-06-27 11:01:59,395 [INFO]   Watching for new alerts...
+2026-06-27 11:01:59,395 [INFO] 
+2026-06-27 12:36:29,408 [INFO] ============================================================
+2026-06-27 12:36:29,410 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 12:36:29,410 [INFO]   Wazuh container: wazuh-docker-wazuh.manager-1
+2026-06-27 12:36:29,410 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 12:36:29,410 [INFO]   Min alert level: 5
+2026-06-27 12:36:29,411 [INFO]   Poll interval: 5s
+2026-06-27 12:36:29,411 [INFO] ============================================================
+2026-06-27 12:36:29,446 [INFO] ✓ FastAPI backend is reachable
+2026-06-27 12:36:29,528 [INFO] ✓ Bookmarked alerts.json at line 0
+2026-06-27 12:36:29,529 [INFO]   Watching for new alerts...
+2026-06-27 12:36:29,529 [INFO] 
+2026-06-27 18:52:41,892 [INFO] ============================================================
+2026-06-27 18:52:41,893 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 18:52:41,893 [INFO]   Wazuh container: wazuh-docker-wazuh.manager-1
+2026-06-27 18:52:41,893 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 18:52:41,893 [INFO]   Min alert level: 5
+2026-06-27 18:52:41,893 [INFO]   Poll interval: 5s
+2026-06-27 18:52:41,893 [INFO] ============================================================
+2026-06-27 18:52:41,914 [INFO] ✓ FastAPI backend is reachable
+2026-06-27 18:52:42,020 [INFO] ✓ Bookmarked alerts.json at line 0
+2026-06-27 18:52:42,020 [INFO]   Watching for new alerts...
+2026-06-27 18:52:42,021 [INFO] 
+2026-06-27 21:57:53,381 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:58:45,383 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:59:01,111 [INFO] ============================================================
+2026-06-27 21:59:01,111 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 21:59:01,111 [INFO]   Wazuh container: single-node-wazuh.manager-1
+2026-06-27 21:59:01,111 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 21:59:01,111 [INFO]   Min alert level: 5
+2026-06-27 21:59:01,111 [INFO]   Poll interval: 5s
+2026-06-27 21:59:01,111 [INFO] ============================================================
+2026-06-27 21:59:01,131 [INFO] ✓ FastAPI backend is reachable
+2026-06-27 21:59:01,275 [INFO] ✓ Bookmarked alerts.json at line 9393
+2026-06-27 21:59:01,275 [INFO]   Watching for new alerts...
+2026-06-27 21:59:01,275 [INFO] 
+2026-06-27 21:59:22,255 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:59:22,255 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 21:59:32,271 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:59:32,271 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 21:59:42,286 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:59:42,287 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 21:59:52,304 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 21:59:52,305 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:00:02,345 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:02,345 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:00:12,366 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:12,366 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:00:22,381 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:22,381 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:00:32,393 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:32,393 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:00:42,409 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:42,409 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:00:42,409 [INFO]   Stats: 0 forwarded | 0 skipped | 9 errors
+2026-06-27 22:00:57,717 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:00:57,717 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:01:07,731 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:01:07,732 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:01:17,746 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:01:17,746 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:01:27,757 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:01:27,757 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:01:37,769 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:01:37,769 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:01:47,781 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:01:47,784 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:01:57,796 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:01:57,796 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:02:07,810 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:07,810 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:02:17,852 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:17,855 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:02:27,870 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:27,873 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:02:37,885 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:37,885 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:02:47,897 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:47,904 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:02:57,918 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:02:57,918 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:03:07,933 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:07,934 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:03:17,945 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:17,945 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:03:27,957 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:27,957 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:03:37,973 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:37,974 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:03:47,985 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:47,986 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:03:57,997 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:03:57,997 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:04:08,009 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:08,009 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:04:18,025 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:18,035 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:04:28,049 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:28,049 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:04:38,062 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:38,062 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:04:48,073 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:48,074 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:04:58,085 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:04:58,085 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:08,106 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:05:08,107 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:18,125 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: timed out
+2026-06-27 22:05:18,140 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,362 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: [Errno 104] Connection reset by peer
+2026-06-27 22:05:25,363 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,370 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,370 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,372 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,372 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,375 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,375 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,376 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,376 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,377 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,378 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,378 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,380 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,380 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,381 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,382 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,384 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,384 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,386 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,386 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,387 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,387 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,390 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,390 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,392 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,392 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,394 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,395 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,397 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,397 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,398 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,398 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,401 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,401 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,402 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,402 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,404 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,404 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,407 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,407 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,407 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,407 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,411 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,411 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,412 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,412 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,414 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,414 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:25,414 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,414 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,415 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,416 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,416 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,416 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:25,417 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,417 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,420 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,420 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,421 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,421 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,422 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,422 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,423 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,423 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,423 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,423 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,423 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,423 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,425 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,425 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,425 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,425 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,426 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,426 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,426 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,426 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,427 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,428 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,428 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,429 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,429 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,429 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,429 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,430 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,430 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,430 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,431 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,431 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,431 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,431 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,433 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,433 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,433 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,433 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,435 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,435 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,435 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,435 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,435 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,435 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,437 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,437 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,438 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,438 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,439 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,439 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,439 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,440 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,440 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,440 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,441 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,442 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,442 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,442 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,443 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,443 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,443 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,443 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,444 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,444 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,445 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,445 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,447 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,447 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,447 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,447 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,448 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,448 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,449 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,449 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,450 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,450 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,450 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,450 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,450 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,450 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,450 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,451 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,452 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,453 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,453 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,453 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,453 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,453 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,454 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,455 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,455 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,455 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,456 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,456 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,458 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,458 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,458 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,458 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,460 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,460 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,463 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,463 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,467 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,467 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,468 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,469 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,470 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,470 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,471 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,471 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,472 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,472 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,473 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,474 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,474 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,474 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,476 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,477 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,479 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,480 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:25,480 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,481 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:25,481 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,482 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:25,482 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,482 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:25,483 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,484 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,485 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,485 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,485 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,486 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,487 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,487 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:25,488 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,488 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,489 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,489 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,489 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,489 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:25,490 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,491 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:25,491 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:25,491 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:25,496 [INFO]   Stats: 0 forwarded | 0 skipped | 137 errors
+2026-06-27 22:05:33,231 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,231 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,233 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,234 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,235 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,235 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,235 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,235 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,236 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,236 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,236 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,236 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,237 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,237 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,237 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,237 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,238 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,239 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,239 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,239 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,239 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,239 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,240 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,240 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,240 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,240 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,241 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,241 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,242 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,242 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,243 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,243 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,245 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,245 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,246 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,246 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,247 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,247 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,247 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,247 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,248 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,248 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,250 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,250 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,253 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,253 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,253 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,253 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,254 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,254 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,258 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,258 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,260 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,260 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,262 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,263 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,265 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,265 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,266 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,266 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,266 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,266 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,266 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,266 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,267 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,267 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,267 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,267 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,267 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,267 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,268 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,268 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,268 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,268 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,268 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,268 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,269 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,269 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,269 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,269 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,270 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,270 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,270 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,270 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,271 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,271 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,271 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,272 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,272 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,272 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,272 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,272 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,272 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,273 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,273 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,273 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,273 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,273 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,273 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,273 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,274 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,274 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,274 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,275 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,276 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,276 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,277 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,277 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,277 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,277 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,278 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,278 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,278 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,278 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:05:33,279 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,279 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,279 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,279 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,279 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,279 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,280 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,280 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,281 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,281 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,281 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,281 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,281 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,281 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,282 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,282 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,282 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,282 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,282 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,282 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,282 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,283 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,283 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,283 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,283 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,283 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,283 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,283 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,284 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,289 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,289 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,289 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,290 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,290 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,290 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,290 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,290 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,290 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,291 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,291 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,292 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,292 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,293 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,293 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,293 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,293 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,294 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,294 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,294 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,294 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,295 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,295 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,295 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,296 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,296 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,296 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,296 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,296 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,296 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,296 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,297 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,297 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,297 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,297 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,297 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,297 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,298 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,298 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,298 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,298 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,298 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,298 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,299 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,299 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,299 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,299 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,299 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,299 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,300 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,300 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,300 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,300 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,300 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,300 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:33,301 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,301 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,301 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,301 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,302 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,302 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,302 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,302 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,302 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,302 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,302 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,302 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,303 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,303 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,304 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,304 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,305 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,305 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,305 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,305 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,305 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,305 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,306 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,306 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,306 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,306 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,306 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,306 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,306 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,307 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,307 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,307 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,308 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,308 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,308 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,308 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,309 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,309 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,310 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,310 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,311 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,311 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,312 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,312 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,313 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,313 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,313 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,313 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,313 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,314 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,314 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,314 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,314 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,315 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,315 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,315 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,315 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,315 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,316 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,316 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,316 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,316 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,317 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,317 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,318 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,318 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,318 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,318 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,319 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,319 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,320 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,320 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,320 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,320 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,321 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,321 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,321 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,321 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,321 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,321 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,322 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,322 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,322 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,322 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,322 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,322 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,323 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,323 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,323 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,323 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,324 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,324 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,324 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,324 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,324 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,324 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,325 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,325 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,325 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,325 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,326 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,326 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,327 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,327 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,327 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,327 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,327 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,327 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,328 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,328 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,328 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,328 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,328 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,328 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,329 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,329 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,329 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,329 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,330 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,330 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,330 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,330 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,330 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,330 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,331 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,331 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,331 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,331 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,331 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,331 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,332 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,332 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,332 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,332 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,332 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,332 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,332 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,332 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,332 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,333 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,333 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,333 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,334 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,334 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,334 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,334 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,334 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,334 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,335 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,335 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,335 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,335 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,335 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,335 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,337 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,337 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,337 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,337 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,338 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,338 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,339 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,339 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,339 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,340 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,340 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,340 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,340 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,340 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,341 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,341 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:05:33,342 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,342 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,342 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,342 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,342 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,343 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,343 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,343 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,343 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,343 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,343 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,343 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,344 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,344 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,344 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,344 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,344 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,345 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:33,345 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,345 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,345 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,345 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,346 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,346 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,346 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,346 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,347 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,347 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,347 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,347 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,347 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,347 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,348 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,348 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,348 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,348 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,348 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,348 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,349 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,349 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,349 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,349 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,349 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,349 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,349 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,349 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,350 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,350 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,350 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,350 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,350 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,350 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,350 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,350 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,350 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,351 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,351 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,351 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,352 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,352 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,352 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,353 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,353 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,353 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,353 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,353 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,354 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,354 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,354 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,354 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,354 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,354 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,355 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,355 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,355 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,355 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,355 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,355 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,356 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,356 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,356 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,356 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,357 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,357 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,358 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,358 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,358 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,359 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,359 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,359 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,359 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,359 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,359 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,359 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,360 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,360 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,360 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,360 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,361 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,361 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,361 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,361 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,361 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,361 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,361 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,361 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,362 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,362 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,362 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,362 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,362 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,362 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,362 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,363 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,363 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,363 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,363 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,363 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,364 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,364 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,364 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,364 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,364 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,364 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,364 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,364 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,365 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,365 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,365 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,365 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,365 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,365 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,365 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,365 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,366 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,366 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,366 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,366 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,366 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,366 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,367 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,367 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,367 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,367 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,367 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,367 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,368 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,368 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,368 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,368 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,368 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,368 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,368 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,368 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,369 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,369 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,369 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,369 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,369 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,369 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,370 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,370 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,370 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,370 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,370 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,370 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,371 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,371 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,371 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,371 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,372 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,372 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,372 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,372 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,373 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,373 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,373 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,373 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,373 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,373 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,374 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,374 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,374 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,374 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,375 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,375 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,375 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,375 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,376 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,376 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,376 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,377 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,377 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,377 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,377 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,377 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,377 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,377 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,378 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,378 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,378 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,378 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,378 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,379 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,379 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,379 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,379 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,379 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,379 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,379 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,379 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,379 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,380 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,380 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,380 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,380 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,380 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,380 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,381 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,381 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,381 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,381 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,381 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,381 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,381 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,382 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,382 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,382 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,382 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,382 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,382 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,382 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,383 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,383 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,383 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,383 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,383 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,383 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,384 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,384 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,384 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,384 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,385 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,385 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,385 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,385 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,385 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,385 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,386 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,386 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,386 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,386 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,386 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,386 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:05:33,386 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,386 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,387 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,387 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,387 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,387 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,387 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,387 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,387 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,387 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,388 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,388 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,388 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,388 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,388 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,388 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,389 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,389 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,389 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,389 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:33,390 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,390 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,390 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,390 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,391 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,391 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,391 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,391 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,391 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,391 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,392 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,392 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,392 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,392 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,393 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,393 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,393 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,393 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,393 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,393 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,394 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,394 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,394 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,394 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,394 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,394 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,395 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,395 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,395 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,395 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,395 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,395 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,395 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,395 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,396 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,396 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,396 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,396 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,396 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,396 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,397 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,397 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,397 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,397 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,397 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,397 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,398 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,398 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,398 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,398 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,399 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,399 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,399 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,399 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,400 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,400 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,400 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,400 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,400 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,400 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,401 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,401 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,401 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,401 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,402 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,402 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,402 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,402 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,402 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,402 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,402 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,402 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,403 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,403 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,403 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,403 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,403 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,403 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,403 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,404 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,404 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,404 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,404 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,404 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,404 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,404 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,405 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,405 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,405 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,405 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,405 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,405 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,405 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,405 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,406 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,406 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,406 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,406 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:33,406 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,406 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:33,407 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,407 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:33,407 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,407 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:33,407 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,407 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:33,408 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,408 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:33,409 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:33,409 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:33,409 [INFO]   Stats: 0 forwarded | 1 skipped | 515 errors
+2026-06-27 22:05:38,648 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,648 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,649 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,649 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:38,650 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,650 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,651 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,652 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:38,652 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,652 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,653 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,653 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,654 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,654 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:05:38,655 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,655 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:38,656 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,657 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:38,657 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,657 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:38,658 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,658 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:38,659 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,659 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,660 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,660 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,661 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,661 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,662 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:38,662 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:38,662 [INFO]   Stats: 0 forwarded | 1 skipped | 530 errors
+2026-06-27 22:05:43,935 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,935 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,936 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,936 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,936 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,936 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,937 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,937 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,937 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,937 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,938 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,938 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,938 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,938 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,940 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,940 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,941 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,941 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,941 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,941 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,942 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,942 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,943 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,943 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,943 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,943 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,945 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,945 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:43,946 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:43,946 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:43,946 [INFO]   Stats: 0 forwarded | 1 skipped | 545 errors
+2026-06-27 22:05:49,244 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,248 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:49,248 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,248 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:49,249 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,249 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:49,249 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,249 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:49,249 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,249 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:49,250 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,250 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:49,250 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,250 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:49,251 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,251 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:49,251 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,251 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:49,251 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,252 [INFO]   [LOCAL] [10] sshd: brute force trying to get access to the system. Authen
+2026-06-27 22:05:49,252 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,252 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:49,252 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,252 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:49,253 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,253 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:49,253 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:49,253 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:49,253 [INFO]   Stats: 0 forwarded | 1 skipped | 559 errors
+2026-06-27 22:05:54,639 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,640 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:54,641 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,641 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:54,642 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,642 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:54,643 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,643 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:54,643 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,643 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:54,645 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,645 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:05:54,646 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,646 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:54,646 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,646 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:54,647 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,647 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:54,647 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,647 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:05:54,647 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,648 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:54,649 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,649 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:54,649 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,649 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:54,650 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,650 [INFO]   [LOCAL] [ 8] Maximum authentication attempts exceeded.
+2026-06-27 22:05:54,650 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,651 [INFO]   [LOCAL] [10] Multiple authentication failures.
+2026-06-27 22:05:54,651 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,651 [INFO]   [LOCAL] [ 5] syslog: User authentication failure.
+2026-06-27 22:05:54,652 [WARNING] FastAPI unreachable at http://localhost:8000/alerts/ingest: <urlopen error [Errno 111] Connection refused>
+2026-06-27 22:05:54,652 [INFO]   [LOCAL] [10] syslog: User missed the password more than one time
+2026-06-27 22:05:54,652 [INFO]   Stats: 0 forwarded | 1 skipped | 576 errors
+2026-06-27 22:06:30,565 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:06:30,567 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:06:40,585 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:06:40,599 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:06:50,625 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:06:50,625 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:07:00,638 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:00,638 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:07:10,653 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:10,654 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:07:10,654 [INFO]   Stats: 0 forwarded | 1 skipped | 581 errors
+2026-06-27 22:07:26,077 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:26,078 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:07:36,097 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:36,097 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:07:46,109 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:46,110 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:07:56,125 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:07:56,126 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:08:06,157 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:06,157 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:08:16,170 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:16,172 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:08:26,185 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:26,185 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:08:36,197 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:36,197 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:08:46,211 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:46,212 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:08:56,225 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:08:56,225 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:09:06,237 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:06,237 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:09:16,249 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:16,249 [INFO]   [LOCAL] [ 5] PAM: User login failed.
+2026-06-27 22:09:26,261 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:26,261 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:09:36,273 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:36,273 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:09:46,286 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:46,287 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:09:56,321 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:09:56,321 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:10:06,337 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:06,337 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:10:16,357 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:16,357 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:10:26,506 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:26,507 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:10:36,521 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:36,521 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:10:46,537 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:46,541 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:10:56,566 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:10:56,566 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:11:06,581 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:11:06,581 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:11:11,694 [INFO] ============================================================
+2026-06-27 22:11:11,695 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 22:11:11,695 [INFO]   Wazuh container: single-node-wazuh.manager-1
+2026-06-27 22:11:11,695 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 22:11:11,695 [INFO]   Min alert level: 5
+2026-06-27 22:11:11,695 [INFO]   Poll interval: 5s
+2026-06-27 22:11:11,695 [INFO] ============================================================
+2026-06-27 22:11:11,772 [INFO] ✓ FastAPI backend is reachable
+2026-06-27 22:11:13,067 [INFO] ✓ Bookmarked alerts.json at line 10359
+2026-06-27 22:11:13,067 [INFO]   Watching for new alerts...
+2026-06-27 22:11:13,067 [INFO] 
+2026-06-27 22:14:19,309 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:14:19,310 [INFO]   [LOCAL] [ 5] sshd: authentication failed.
+2026-06-27 22:14:52,630 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:17:19,499 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:17:19,563 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:20:19,748 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:20:19,748 [INFO]   [LOCAL] [10] PAM: Multiple failed logins in a small period of time.
+2026-06-27 22:23:19,854 [WARNING] FastAPI unreachable at http://localhost:8000/classify: timed out
+2026-06-27 22:23:19,855 [INFO]   [LOCAL] [ 5] unix_chkpwd: Password check failed.
+2026-06-27 22:24:46,499 [INFO] ============================================================
+2026-06-27 22:24:46,500 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-06-27 22:24:46,500 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-06-27 22:24:46,500 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-06-27 22:24:46,500 [INFO]   Min alert level : 5
+2026-06-27 22:24:46,500 [INFO]   Poll interval   : 5s
+2026-06-27 22:24:46,500 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-06-27 22:24:46,500 [INFO] ============================================================
+2026-06-27 22:24:46,527 [INFO] ✓ FastAPI backend is reachable
+2026-06-27 22:24:46,699 [INFO] ✓ Bookmarked alerts.json at line 11443
+2026-06-27 22:24:46,699 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-06-27 22:24:46,699 [INFO] 
+2026-06-27 22:24:52,485 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579287.6241529)
+2026-06-27 22:24:52,485 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1782579287.6241970)
+2026-06-27 22:24:52,486 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579289.6242540)
+2026-06-27 22:24:52,486 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579291.6243055)
+2026-06-27 22:24:52,487 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1782579291.6243496)
+2026-06-27 22:24:52,488 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579291.6244066)
+2026-06-27 22:24:52,489 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579291.6244507)
+2026-06-27 22:24:52,490 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1782579291.6244948)
+2026-06-27 22:24:52,492 [INFO]   Stats: 8 queued | 0 skipped | 8 awaiting Mistral response
+2026-06-27 22:24:57,791 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579293.6245518)
+2026-06-27 22:24:57,792 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579295.6246033)
+2026-06-27 22:24:57,795 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579295.6246548)
+2026-06-27 22:24:57,797 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579295.6247063)
+2026-06-27 22:24:57,798 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579295.6247945)
+2026-06-27 22:24:57,797 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579295.6247504)
+2026-06-27 22:24:57,800 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579297.6248386)
+2026-06-27 22:24:57,800 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579297.6248901)
+2026-06-27 22:24:57,800 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579297.6249416)
+2026-06-27 22:24:57,800 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579297.6249857)
+2026-06-27 22:24:57,800 [INFO]   Stats: 18 queued | 0 skipped | 18 awaiting Mistral response
+2026-06-27 22:25:03,050 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579299.6250372)
+2026-06-27 22:25:03,051 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579299.6250813)
+2026-06-27 22:25:03,051 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1782579299.6251254)
+2026-06-27 22:25:03,052 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579299.6251824)
+2026-06-27 22:25:03,061 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579301.6252339)
+2026-06-27 22:25:03,065 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579301.6252780)
+2026-06-27 22:25:03,066 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579301.6253736)
+2026-06-27 22:25:03,065 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579301.6253295)
+2026-06-27 22:25:03,071 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579301.6254251)
+2026-06-27 22:25:03,072 [INFO]   Stats: 27 queued | 0 skipped | 27 awaiting Mistral response
+2026-06-27 22:25:08,241 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579303.6254692)
+2026-06-27 22:25:08,243 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579303.6255133)
+2026-06-27 22:25:08,245 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579303.6255648)
+2026-06-27 22:25:08,245 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579303.6256163)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579305.6256678)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579305.6257119)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579305.6257560)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579305.6258075)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579307.6258516)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579307.6259031)
+2026-06-27 22:25:08,251 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579307.6259472)
+2026-06-27 22:25:08,252 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579307.6259987)
+2026-06-27 22:25:08,253 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579307.6260943)
+2026-06-27 22:25:08,252 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579307.6260428)
+2026-06-27 22:25:08,254 [INFO]   Stats: 41 queued | 0 skipped | 41 awaiting Mistral response
+2026-06-27 22:25:13,469 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579309.6261384)
+2026-06-27 22:25:13,469 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579309.6261899)
+2026-06-27 22:25:13,469 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579309.6262340)
+2026-06-27 22:25:13,469 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579309.6262781)
+2026-06-27 22:25:13,470 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579309.6263296)
+2026-06-27 22:25:13,470 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1782579311.6263811)
+2026-06-27 22:25:13,473 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1782579311.6264232)
+2026-06-27 22:25:13,476 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1782579311.6264757)
+2026-06-27 22:25:13,477 [INFO]   ↑ QUEUED  [10] sshd: brute force trying to get access to the syst (alert 1782579311.6265334)
+2026-06-27 22:25:13,478 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579311.6266809)
+2026-06-27 22:25:13,478 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1782579311.6267250)
+2026-06-27 22:25:13,479 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1782579311.6267671)
+2026-06-27 22:25:13,480 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1782579311.6268196)
+2026-06-27 22:25:13,482 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1782579313.6269709)
+2026-06-27 22:25:13,481 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579311.6268773)
+2026-06-27 22:25:13,484 [INFO]   Stats: 59 queued | 0 skipped | 59 awaiting Mistral response
+2026-06-27 22:25:13,482 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1782579313.6269288)
+2026-06-27 22:25:13,483 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1782579313.6270234)
+2026-06-27 22:25:13,484 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579313.6270811)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1782579313.6269288)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1782579313.6269709)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1782579315.6271326)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579313.6270811)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1782579313.6270234)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1782579317.6271767)
+2026-06-27 22:25:18,657 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1782579317.6272282)
+2026-06-27 22:25:18,658 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1782579317.6272703)
+2026-06-27 22:25:18,658 [INFO]   ↑ QUEUED  [10] Multiple authentication failures. (alert 1782579317.6273228)
+2026-06-27 22:25:18,658 [INFO]   Stats: 68 queued | 0 skipped | 68 awaiting Mistral response

@@ -45,7 +45,7 @@ WAZUH_API_USER = "wazuh-wui"
 WAZUH_API_PASS = "MyS3cr37P450r.*-"
 
 # Docker container name for file-based fallback
-WAZUH_MANAGER_CONTAINER = "wazuh-docker-wazuh.manager-1"
+WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
 WAZUH_ALERTS_FILE = "/var/ossec/logs/alerts/alerts.json"
 
 # SSL context — disable verification for self-signed Wazuh certs

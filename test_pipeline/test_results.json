@@ -1,0 +1,156 @@
+{
+  "timestamp": "2026-06-27T16:19:48.977226+00:00",
+  "summary": {
+    "passed": 24,
+    "failed": 0,
+    "errors": 0,
+    "total": 24,
+    "total_time_sec": 584.392
+  },
+  "results": [
+    {
+      "name": "NormalizedAlert model imports cleanly",
+      "status": "PASS",
+      "time": 0.06854738800029736,
+      "error": null
+    },
+    {
+      "name": "NormalizedAlert validates ssh_brute_force sample",
+      "status": "PASS",
+      "time": 0.0001106649997382192,
+      "error": null
+    },
+    {
+      "name": "All SAMPLE_ALERTS entries are valid NormalizedAlerts",
+      "status": "PASS",
+      "time": 2.25649991989485e-05,
+      "error": null
+    },
+    {
+      "name": "NormalizedAlert rejects missing required fields",
+      "status": "PASS",
+      "time": 4.154899943387136e-05,
+      "error": null
+    },
+    {
+      "name": "query_rag imports and query_threat_intel is callable",
+      "status": "PASS",
+      "time": 1.546606074999545,
+      "error": null
+    },
+    {
+      "name": "SSH brute force query returns results with Brute Force name",
+      "status": "PASS",
+      "time": 43.971689284000604,
+      "error": null
+    },
+    {
+      "name": "CVE vulnerability query returns results",
+      "status": "PASS",
+      "time": 0.8758306520003316,
+      "error": null
+    },
+    {
+      "name": "format_results_for_llm produces non-empty string",
+      "status": "PASS",
+      "time": 0.08067729499998677,
+      "error": null
+    },
+    {
+      "name": "query_siem imports cleanly \u2014 get_recent_alerts exists",
+      "status": "PASS",
+      "time": 0.8127323220005565,
+      "error": null
+    },
+    {
+      "name": "get_recent_alerts returns a list",
+      "status": "PASS",
+      "time": 1.7622164710001016,
+      "error": null
+    },
+    {
+      "name": "get_recent_alerts returns alerts from Wazuh (>0)",
+      "status": "PASS",
+      "time": 0.16332867999972223,
+      "error": null
+    },
+    {
+      "name": "get_recent_alerts results match NormalizedAlert shape",
+      "status": "PASS",
+      "time": 0.14904672000011487,
+      "error": null
+    },
+    {
+      "name": "FastAPI root GET / returns 200",
+      "status": "PASS",
+      "time": 0.29579170099987095,
+      "error": null
+    },
+    {
+      "name": "FastAPI GET /classify/sample/ssh_brute_force returns 200",
+      "status": "PASS",
+      "time": 166.58717829499983,
+      "error": null
+    },
+    {
+      "name": "POST /classify returns 200 (timeout=180s for Mistral CPU)",
+      "status": "PASS",
+      "time": 135.37334031199953,
+      "error": null
+    },
+    {
+      "name": "POST /classify response has alert_id and classification",
+      "status": "PASS",
+      "time": 65.73754241999995,
+      "error": null
+    },
+    {
+      "name": "POST /classify response mentions SSH/brute/T1110",
+      "status": "PASS",
+      "time": 50.459711388999494,
+      "error": null
+    },
+    {
+      "name": "POST /classify rejects malformed payload with 422",
+      "status": "PASS",
+      "time": 0.029021389999797975,
+      "error": null
+    },
+    {
+      "name": "classify_alert.py imports cleanly",
+      "status": "PASS",
+      "time": 2.2104649760003667,
+      "error": null
+    },
+    {
+      "name": "classify_alert runs on ssh_brute_force (timeout 180s)",
+      "status": "PASS",
+      "time": 56.2442651220008,
+      "error": null
+    },
+    {
+      "name": "classify_alert output contains severity keyword",
+      "status": "PASS",
+      "time": 56.79819743200005,
+      "error": null
+    },
+    {
+      "name": "lookup_threat_intel (Tool 1) \u2014 invoke works",
+      "status": "PASS",
+      "time": 1.2107803360004255,
+      "error": null
+    },
+    {
+      "name": "map_to_mitre (Tool 2) \u2014 invoke works",
+      "status": "PASS",
+      "time": 0.008176708000064536,
+      "error": null
+    },
+    {
+      "name": "check_cve (Tool 3) \u2014 invoke works",
+      "status": "PASS",
+      "time": 0.006712243000038143,
+      "error": null
+    }
+  ]
+}

@@ -26,7 +26,7 @@ from langchain_ollama import OllamaLLM
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-from alert_schema import SAMPLE_ALERTS
+from agent.alert_schema import SAMPLE_ALERTS
 
 
 # ─────────────────────────────────────────────

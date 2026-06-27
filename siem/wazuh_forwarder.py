@@ -4,35 +4,21 @@ wazuh_forwarder.py — Phase 3: Wazuh → FastAPI Live Alert Bridge
 Project: VigilanceAI — Autonomous Security Surveillance
 
 Tails Wazuh's alerts.json file in real time and forwards each new
-alert to Neeraj's FastAPI /classify endpoint after normalizing it
+alert to FastAPI /classify endpoint after normalizing it
 into the NormalizedAlert schema.
 
 This closes the real-time loop:
   Wazuh detects attack → alerts.json → this script → FastAPI /classify
   → LangChain ReAct agent → incident report → React dashboard
 
-How it works:
-  1. Reads current line count of alerts.json (bookmark)
-  2. Every POLL_INTERVAL seconds, reads any new lines added
-  3. Normalizes each raw Wazuh alert into NormalizedAlert format
-  4. Filters out low-level noise (netstat, rootcheck below level 5)
-  5. POSTs to FastAPI /classify endpoint
-  6. Logs result to console and to siem/forwarder.log
-
 Run:
-    cd ~/VigilanceAI-Autonomous_Security_survilance
-    source venv/bin/activate
-    python3 siem/wazuh_forwarder.py
+    python3 siem/wazuh_forwarder.py --run
 
 Run in background:
-    nohup python3 siem/wazuh_forwarder.py > siem/forwarder.log 2>&1 &
+    nohup python3 siem/wazuh_forwarder.py --run > siem/forwarder.log 2>&1 &
 
 Stop:
     kill $(cat siem/forwarder.pid)
-
-Prerequisites:
-    - Wazuh Docker stack running (docker-compose up -d)
-    - Neeraj's FastAPI running on port 8000 (uvicorn main:app)
 """
 
 import json
@@ -40,39 +26,41 @@ import os
 import sys
 import time
 import subprocess
-import urllib.request
-import urllib.error
 import signal
 import logging
+import threading
 from datetime import datetime, timezone
+
+try:
+    import requests as _requests_lib
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+
+import urllib.request
+import urllib.error
 
 # ─────────────────────────────────────────────────────────
 # CONFIGURATION
 # ─────────────────────────────────────────────────────────
-FASTAPI_BASE = "http://localhost:8000"
-FASTAPI_CLASSIFY_ENDPOINT = f"{FASTAPI_BASE}/classify"
-FASTAPI_INGEST_ENDPOINT = f"{FASTAPI_BASE}/alerts/ingest"
+FASTAPI_BASE               = "http://localhost:8000"
+FASTAPI_CLASSIFY_ENDPOINT  = f"{FASTAPI_BASE}/classify"
 
-WAZUH_MANAGER_CONTAINER = "wazuh-docker-wazuh.manager-1"
-WAZUH_ALERTS_FILE = "/var/ossec/logs/alerts/alerts.json"
+WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
+WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
 
-POLL_INTERVAL = 5       # seconds between checks for new alerts
-MIN_ALERT_LEVEL = 5     # only forward alerts at this level or above
-                        # (filters out routine netstat/rootcheck noise)
+POLL_INTERVAL   = 5    # seconds between file checks
+MIN_ALERT_LEVEL = 5    # only forward at this level or above
+MISTRAL_TIMEOUT = 180  # seconds — Mistral on CPU can take up to 3 min
 
-# Noisy rule IDs to skip even if above MIN_ALERT_LEVEL
-SKIP_RULE_IDS = {
-    "533",   # netstat port change — too frequent
-    "531",   # disk space — not security relevant for demo
-    "510",   # rootcheck generic — too noisy
-}
+SKIP_RULE_IDS = {"533", "531", "510"}
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_FILE = os.path.join(BASE_DIR, "siem", "forwarder.log")
 PID_FILE = os.path.join(BASE_DIR, "siem", "forwarder.pid")
 
 # ─────────────────────────────────────────────────────────
-# LOGGING SETUP
+# LOGGING
 # ─────────────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,
@@ -94,17 +82,15 @@ def _handle_signal(signum, frame):
     log.info("Shutdown signal received — stopping forwarder...")
     _running = False
 
-signal.signal(signal.SIGINT, _handle_signal)
+signal.signal(signal.SIGINT,  _handle_signal)
 signal.signal(signal.SIGTERM, _handle_signal)
 
 # ─────────────────────────────────────────────────────────
-# ALERT NORMALIZATION
-# Same logic as query_siem.py — kept in sync with alert_schema.md
+# NORMALIZATION
 # ─────────────────────────────────────────────────────────
 def _infer_category(groups: list, description: str) -> str:
     groups_lower = [g.lower() for g in groups]
-    desc_lower = description.lower()
-
+    desc_lower   = description.lower()
     if any(g in groups_lower for g in ["authentication_failed", "authentication_failures", "sshd"]):
         return "brute_force"
     if any(g in groups_lower for g in ["rootcheck", "rootkit", "trojan"]):
@@ -123,47 +109,42 @@ def _infer_category(groups: list, description: str) -> str:
 
 
 def normalize_alert(raw: dict) -> dict:
-    """Convert raw Wazuh alert JSON to NormalizedAlert schema."""
-    agent = raw.get("agent", {})
-    rule = raw.get("rule", {})
-    data = raw.get("data", {})
-
-    mitre = rule.get("mitre", {})
-    technique_ids = mitre.get("id", [])
+    agent  = raw.get("agent", {})
+    rule   = raw.get("rule",  {})
+    data   = raw.get("data",  {})
+    mitre  = rule.get("mitre", {})
+    technique_ids   = mitre.get("id",        [])
     technique_names = mitre.get("technique", [])
-
-    groups = rule.get("groups", [])
+    groups   = rule.get("groups", [])
     category = _infer_category(groups, rule.get("description", ""))
-
-    src_ip = data.get("srcip") or data.get("src_ip")
-    dst_ip = data.get("dstip") or agent.get("ip")
+    src_ip   = data.get("srcip")  or data.get("src_ip")
+    dst_ip   = data.get("dstip")  or agent.get("ip")
     username = data.get("dstuser") or data.get("srcuser") or data.get("user")
-
     return {
-        "alert_id": raw.get("id", f"wazuh-{int(time.time())}"),
+        "alert_id":  raw.get("id", f"wazuh-{int(time.time())}"),
         "timestamp": raw.get("timestamp", datetime.now(timezone.utc).isoformat()),
         "source": {
             "agent_name": agent.get("name", "unknown"),
-            "agent_ip": agent.get("ip", "unknown")
+            "agent_ip":   agent.get("ip",   "unknown")
         },
         "rule": {
-            "id": str(rule.get("id", "0")),
+            "id":          str(rule.get("id", "0")),
             "description": rule.get("description", "Unknown"),
-            "level": int(rule.get("level", 0))
+            "level":       int(rule.get("level", 0))
         },
         "category": category,
-        "raw_log": raw.get("full_log", raw.get("message", ""))[:500],
+        "raw_log":  raw.get("full_log", raw.get("message", ""))[:500],
         "indicators": {
-            "src_ip": src_ip,
-            "dst_ip": dst_ip,
-            "src_port": None,
-            "dst_port": None,
-            "username": username,
+            "src_ip":       src_ip,
+            "dst_ip":       dst_ip,
+            "src_port":     None,
+            "dst_port":     None,
+            "username":     username,
             "process_name": data.get("process", None),
-            "file_hash": data.get("md5", data.get("sha256", None))
+            "file_hash":    data.get("md5", data.get("sha256", None))
         },
         "mitre_hint": {
-            "technique_id": technique_ids[0] if technique_ids else None,
+            "technique_id":   technique_ids[0]   if technique_ids   else None,
             "technique_name": technique_names[0] if technique_names else None
         },
         "status": "new"
@@ -171,86 +152,103 @@ def normalize_alert(raw: dict) -> dict:
 
 
 def should_forward(raw: dict) -> bool:
-    """
-    Decide whether this alert is worth forwarding to the agent.
-    Filters out routine noise so the agent only sees real threats.
-    """
-    rule = raw.get("rule", {})
-    level = int(rule.get("level", 0))
+    rule    = raw.get("rule", {})
+    level   = int(rule.get("level", 0))
     rule_id = str(rule.get("id", "0"))
-
-    # Skip low-level alerts
     if level < MIN_ALERT_LEVEL:
         return False
-
-    # Skip known noisy rules
     if rule_id in SKIP_RULE_IDS:
         return False
-
     return True
 
+# ─────────────────────────────────────────────────────────
+# FASTAPI FORWARDING  — runs in a background thread
+# so the poll loop never blocks waiting for Mistral
+# ─────────────────────────────────────────────────────────
+_pending_lock  = threading.Lock()
+_pending_count = 0
 
-# ─────────────────────────────────────────────────────────
-# FASTAPI FORWARDING
-# ─────────────────────────────────────────────────────────
-def _check_fastapi_available() -> bool:
-    """Check if FastAPI backend is reachable."""
+def _post_alert_thread(normalized: dict):
+    """
+    Called in a daemon thread. POSTs one alert to FastAPI/classify
+    and logs the Mistral response when it arrives (up to 3 min later).
+    """
+    global _pending_count
+    alert_id = normalized["alert_id"]
+    desc     = normalized["rule"]["description"][:50]
+    level    = normalized["rule"]["level"]
+    payload  = json.dumps(normalized).encode("utf-8")
+
+    log.info(f"  ↑ QUEUED  [{level:2d}] {desc} (alert {alert_id})")
+
+    # Use requests library if available (better error messages),
+    # otherwise fall back to urllib
     try:
-        req = urllib.request.Request(
-            f"{FASTAPI_BASE}/",
-            headers={"Content-Type": "application/json"}
-        )
-        with urllib.request.urlopen(req, timeout=3) as resp:
-            return resp.status == 200
-    except Exception:
-        return False
-
-
-def forward_to_fastapi(normalized_alert: dict) -> bool:
-    """
-    POST a normalized alert to FastAPI.
-    Tries /alerts/ingest first (stores alert), then /classify (classify only).
-
-    Returns True if successfully forwarded.
-    """
-    payload = json.dumps(normalized_alert).encode("utf-8")
-
-    # Try /alerts/ingest first (Member 3's endpoint for storing + classifying)
-    for endpoint in [FASTAPI_INGEST_ENDPOINT, FASTAPI_CLASSIFY_ENDPOINT]:
-        try:
+        if REQUESTS_AVAILABLE:
+            import requests
+            resp = requests.post(
+                FASTAPI_CLASSIFY_ENDPOINT,
+                data=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=MISTRAL_TIMEOUT
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                classification = data.get("classification", str(data))[:200]
+                log.info(f"  ✅ CLASSIFIED [{level:2d}] {desc}")
+                log.info(f"     → {classification}")
+            else:
+                log.warning(f"  ⚠ FastAPI returned HTTP {resp.status_code}: {resp.text[:100]}")
+        else:
             req = urllib.request.Request(
-                endpoint,
+                FASTAPI_CLASSIFY_ENDPOINT,
                 data=payload,
                 headers={"Content-Type": "application/json"},
                 method="POST"
             )
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                response_data = json.loads(resp.read().decode())
-                severity = response_data.get("severity", "UNKNOWN")
-                log.info(
-                    f"→ FORWARDED [{normalized_alert['rule']['level']:2d}] "
-                    f"{normalized_alert['rule']['description'][:50]} "
-                    f"| Severity: {severity}"
-                )
-                return True
+            with urllib.request.urlopen(req, timeout=MISTRAL_TIMEOUT) as r:
+                data = json.loads(r.read().decode())
+                classification = data.get("classification", str(data))[:200]
+                log.info(f"  ✅ CLASSIFIED [{level:2d}] {desc}")
+                log.info(f"     → {classification}")
 
-        except urllib.error.HTTPError as e:
-            if e.code == 404:
-                continue  # try next endpoint
-            log.warning(f"FastAPI HTTP {e.code} for {endpoint}")
-            return False
-        except Exception as e:
-            log.warning(f"FastAPI unreachable at {endpoint}: {e}")
-            return False
+    except Exception as e:
+        log.warning(f"  ✗ POST failed for {alert_id}: {e}")
+    finally:
+        with _pending_lock:
+            _pending_count -= 1
 
-    return False
+
+def forward_async(normalized: dict):
+    """Launch a background thread to POST the alert — never blocks."""
+    global _pending_count
+    with _pending_lock:
+        _pending_count += 1
+    t = threading.Thread(target=_post_alert_thread, args=(normalized,), daemon=True)
+    t.start()
+
+
+# ─────────────────────────────────────────────────────────
+# FASTAPI HEALTH CHECK
+# ─────────────────────────────────────────────────────────
+def _check_fastapi_available() -> bool:
+    try:
+        if REQUESTS_AVAILABLE:
+            import requests
+            r = requests.get(f"{FASTAPI_BASE}/", timeout=3)
+            return r.status_code == 200
+        else:
+            req = urllib.request.Request(f"{FASTAPI_BASE}/")
+            with urllib.request.urlopen(req, timeout=3) as r:
+                return r.status == 200
+    except Exception:
+        return False
 
 
 # ─────────────────────────────────────────────────────────
 # ALERT FILE READER
 # ─────────────────────────────────────────────────────────
 def _get_current_line_count() -> int:
-    """Get current line count of alerts.json via docker exec."""
     try:
         result = subprocess.run(
             ["docker", "exec", WAZUH_MANAGER_CONTAINER,
@@ -265,19 +263,14 @@ def _get_current_line_count() -> int:
 
 
 def _read_new_lines(from_line: int) -> list:
-    """
-    Read lines from alerts.json starting at from_line.
-    Returns list of raw alert dicts.
-    """
     try:
         result = subprocess.run(
             ["docker", "exec", WAZUH_MANAGER_CONTAINER,
-             "tail", f"-n", f"+{from_line + 1}", WAZUH_ALERTS_FILE],
+             "tail", "-n", f"+{from_line + 1}", WAZUH_ALERTS_FILE],
             capture_output=True, text=True, timeout=10
         )
         if result.returncode != 0:
             return []
-
         alerts = []
         for line in result.stdout.strip().split("\n"):
             line = line.strip()
@@ -288,7 +281,6 @@ def _read_new_lines(from_line: int) -> list:
             except json.JSONDecodeError:
                 continue
         return alerts
-
     except Exception as e:
         log.warning(f"Error reading alerts file: {e}")
         return []
@@ -298,105 +290,79 @@ def _read_new_lines(from_line: int) -> list:
 # MAIN LOOP
 # ─────────────────────────────────────────────────────────
 def run_forwarder():
-    """
-    Main polling loop — watches alerts.json and forwards new alerts.
-    """
     log.info("=" * 60)
     log.info("  VigilanceAI — Wazuh Alert Forwarder")
-    log.info(f"  Wazuh container: {WAZUH_MANAGER_CONTAINER}")
+    log.info(f"  Wazuh container : {WAZUH_MANAGER_CONTAINER}")
     log.info(f"  FastAPI endpoint: {FASTAPI_CLASSIFY_ENDPOINT}")
-    log.info(f"  Min alert level: {MIN_ALERT_LEVEL}")
-    log.info(f"  Poll interval: {POLL_INTERVAL}s")
+    log.info(f"  Min alert level : {MIN_ALERT_LEVEL}")
+    log.info(f"  Poll interval   : {POLL_INTERVAL}s")
+    log.info(f"  Mistral timeout : {MISTRAL_TIMEOUT}s (non-blocking)")
     log.info("=" * 60)
 
-    # Write PID file for easy process management
     with open(PID_FILE, "w") as f:
         f.write(str(os.getpid()))
 
-    # Check FastAPI availability
     if _check_fastapi_available():
         log.info("✓ FastAPI backend is reachable")
     else:
-        log.warning("⚠ FastAPI backend not reachable at localhost:8000")
-        log.warning("  Alerts will be collected but forwarding will fail")
-        log.warning("  Start FastAPI: cd backend && uvicorn main:app --reload")
+        log.warning("⚠ FastAPI not reachable — start: python3 -m uvicorn backend.main:app --port 8000")
 
-    # Bookmark current position in alerts file
     current_line = _get_current_line_count()
     log.info(f"✓ Bookmarked alerts.json at line {current_line}")
-    log.info("  Watching for new alerts...")
+    log.info("  Watching for new alerts... (classifications arrive asynchronously)")
     log.info("")
 
-    forwarded_count = 0
-    skipped_count = 0
-    error_count = 0
+    forwarded = 0
+    skipped   = 0
 
     while _running:
         try:
-            new_line_count = _get_current_line_count()
-
-            if new_line_count > current_line:
+            new_count = _get_current_line_count()
+            if new_count > current_line:
                 new_alerts = _read_new_lines(current_line)
-
                 for raw in new_alerts:
                     if should_forward(raw):
                         normalized = normalize_alert(raw)
-                        success = forward_to_fastapi(normalized)
-                        if success:
-                            forwarded_count += 1
-                        else:
-                            error_count += 1
-                            # Log the alert locally even if forwarding failed
-                            log.info(
-                                f"  [LOCAL] [{raw.get('rule', {}).get('level', 0):2d}] "
-                                f"{raw.get('rule', {}).get('description', 'Unknown')[:60]}"
-                            )
+                        forward_async(normalized)   # ← non-blocking
+                        forwarded += 1
                     else:
-                        skipped_count += 1
-
-                current_line = new_line_count
-
+                        skipped += 1
+                current_line = new_count
                 if new_alerts:
-                    log.info(
-                        f"  Stats: {forwarded_count} forwarded | "
-                        f"{skipped_count} skipped | {error_count} errors"
-                    )
-
+                    log.info(f"  Stats: {forwarded} queued | {skipped} skipped "
+                             f"| {_pending_count} awaiting Mistral response")
             time.sleep(POLL_INTERVAL)
-
         except Exception as e:
             log.error(f"Forwarder loop error: {e}")
             time.sleep(POLL_INTERVAL)
 
-    # Cleanup
-    log.info(f"\nForwarder stopped. Total: {forwarded_count} forwarded, "
-             f"{skipped_count} skipped, {error_count} errors")
+    # Wait for in-flight requests
+    log.info(f"Stopping — waiting for {_pending_count} in-flight requests...")
+    for _ in range(60):
+        if _pending_count == 0:
+            break
+        time.sleep(1)
+
+    log.info(f"Forwarder stopped. Queued: {forwarded} | Skipped: {skipped}")
     if os.path.exists(PID_FILE):
         os.remove(PID_FILE)
 
 
 # ─────────────────────────────────────────────────────────
-# STANDALONE TEST (one-shot, doesn't loop)
+# TEST MODE
 # ─────────────────────────────────────────────────────────
 def run_test():
-    """
-    Test mode — reads last 5 alerts, normalizes them, and
-    attempts to forward one to FastAPI. Doesn't loop.
-    """
     print("\n" + "=" * 60)
     print("  VigilanceAI — Wazuh Forwarder Test Mode")
     print("=" * 60)
 
-    # Test 1: Read alerts file
     print("\n[Test 1] Reading alerts from Wazuh container...")
     line_count = _get_current_line_count()
     print(f"  ✓ alerts.json has {line_count} lines")
-
     start_line = max(0, line_count - 5)
     recent = _read_new_lines(start_line)
     print(f"  ✓ Read {len(recent)} recent alerts")
 
-    # Test 2: Normalize and filter
     print("\n[Test 2] Normalizing and filtering alerts...")
     to_forward = []
     for raw in recent:
@@ -405,38 +371,52 @@ def run_test():
             to_forward.append(normalized)
             print(f"  → WOULD FORWARD: [{normalized['rule']['level']:2d}] "
                   f"{normalized['rule']['description'][:55]}")
-            print(f"    Category: {normalized['category']} | "
-                  f"Agent: {normalized['source']['agent_name']}")
+            print(f"    Category: {normalized['category']} | Agent: {normalized['source']['agent_name']}")
         else:
             rule = raw.get("rule", {})
-            print(f"  ✗ SKIPPED: [{rule.get('level', 0):2d}] "
-                  f"{rule.get('description', 'Unknown')[:55]}"
-                  f" (rule {rule.get('id', '?')})")
+            print(f"  ✗ SKIPPED: [{rule.get('level',0):2d}] "
+                  f"{rule.get('description','Unknown')[:55]}")
 
-    # Test 3: FastAPI check
     print("\n[Test 3] Checking FastAPI availability...")
     if _check_fastapi_available():
-        print("  ✓ FastAPI is reachable at localhost:8000")
-
+        print("  ✓ FastAPI reachable at localhost:8000")
         if to_forward:
-            print(f"\n[Test 4] Forwarding first qualifying alert...")
-            success = forward_to_fastapi(to_forward[0])
-            if success:
-                print("  ✓ Alert forwarded successfully")
-            else:
-                print("  ✗ Forwarding failed — check FastAPI logs")
-        else:
-            print("\n[Test 4] No qualifying alerts to forward")
-            print("  Run: hydra -l testvictim -P /usr/share/wordlists/rockyou.txt")
-            print("       ssh://192.168.80.129 -t 4")
-            print("  Then re-run this test to see alerts forwarded")
+            print(f"\n[Test 4] Forwarding first alert asynchronously...")
+            print(f"  → Sending to /classify (Mistral may take 60-180s on CPU)...")
+            # Synchronous for test mode so we can show the result
+            payload = json.dumps(to_forward[0]).encode("utf-8")
+            try:
+                if REQUESTS_AVAILABLE:
+                    import requests
+                    resp = requests.post(
+                        FASTAPI_CLASSIFY_ENDPOINT,
+                        data=payload,
+                        headers={"Content-Type": "application/json"},
+                        timeout=MISTRAL_TIMEOUT
+                    )
+                    if resp.status_code == 200:
+                        data = resp.json()
+                        print(f"  ✓ Classification received:")
+                        print(f"    {data.get('classification','')[:300]}")
+                    else:
+                        print(f"  ✗ HTTP {resp.status_code}: {resp.text[:100]}")
+                else:
+                    req = urllib.request.Request(
+                        FASTAPI_CLASSIFY_ENDPOINT,
+                        data=payload,
+                        headers={"Content-Type": "application/json"},
+                        method="POST"
+                    )
+                    with urllib.request.urlopen(req, timeout=MISTRAL_TIMEOUT) as r:
+                        data = json.loads(r.read().decode())
+                        print(f"  ✓ Classification: {data.get('classification','')[:300]}")
+            except Exception as e:
+                print(f"  ✗ Failed: {e}")
     else:
-        print("  ✗ FastAPI not reachable at localhost:8000")
-        print("  Start it: cd backend && uvicorn main:app --reload --port 8000")
+        print("  ✗ FastAPI not reachable — start uvicorn first")
 
     print("\n" + "=" * 60)
-    print("  Test complete.")
-    print("  To run the live forwarder: python3 siem/wazuh_forwarder.py --run")
+    print("  To run live: python3 siem/wazuh_forwarder.py --run")
     print("=" * 60)
 
 
