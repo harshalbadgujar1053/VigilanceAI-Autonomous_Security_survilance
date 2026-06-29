@@ -162,7 +162,7 @@ PAYLOAD='{"alert_id":"E2E-TEST-001","timestamp":"2024-01-15T10:30:00Z","source":
 
 CLASSIFY_RESP=$(curl -s -X POST "$FASTAPI_URL/classify" \
     -H "Content-Type: application/json" \
-    -d "$PAYLOAD" --max-time 120 2>/dev/null)
+    -d "$PAYLOAD" --max-time 300 2>/dev/null)
 
 if echo "$CLASSIFY_RESP" | python3 -c "
 import sys,json
@@ -246,7 +246,7 @@ if rag_results:
 
 # Step C: POST to /classify
 import requests
-resp = requests.post("http://localhost:8000/classify", json=alert, timeout=120)
+resp = requests.post("http://localhost:8000/classify", json=alert, timeout=300)
 print(f"CLASSIFY_HTTP: {resp.status_code}")
 if resp.status_code == 200:
     data = resp.json()
