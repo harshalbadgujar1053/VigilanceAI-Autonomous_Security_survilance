@@ -1,20 +1,39 @@
 import sys, os
+import json
+import logging
+from pathlib import Path
+from datetime import datetime, timezone
 
-# Fix import paths
-sys.path.insert(0, '/home/kali/vigilance-ai')
-sys.path.insert(0, '/home/kali/vigilance-ai/agent')
-sys.path.insert(0, '/home/kali/vigilance-ai/backend')
+# ─── Dynamic import paths (portable — no hardcoded /home/kali) ───
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "agent"))
+sys.path.insert(0, str(ROOT / "backend"))
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from sqlalchemy.orm import Session
+from sqlalchemy import text, func
 
 from database import SessionLocal, init_db, AlertRecord, ClassificationRecord, ReportRecord
 
+# ─── Structured Logging ──────────────────────────────────
+LOG_PATH = ROOT / "vigilance.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)-7s | %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_PATH, encoding="utf-8"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("vigilance-ai")
+
 # Init DB on startup
 init_db()
+logger.info("VigilanceAI backend starting — database initialized")
 
 # Import agent modules
 from agent.classify_alert import classify_alert
@@ -69,19 +88,25 @@ def root():
 @app.post("/classify")
 async def classify(request: ClassifyRequest):
     try:
+        logger.info(f"Classify request — alert keys: {list(request.alert.keys())}")
         result = classify_alert(request.alert)
+        logger.info("Classification complete")
         return {"success": True, "classification": result}
     except Exception as e:
+        logger.error(f"Classification failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/report")
 async def generate_report_endpoint(request: ReportRequest):
     try:
+        logger.info(f"Report request — alert: {request.alert.get('id', 'unknown')}")
         from agent.tools.generate_report import generate_report as gen_report
         findings = f"""Alert: {request.alert}\nClassification: {request.classification or {}}"""
         report = gen_report.invoke(findings)
+        logger.info("Report generated successfully")
         return {"success": True, "report": report}
     except Exception as e:
+        logger.error(f"Report generation failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/classify/sample/{name}")
@@ -134,6 +159,7 @@ def save_alert(alert: dict, db: Session = Depends(get_db)):
     )
     db.add(record)
     db.commit()
+    logger.info(f"Alert saved: {record.id}")
     return {"success": True, "message": "Alert saved", "id": record.id}
 
 @app.post("/classifications/save")
@@ -146,6 +172,7 @@ def save_classification(req: SaveClassificationRequest, db: Session = Depends(ge
     )
     db.add(record)
     db.commit()
+    logger.info(f"Classification saved: alert_id={req.alert_id}, severity={req.severity}")
     return {"success": True, "message": "Classification saved", "id": record.id}
 
 @app.post("/reports/save")
@@ -158,6 +185,7 @@ def save_report(req: SaveReportRequest, db: Session = Depends(get_db)):
     )
     db.add(record)
     db.commit()
+    logger.info(f"Report saved: alert_id={req.alert_id}")
     return {"success": True, "message": "Report saved", "id": record.id}
 
 @app.get("/reports")
@@ -190,3 +218,133 @@ def get_report_by_id(report_id: int, db: Session = Depends(get_db)):
             "created_at": str(report.created_at)
         }
     }
+
+# ──────────────────────────────────────────
+# NEW ENDPOINTS — Health, Stats, Ingest, Logs
+# ──────────────────────────────────────────
+
+@app.get("/health")
+def health_check(db: Session = Depends(get_db)):
+    """Detailed health status — checks API, Database, Ollama."""
+    status = {
+        "api": True,
+        "database": False,
+        "ollama": False,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+    # Test DB
+    try:
+        db.execute(text("SELECT 1"))
+        status["database"] = True
+    except Exception:
+        pass
+    # Test Ollama
+    try:
+        import requests as req
+        r = req.get("http://localhost:11434/api/tags", timeout=3)
+        status["ollama"] = r.status_code == 200
+    except Exception:
+        pass
+    return {"success": True, "health": status}
+
+
+@app.get("/classifications")
+def get_classifications(db: Session = Depends(get_db)):
+    """List all saved classifications."""
+    records = db.query(ClassificationRecord).order_by(ClassificationRecord.classified_at.desc()).all()
+    return {"success": True, "count": len(records), "classifications": [
+        {
+            "id": r.id,
+            "alert_id": r.alert_id,
+            "severity": r.severity,
+            "reasoning": r.reasoning[:200] if r.reasoning else "",
+            "mitre_tactics": r.mitre_tactics,
+            "classified_at": str(r.classified_at)
+        } for r in records
+    ]}
+
+
+@app.get("/stats")
+def get_stats(db: Session = Depends(get_db)):
+    """Aggregated stats for the SOC dashboard."""
+    total_alerts = db.query(func.count(AlertRecord.id)).scalar() or 0
+    total_classifications = db.query(func.count(ClassificationRecord.id)).scalar() or 0
+    total_reports = db.query(func.count(ReportRecord.id)).scalar() or 0
+    severity_counts = {}
+    rows = db.query(AlertRecord.severity, func.count(AlertRecord.id)).group_by(AlertRecord.severity).all()
+    for sev, cnt in rows:
+        severity_counts[sev or "UNKNOWN"] = cnt
+    return {"success": True, "stats": {
+        "total_alerts": total_alerts,
+        "total_classifications": total_classifications,
+        "total_reports": total_reports,
+        "severity_counts": severity_counts
+    }}
+
+
+@app.post("/alerts/ingest")
+async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
+    """Ingest an alert and auto-classify it via Mistral."""
+    alert_id = alert.get("id", alert.get("alert_id",
+        f"auto-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"))
+    logger.info(f"Ingesting alert: {alert_id}")
+
+    # Save alert to DB
+    existing = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+    if not existing:
+        source = alert.get("agent", alert.get("source", {}))
+        record = AlertRecord(
+            id=alert_id,
+            timestamp=alert.get("timestamp", datetime.now(timezone.utc).isoformat()),
+            rule_id=str(alert.get("rule", {}).get("id", "")),
+            rule_level=alert.get("rule", {}).get("level", 0),
+            description=alert.get("rule", {}).get("description", ""),
+            agent_name=source.get("name", source.get("agent_name", "")),
+            agent_ip=source.get("ip", source.get("agent_ip", "")),
+            severity="PENDING",
+            raw_data=alert
+        )
+        db.add(record)
+        db.commit()
+        logger.info(f"Alert {alert_id} saved to DB")
+
+    # Auto-classify
+    try:
+        classification = classify_alert(alert)
+        # Parse severity from classification text
+        sev = "UNKNOWN"
+        if isinstance(classification, str):
+            for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+                if s in classification.upper():
+                    sev = s
+                    break
+        # Update alert severity
+        record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+        if record_to_update:
+            record_to_update.severity = sev
+            db.commit()
+        # Save classification
+        cls_record = ClassificationRecord(
+            alert_id=alert_id,
+            severity=sev,
+            reasoning=classification if isinstance(classification, str) else str(classification),
+            mitre_tactics=""
+        )
+        db.add(cls_record)
+        db.commit()
+        logger.info(f"Alert {alert_id} classified as {sev}")
+        return {"success": True, "alert_id": alert_id, "severity": sev, "classification": classification}
+    except Exception as e:
+        logger.error(f"Classification failed for {alert_id}: {e}")
+        return {"success": True, "alert_id": alert_id, "severity": "PENDING",
+                "classification": None, "error": str(e)}
+
+
+@app.get("/logs")
+def get_logs(lines: int = 50):
+    """Fetch recent application log entries."""
+    if not LOG_PATH.exists():
+        return {"success": True, "logs": [], "message": "No log file yet"}
+    with open(LOG_PATH, "r", encoding="utf-8") as f:
+        all_lines = f.readlines()
+    return {"success": True, "count": len(all_lines), "logs": all_lines[-lines:]}

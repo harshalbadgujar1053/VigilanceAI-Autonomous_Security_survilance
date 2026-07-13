@@ -308,7 +308,7 @@ const AI_MOCK_DATA: Record<string, { severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 
     technique: "T1548.001 - Abuse Microbehavior: SUID Binary",
     reasoning: [
       "The system binary `/usr/bin/find` has the Set-UID privilege bit active, allowing root context execution.",
-      "Invoked by low-privileged account 'developer' using runtime argument '-exec /bin/sh ;' to spawn a subshell.",
+      "Invoking user 'developer' using runtime argument '-exec /bin/sh ;' to spawn a subshell.",
       "Classic binary abuse pattern to bypass local shell restrictions and escalate privileges."
     ],
     reportText: "EXECUTIVE SUMMARY\nLocal privilege escalation attempt via SUID binary bypass detected on dev-workstation-05.\n\nTECHNICAL ANALYSIS\nUser 'developer' ran SUID binary `/usr/bin/find` with sub-arguments to execute a high-privilege shell spawn.\nMITRE ATT&CK: T1548.001 Abuse Microbehavior: SUID Binary.\n\nRECOMMENDED ACTIONS\n1. Revoke the SUID bit on non-essential system binaries.\n2. Restructure standard local sudo permissions for workstation developers."
@@ -449,8 +449,38 @@ export const checkBackendHealth = async (): Promise<boolean> => {
 };
 
 export const fetchSiemAlerts = async (): Promise<Alert[]> => {
-  // Always returns sample alerts as specified (hardcoded, no API)
-  return Object.values(SAMPLE_ALERTS);
+  try {
+    const res = await fetch(`${BASE_URL}/alerts`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.alerts && data.alerts.length > 0) {
+        // Transform DB records to the shape AlertCard expects
+        return data.alerts.map((a: any) => ({
+          id: a.id,
+          timestamp: a.timestamp,
+          rule: {
+            id: a.rule_id,
+            level: a.rule_level,
+            description: a.description,
+            groups: a.raw_data?.rule?.groups || []
+          },
+          agent: {
+            id: a.raw_data?.agent?.id || '',
+            name: a.agent_name,
+            ip: a.agent_ip
+          },
+          data: a.raw_data?.data || {},
+          location: a.raw_data?.location || '',
+          severity: a.severity,
+          _source: 'live'  // Flag for UI to show live badge
+        }));
+      }
+    }
+  } catch (e: any) {
+    console.warn('Backend /alerts unavailable, using sample alerts:', e.message);
+  }
+  // Fallback to sample alerts
+  return Object.values(SAMPLE_ALERTS).map(a => ({ ...a, _source: 'sample' }));
 };
 
 export const classifyAlert = async (alert: Alert): Promise<Classification> => {
@@ -458,11 +488,31 @@ export const classifyAlert = async (alert: Alert): Promise<Classification> => {
     const res = await fetch(`${BASE_URL}/classify`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(alert)
+      body: JSON.stringify({ alert })
     });
     if (!res.ok) throw new Error('API server error');
     const data = await res.json();
-    return data;
+
+    if (data.success && data.classification) {
+      // Auto-save classification state to backend DB
+      const parsed = {
+        severity: 'MEDIUM', // placeholder, AlertCard will parse from rawText
+        technique: 'T1543 - Threat Behavior', // placeholder
+        reasoning: [], // placeholder
+        rawText: data.classification
+      };
+      
+      // Auto-save classification to backend DB asynchronously
+      saveClassificationToDB({
+        alert_id: alert.id,
+        severity: alert.severity || 'UNKNOWN',
+        reasoning: data.classification,
+        mitre_tactics: alert.rule.groups.join(', ')
+      }).catch(err => console.warn('DB save classification failed:', err));
+
+      return parsed as any;
+    }
+    throw new Error('Invalid classification response');
   } catch (err) {
     console.warn("Backend not reachable. Falling back to high-fidelity local classifier.");
     // Fallback classification using high-fidelity local dataset
@@ -484,8 +534,14 @@ export const classifyAlert = async (alert: Alert): Promise<Classification> => {
       rawText: `[SEVERITY] ${mock.severity}\n[TECHNIQUE] ${mock.technique}\n[REASONING]\n` + mock.reasoning.map(r => `- ${r}`).join('\n')
     };
 
-    // Auto-save classification state locally
-    await saveClassificationToDB({ alert_id: alert.id, classification });
+    // Auto-save classification state locally in fallback
+    saveClassificationToDB({
+      alert_id: alert.id,
+      severity: mock.severity,
+      reasoning: classification.rawText || '',
+      mitre_tactics: mock.technique
+    }).catch(err => console.warn('Local save failed:', err));
+
     return classification;
   }
 };
@@ -499,6 +555,17 @@ export const generateReport = async (alert: Alert, classification: Classificatio
     });
     if (!res.ok) throw new Error('API server error');
     const data = await res.json();
+
+    if (data.success && data.report) {
+      // Auto-save report to backend DB
+      saveReportToDB({
+        alert_id: alert.id,
+        severity: classification.severity,
+        agent_name: alert.agent.name,
+        report_text: data.report
+      }).catch(err => console.warn('DB save report failed:', err));
+    }
+
     return data;
   } catch (err) {
     console.warn("Backend not reachable. Falling back to local report generation.");
@@ -524,32 +591,42 @@ export const generateReport = async (alert: Alert, classification: Classificatio
     };
 
     saveLocalReport(newReport);
+
+    // Save report to backend DB
+    saveReportToDB({
+      alert_id: alert.id,
+      severity: classification.severity,
+      agent_name: alert.agent.name,
+      report_text: reportText
+    }).catch(err => console.warn('Local save failed:', err));
+
     return { report: reportText };
   }
 };
 
-export const saveClassificationToDB = async (payload: { alert_id: string; classification: Classification }) => {
+export const saveClassificationToDB = async (payload: { alert_id: string; severity: string; reasoning: string; mitre_tactics: string }) => {
   try {
-    await fetch(`${BASE_URL}/classifications/save`, {
+    const res = await fetch(`${BASE_URL}/classifications/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
+    return res.json();
   } catch (err) {
-    // Fail silently in offline mode
-    console.log("Local save: Classification stored in session.");
+    console.log("Local save: Classification stored in session.", err);
   }
 };
 
-export const saveReportToDB = async (payload: { alert_id: string; report_text: string }) => {
+export const saveReportToDB = async (payload: { alert_id: string; severity: string; agent_name: string; report_text: string }) => {
   try {
-    await fetch(`${BASE_URL}/reports/save`, {
+    const res = await fetch(`${BASE_URL}/reports/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
+    return res.json();
   } catch (err) {
-    console.log("Local save: Report stored in persistent storage.");
+    console.log("Local save: Report stored in persistent storage.", err);
   }
 };
 
@@ -558,7 +635,7 @@ export const fetchSavedReports = async (): Promise<IncidentReport[]> => {
     const res = await fetch(`${BASE_URL}/reports`);
     if (!res.ok) throw new Error('API server error');
     const data = await res.json();
-    return data;
+    return data.reports || data;
   } catch (err) {
     console.warn("Backend not reachable. Fetching from local localStorage storage.");
     return getLocalReports();
@@ -570,11 +647,69 @@ export const fetchReportById = async (id: string): Promise<IncidentReport> => {
     const res = await fetch(`${BASE_URL}/reports/${id}`);
     if (!res.ok) throw new Error('API server error');
     const data = await res.json();
-    return data;
+    return data.report || data;
   } catch (err) {
     const reports = getLocalReports();
     const report = reports.find(r => r.id === id);
     if (!report) throw new Error(`Report with id ${id} not found in local db`);
     return report;
+  }
+};
+
+// ──────────────────────────────────────────
+// NEW: FETCH CLASSIFICATIONS
+// ──────────────────────────────────────────
+export const fetchClassifications = async (): Promise<{ success: boolean; classifications: any[] }> => {
+  try {
+    const res = await fetch(`${BASE_URL}/classifications`);
+    if (!res.ok) throw new Error('Failed to fetch classifications');
+    return res.json();
+  } catch (e: any) {
+    console.warn('Could not fetch classifications:', e.message);
+    return { success: false, classifications: [] };
+  }
+};
+
+// ──────────────────────────────────────────
+// NEW: FETCH STATS
+// ──────────────────────────────────────────
+export const fetchStats = async (): Promise<{ success: boolean; stats: any }> => {
+  try {
+    const res = await fetch(`${BASE_URL}/stats`);
+    if (!res.ok) throw new Error('Failed to fetch stats');
+    return res.json();
+  } catch (e: any) {
+    console.warn('Could not fetch stats:', e.message);
+    return { success: false, stats: {} };
+  }
+};
+
+// ──────────────────────────────────────────
+// NEW: FETCH HEALTH (detailed)
+// ──────────────────────────────────────────
+export const fetchHealth = async (): Promise<{ success: boolean; health: { api: boolean; database: boolean; ollama: boolean } }> => {
+  try {
+    const res = await fetch(`${BASE_URL}/health`);
+    if (!res.ok) throw new Error('Health check failed');
+    return res.json();
+  } catch (e) {
+    return { success: false, health: { api: false, database: false, ollama: false } };
+  }
+};
+
+// ──────────────────────────────────────────
+// NEW: SAVE ALERT TO DB (auto-persist from frontend)
+// ──────────────────────────────────────────
+export const saveAlertToDB = async (alert: Alert): Promise<{ success: boolean; id?: string }> => {
+  try {
+    const res = await fetch(`${BASE_URL}/alerts/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(alert)
+    });
+    return res.json();
+  } catch (e: any) {
+    console.warn('Could not save alert to DB:', e.message);
+    return { success: false };
   }
 };

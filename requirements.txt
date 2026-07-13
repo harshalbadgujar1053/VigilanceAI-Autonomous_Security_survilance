@@ -53,3 +53,4 @@ pytest-asyncio==0.23.8
 boto3==1.35.0
 
 # ── Optional: PostgreSQL (Phase 4 — Member 3) ───────────────
+sqlalchemy>=2.0.0

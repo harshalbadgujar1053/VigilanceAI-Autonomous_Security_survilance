@@ -178,7 +178,6 @@ SAMPLE_PAYLOAD = {
 
 @test("FastAPI root GET / returns 200")
 def _():
-    # Health check is at / not /health
     r = requests.get(f"{FASTAPI_URL}/", timeout=5)
     assert r.status_code == 200, f"Got {r.status_code}: {r.text[:100]}"
     assert "running" in r.text.lower() or "vigilance" in r.text.lower()
@@ -275,6 +274,176 @@ def _():
     from agent.tools.check_cve import check_cve
     result = check_cve.invoke({"cve_id": "CVE-2023-38408"})
     assert result is not None
+_()
+
+
+# ── GROUP 7: Database CRUD ────────────────────────────────
+print("\n━━━ GROUP 7: Database CRUD ━━━")
+
+@test("POST /alerts/save stores alert and returns success")
+def _():
+    payload = {
+        "id": "TEST-DB-001",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "rule": {"id": "5712", "description": "Test alert for DB", "level": 10},
+        "agent": {"name": "test-host", "ip": "10.0.0.99"},
+        "severity": "HIGH"
+    }
+    r = requests.post(f"{FASTAPI_URL}/alerts/save", json=payload, timeout=10)
+    assert r.status_code == 200, f"Got {r.status_code}"
+    assert r.json()["success"] is True
+_()
+
+@test("GET /alerts returns saved alert")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["success"] is True
+    assert data["count"] >= 1, f"Expected >=1 alert, got {data['count']}"
+    ids = [a["id"] for a in data["alerts"]]
+    assert "TEST-DB-001" in ids, f"TEST-DB-001 not in {ids}"
+_()
+
+@test("POST /classifications/save stores classification")
+def _():
+    payload = {"alert_id": "TEST-DB-001", "severity": "HIGH",
+               "reasoning": "Test reasoning", "mitre_tactics": "T1110"}
+    r = requests.post(f"{FASTAPI_URL}/classifications/save", json=payload, timeout=10)
+    assert r.status_code == 200
+    assert r.json()["success"] is True
+_()
+
+@test("GET /classifications returns saved record")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/classifications", timeout=10)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["success"] is True
+    assert data["count"] >= 1
+_()
+
+@test("POST /reports/save and GET /reports round-trip")
+def _():
+    payload = {"alert_id": "TEST-DB-001", "severity": "HIGH",
+               "agent_name": "test-host",
+               "report_text": "Test incident report content"}
+    r = requests.post(f"{FASTAPI_URL}/reports/save", json=payload, timeout=10)
+    assert r.status_code == 200
+    r2 = requests.get(f"{FASTAPI_URL}/reports", timeout=10)
+    assert r2.status_code == 200
+    assert r2.json()["count"] >= 1
+_()
+
+@test("GET /reports/{id} returns correct report")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/reports", timeout=10)
+    if r.status_code == 200 and r.json()["count"] > 0:
+        rid = r.json()["reports"][0]["id"]
+        r2 = requests.get(f"{FASTAPI_URL}/reports/{rid}", timeout=10)
+        assert r2.status_code == 200
+        assert r2.json()["success"] is True
+        assert "report_text" in r2.json()["report"]
+_()
+
+
+# ── GROUP 8: Health & Stats Endpoints ─────────────────────
+print("\n━━━ GROUP 8: Health & Stats Endpoints ━━━")
+
+@test("GET /health returns API, DB, Ollama status")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/health", timeout=10)
+    assert r.status_code == 200
+    h = r.json()["health"]
+    assert h["api"] is True
+    assert "database" in h
+    assert "ollama" in h
+_()
+
+@test("GET /health confirms database is connected")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/health", timeout=10)
+    assert r.status_code == 200
+    assert r.json()["health"]["database"] is True, "Database is not connected"
+_()
+
+@test("GET /stats returns alert counts")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/stats", timeout=10)
+    assert r.status_code == 200
+    s = r.json()["stats"]
+    assert "total_alerts" in s
+    assert "total_classifications" in s
+    assert "total_reports" in s
+    assert "severity_counts" in s
+_()
+
+@test("GET /logs returns log entries")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/logs?lines=10", timeout=10)
+    assert r.status_code == 200
+    assert r.json()["success"] is True
+_()
+
+
+# ── GROUP 9: ReAct Agent & RAG Classify ───────────────────
+print("\n━━━ GROUP 9: ReAct Agent & RAG Classify ━━━")
+
+@test("react_agent.py imports cleanly")
+def _():
+    from agent.react_agent import run_react_agent
+    assert callable(run_react_agent)
+_()
+
+@test("classify_with_rag.py imports cleanly")
+def _():
+    from agent.classify_with_rag import classify_with_rag
+    assert callable(classify_with_rag)
+_()
+
+@test("generate_report tool imports and is callable")
+def _():
+    from agent.tools.generate_report import generate_report
+    assert generate_report is not None
+_()
+
+
+# ── GROUP 10: End-to-End Pipeline ─────────────────────────
+print("\n━━━ GROUP 10: End-to-End Pipeline ━━━")
+
+@test("POST /alerts/ingest accepts and classifies alert")
+def _():
+    payload = {
+        "id": "E2E-INTEG-001",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "rule": {"id": "5712", "description": "sshd: brute force detected", "level": 10},
+        "agent": {"name": "kali-vm", "ip": "192.168.80.129"},
+        "category": "brute_force",
+        "raw_log": "Failed password for root from 192.168.80.1",
+        "indicators": {"src_ip": "192.168.80.1", "dst_ip": "192.168.80.129", "username": "root"},
+        "status": "new"
+    }
+    r = requests.post(f"{FASTAPI_URL}/alerts/ingest", json=payload, timeout=300)
+    assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
+    data = r.json()
+    assert data["success"] is True
+    assert data["alert_id"] == "E2E-INTEG-001"
+_()
+
+@test("Ingested alert appears in GET /alerts")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    assert r.status_code == 200
+    ids = [a["id"] for a in r.json()["alerts"]]
+    assert "E2E-INTEG-001" in ids, f"Ingested alert not found. IDs: {ids[:5]}"
+_()
+
+@test("GET /stats reflects new data after ingestion")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/stats", timeout=10)
+    assert r.status_code == 200
+    s = r.json()["stats"]
+    assert s["total_alerts"] >= 1, f"Expected >=1 alerts in stats"
 _()
 
 

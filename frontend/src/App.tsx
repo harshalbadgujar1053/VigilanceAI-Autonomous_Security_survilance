@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Alert } from './types';
-import { checkBackendHealth, fetchSiemAlerts } from './api/vigilanceApi';
+import { checkBackendHealth, fetchSiemAlerts, fetchHealth } from './api/vigilanceApi';
 import AlertCard from './components/AlertCard';
 import SOCCharts from './components/SOCCharts';
 import ReportsHistory from './components/ReportsHistory';
@@ -69,6 +69,8 @@ export default function App({ onLogout }: AppProps) {
   const [error, setError] = useState('');
   const [backendOk, setBackendOk] = useState(false);
   const [tab, setTab] = useState<'queue' | 'analytics' | 'reports'>('queue');
+  const [dataSource, setDataSource] = useState<'live' | 'sample' | 'loading'>('loading');
+  const [healthInfo, setHealthInfo] = useState<any>(null);
 
   // Filter & Sort State
   const [filter, setFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
@@ -86,8 +88,19 @@ export default function App({ onLogout }: AppProps) {
 
       const siemAlerts = await fetchSiemAlerts();
       setAlerts(siemAlerts);
+
+      // Detect data source from the custom _source property in transformed alerts
+      const src = siemAlerts.length > 0 && (siemAlerts[0] as any)._source === 'live' ? 'live' : 'sample';
+      setDataSource(src);
+
+      // Fetch detailed health status
+      const h = await fetchHealth();
+      if (h.success) {
+        setHealthInfo(h.health);
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to sync SOC metrics.');
+      setDataSource('sample');
     } finally {
       setLoading(false);
     }
@@ -95,6 +108,14 @@ export default function App({ onLogout }: AppProps) {
 
   useEffect(() => {
     syncDashboard();
+  }, []);
+
+  // Auto-refresh every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      syncDashboard();
+    }, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   // Compute stats based on standard rules
@@ -197,6 +218,23 @@ export default function App({ onLogout }: AppProps) {
 
             {/* Right Status Actions */}
             <div className="nav-status-actions">
+              {dataSource === 'live' ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', color: '#10B981', background: 'rgba(16, 185, 129, 0.05)', padding: '4px 10px', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.15)', fontWeight: 600 }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                  Live Data
+                </div>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', color: '#F59E0B', background: 'rgba(245, 158, 11, 0.05)', padding: '4px 10px', borderRadius: '12px', border: '1px solid rgba(245, 158, 11, 0.15)', fontWeight: 600 }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />
+                  Sample Data
+                </div>
+              )}
+              {healthInfo && (
+                <div style={{ display: 'flex', gap: '6px', fontSize: '11px', color: '#94A3B8', fontWeight: 500, marginRight: '4px' }}>
+                  <span>DB: {healthInfo.database ? '✓' : '✕'}</span>
+                  <span>Ollama: {healthInfo.ollama ? '✓' : '✕'}</span>
+                </div>
+              )}
               <LiveClock />
 
               <button 

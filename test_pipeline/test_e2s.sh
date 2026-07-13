@@ -9,7 +9,7 @@ fail()   { echo -e "  ${RED}❌ FAIL${NC} — $1"; ((FAIL++)); }
 info()   { echo -e "  ${CYAN}ℹ${NC}  $1"; }
 warn()   { echo -e "  ${YELLOW}⚠${NC}  $1"; }
 
-REPO="/home/kali/VigilanceAI-Autonomous_Security_survilance"
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
 VENV="$REPO/venv"
 WAZUH_COMPOSE="$REPO/siem/wazuh-docker/single-node/docker-compose.yml"
 WAZUH_CONTAINER="single-node-wazuh.manager-1"
@@ -214,8 +214,8 @@ header "STEP 10 · Full flow: Wazuh → normalize → RAG → classify"
 
 FULL_OUT=$(timeout 120 python3 << 'PYEOF'
 import sys, json
-sys.path.insert(0, '/home/kali/VigilanceAI-Autonomous_Security_survilance')
-sys.path.insert(0, '/home/kali/VigilanceAI-Autonomous_Security_survilance/agent')
+sys.path.insert(0, '$REPO')
+sys.path.insert(0, '$REPO/agent')
 
 # Step A: Get alert from Wazuh (or use sample if Wazuh down)
 try:
@@ -263,6 +263,95 @@ if echo "$FULL_OUT" | grep -q "FULL_FLOW_OK"; then
 else
     warn "Partial flow — details:"
     echo "$FULL_OUT" | while read line; do info "$line"; done
+fi
+
+# ── STEP 11: Database connectivity ────────────────────────
+header "STEP 11 · PostgreSQL Database"
+
+if python3 -c "
+from sqlalchemy import create_engine
+e = create_engine('postgresql://vigilance:vigilance123@localhost:5432/vigilancedb')
+c = e.connect()
+c.close()
+print('DB_OK')
+" 2>/dev/null | grep -q "DB_OK"; then
+    pass "PostgreSQL connected successfully"
+else
+    fail "Cannot connect to PostgreSQL — check if running: sudo systemctl start postgresql"
+fi
+
+# ── STEP 12: Health endpoint ─────────────────────────────
+header "STEP 12 · GET /health (detailed)"
+
+HEALTH=$(curl -s "$FASTAPI_URL/health" 2>/dev/null)
+if echo "$HEALTH" | python3 -c "
+import sys,json
+d = json.load(sys.stdin)
+assert d['health']['api'] == True
+print('HEALTH_OK')
+" 2>/dev/null | grep -q "HEALTH_OK"; then
+    pass "/health returns valid status"
+    DB_OK=$(echo "$HEALTH" | python3 -c "import sys,json; print(json.load(sys.stdin)['health']['database'])" 2>/dev/null)
+    OLLAMA_OK=$(echo "$HEALTH" | python3 -c "import sys,json; print(json.load(sys.stdin)['health']['ollama'])" 2>/dev/null)
+    info "Database: $DB_OK | Ollama: $OLLAMA_OK"
+else
+    fail "/health endpoint failed"
+fi
+
+# ── STEP 13: Full ingest E2E ─────────────────────────────
+header "STEP 13 · POST /alerts/ingest (full E2E)"
+
+info "Ingesting test alert + auto-classify (30-90s for Mistral)..."
+INGEST_PAYLOAD='{"id":"E2E-BASH-001","timestamp":"2026-01-15T10:30:00Z","rule":{"id":"5712","description":"sshd: brute force test","level":10},"agent":{"name":"kali-e2e","ip":"192.168.80.129"},"category":"brute_force","raw_log":"Failed password for root","indicators":{"src_ip":"192.168.80.1"},"status":"new"}'
+
+INGEST_RESP=$(curl -s -X POST "$FASTAPI_URL/alerts/ingest" \
+    -H "Content-Type: application/json" \
+    -d "$INGEST_PAYLOAD" --max-time 300 2>/dev/null)
+
+if echo "$INGEST_RESP" | python3 -c "
+import sys,json
+d = json.load(sys.stdin)
+assert d['success'] == True
+print('INGEST_OK')
+" 2>/dev/null | grep -q "INGEST_OK"; then
+    pass "/alerts/ingest accepted and classified alert"
+    SEV=$(echo "$INGEST_RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('severity','?'))" 2>/dev/null)
+    info "Severity: $SEV"
+else
+    fail "/alerts/ingest failed"
+    info "Response: ${INGEST_RESP:0:300}"
+fi
+
+# ── STEP 14: Verify in GET /alerts ───────────────────────
+header "STEP 14 · Verify ingested alert in GET /alerts"
+
+ALERTS_RESP=$(curl -s "$FASTAPI_URL/alerts" 2>/dev/null)
+if echo "$ALERTS_RESP" | python3 -c "
+import sys,json
+d = json.load(sys.stdin)
+ids = [a['id'] for a in d['alerts']]
+assert 'E2E-BASH-001' in ids
+print('FOUND')
+" 2>/dev/null | grep -q "FOUND"; then
+    pass "Ingested alert found in GET /alerts"
+else
+    fail "Ingested alert NOT found in GET /alerts"
+fi
+
+# ── STEP 15: Stats verification ──────────────────────────
+header "STEP 15 · GET /stats verification"
+
+STATS=$(curl -s "$FASTAPI_URL/stats" 2>/dev/null)
+if echo "$STATS" | python3 -c "
+import sys,json
+d = json.load(sys.stdin)
+assert d['stats']['total_alerts'] >= 1
+print('STATS_OK')
+" 2>/dev/null | grep -q "STATS_OK"; then
+    pass "/stats shows correct counts"
+    info "$(echo "$STATS" | python3 -c "import sys,json; s=json.load(sys.stdin)['stats']; print(f'Alerts: {s[\"total_alerts\"]}, Classifications: {s[\"total_classifications\"]}, Reports: {s[\"total_reports\"]}')" 2>/dev/null)"
+else
+    fail "/stats endpoint returned unexpected data"
 fi
 
 # ── SUMMARY ──────────────────────────────────────────────

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alert, Classification } from '../types';
 import { 
   classifyAlert, 
@@ -33,6 +33,18 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   const [report, setReport] = useState<string>('');
   const [reportStatus, setReportStatus] = useState<'idle' | 'loading' | 'done'>('idle');
 
+  // Auto-populate classification if the alert already has a pre-triaged severity in database
+  useEffect(() => {
+    if (alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && !result) {
+      setResult({
+        severity: alert.severity as any,
+        technique: alert.rule.groups.length > 0 ? alert.rule.groups[0].toUpperCase() : 'T1543 - THREAT BEHAVIOR',
+        reasoning: ['Alert pre-classified and loaded from persistent security databases.']
+      });
+      setStatus('done');
+    }
+  }, [alert.severity]);
+
   // Severity Level Mapping
   const level = alert.rule.level;
   let severityCategory: 'critical' | 'high' | 'medium' | 'low' = 'low';
@@ -47,16 +59,25 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
     }
 
     const text = rawClassification.rawText || '';
-    const severityMatch = text.match(/\[SEVERITY\]\s*(\w+)/i);
-    const techniqueMatch = text.match(/\[TECHNIQUE\]\s*([^\n]+)/i);
+    
+    // Support both [SEVERITY] and SEVERITY: formats (with/without brackets, case-insensitive)
+    const severityMatch = text.match(/\[SEVERITY\]\s*(\w+)/i) || text.match(/SEVERITY:\s*(\w+)/i);
+    
+    // Support both [TECHNIQUE] and TECHNIQUE: formats
+    const techniqueMatch = text.match(/\[TECHNIQUE\]\s*([^\n]+)/i) || text.match(/TECHNIQUE:\s*([^\n]+)/i) || text.match(/MITRE:\s*([^\n]+)/i);
 
     const reasoningLines: string[] = [];
-    const reasoningMatch = text.match(/\[REASONING\]\s*([\s\S]+)/i);
+    
+    // Support both [REASONING] and REASONING: formats, splitting off the recommended action section
+    const reasoningMatch = text.match(/\[REASONING\]\s*([\s\S]+?)(?=\[RECOMMENDED|$)/i) || text.match(/REASONING:\s*([\s\S]+?)(?=RECOMMENDED|$)/i);
+    
     if (reasoningMatch) {
       const lines = reasoningMatch[1].split('\n');
       lines.forEach((line: string) => {
         const cleaned = line.replace(/^\s*-\s*/, '').trim();
-        if (cleaned) reasoningLines.push(cleaned);
+        if (cleaned && !cleaned.toLowerCase().includes('recommended action')) {
+          reasoningLines.push(cleaned);
+        }
       });
     }
 
@@ -492,6 +513,16 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
             <span className="meta-tag badge-id" title="Alert ID">
               ID: {alert.id}
             </span>
+            {alert._source === 'live' && (
+              <span className="meta-tag" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.2)', fontWeight: 700, fontSize: '10px' }}>
+                ⚡ LIVE
+              </span>
+            )}
+            {alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && (
+              <span className="meta-tag" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0EA5E9', border: '1px solid rgba(56, 189, 248, 0.2)', fontWeight: 700, fontSize: '10px' }}>
+                🏷️ {alert.severity}
+              </span>
+            )}
             <span className={`severity-badge ${severityCategory}`}>
               <span className="sev-dot" />
               Level {level}/15

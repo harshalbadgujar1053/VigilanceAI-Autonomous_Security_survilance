@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-07-13T05:41:10.051740+00:00",
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "errors": 0,
+    "total": 8,
+    "total_time_sec": 274.199
+  },
+  "results": [
+    {
+      "name": "GET /alerts response has correct shape for React",
+      "status": "PASS",
+      "time": 0.008826368999962142,
+      "error": null
+    },
+    {
+      "name": "Alert records contain fields App.tsx expects",
+      "status": "PASS",
+      "time": 0.056997706000402104,
+      "error": null
+    },
+    {
+      "name": "POST /classify accepts frontend alert format",
+      "status": "PASS",
+      "time": 71.825223456,
+      "error": null
+    },
+    {
+      "name": "POST /report accepts frontend format",
+      "status": "PASS",
+      "time": 201.85396127800004,
+      "error": null
+    },
+    {
+      "name": "GET /health returns expected shape",
+      "status": "PASS",
+      "time": 0.4001639640000576,
+      "error": null
+    },
+    {
+      "name": "GET /stats returns shape for SOCCharts component",
+      "status": "PASS",
+      "time": 0.04214262300001792,
+      "error": null
+    },
+    {
+      "name": "GET /reports returns shape for ReportsHistory component",
+      "status": "PASS",
+      "time": 0.007754069999919011,
+      "error": null
+    },
+    {
+      "name": "CORS headers present for localhost:3000",
+      "status": "PASS",
+      "time": 0.0037911480003458564,
+      "error": null
+    }
+  ]
+}

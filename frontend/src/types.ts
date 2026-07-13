@@ -18,6 +18,8 @@ export interface Alert {
   agent: AlertAgent;
   data?: Record<string, any>;
   location?: string;
+  severity?: string;
+  _source?: 'live' | 'sample';
 }
 
 export interface Classification {

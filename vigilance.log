@@ -1,0 +1,20 @@
+2026-07-13 10:48:18,370 | INFO    | VigilanceAI backend starting — database initialized
+2026-07-13 10:54:23,010 | INFO    | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-07-13 10:58:34,386 | INFO    | Alert saved: TEST-DB-001
+2026-07-13 10:58:34,462 | INFO    | Classification saved: alert_id=TEST-DB-001, severity=HIGH
+2026-07-13 10:58:34,536 | INFO    | Report saved: alert_id=TEST-DB-001
+2026-07-13 10:58:34,783 | INFO    | Ingesting alert: E2E-INTEG-001
+2026-07-13 10:58:34,793 | INFO    | Alert E2E-INTEG-001 saved to DB
+2026-07-13 10:59:13,540 | INFO    | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-07-13 10:59:59,253 | INFO    | Alert E2E-INTEG-001 classified as UNKNOWN
+2026-07-13 11:03:43,643 | INFO    | Ingesting alert: E2E-BASH-001
+2026-07-13 11:03:43,764 | INFO    | Alert E2E-BASH-001 saved to DB
+2026-07-13 11:04:17,973 | INFO    | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-07-13 11:05:12,063 | INFO    | Alert E2E-BASH-001 classified as UNKNOWN
+2026-07-13 11:06:35,901 | INFO    | Alert saved: FRONTEND-TEST-001
+2026-07-13 11:06:35,917 | INFO    | Classify request — alert keys: ['id', 'timestamp', 'rule', 'agent', 'data']
+2026-07-13 11:07:05,649 | INFO    | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-07-13 11:07:47,739 | INFO    | Classification complete
+2026-07-13 11:07:47,965 | INFO    | Report request — alert: alert-003
+2026-07-13 11:08:36,437 | INFO    | HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-07-13 11:11:09,587 | INFO    | Report generated successfully
