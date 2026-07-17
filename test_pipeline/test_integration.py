@@ -189,39 +189,57 @@ def _():
     assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
 _()
 
-@test("POST /classify returns 200 (timeout=180s for Mistral CPU)")
+CLASSIFY_CACHE = {}
+
+def _cached_classify(payload_key: str, alert: dict):
+    """Mistral CPU inference is 60-180s; cache across the whole test group."""
+    if payload_key not in CLASSIFY_CACHE:
+        r = requests.post(f"{FASTAPI_URL}/classify", json={"alert": alert}, timeout=180)
+        CLASSIFY_CACHE[payload_key] = r
+    return CLASSIFY_CACHE[payload_key]
+
+@test("POST /classify (wrapped {alert: ...}) returns 200")
 def _():
-    r = requests.post(f"{FASTAPI_URL}/classify",
-                      json=SAMPLE_PAYLOAD, timeout=180)
+    r = _cached_classify("ssh", SAMPLE_PAYLOAD)
     assert r.status_code == 200, f"Got {r.status_code}: {r.text[:300]}"
 _()
 
-@test("POST /classify response has alert_id and classification")
+@test("POST /classify response has success + classification dict with rawText")
 def _():
-    r = requests.post(f"{FASTAPI_URL}/classify",
-                      json=SAMPLE_PAYLOAD, timeout=180)
+    r = _cached_classify("ssh", SAMPLE_PAYLOAD)
     if r.status_code != 200:
         return
     data = r.json()
-    assert "alert_id" in data, f"No alert_id in {list(data.keys())}"
-    assert "classification" in data or "severity" in data or "result" in data, \
-        f"No classification key. Keys: {list(data.keys())}"
+    assert data.get("success") is True, f"success not True. Keys: {list(data.keys())}"
+    c = data.get("classification")
+    assert isinstance(c, dict), f"classification should be a dict, got {type(c)}"
+    assert isinstance(c.get("rawText"), str) and c["rawText"], f"rawText missing. Keys: {list(c.keys())}"
 _()
 
 @test("POST /classify response mentions SSH/brute/T1110")
 def _():
-    r = requests.post(f"{FASTAPI_URL}/classify",
-                      json=SAMPLE_PAYLOAD, timeout=180)
+    r = _cached_classify("ssh", SAMPLE_PAYLOAD)
     if r.status_code != 200:
         return
-    text = json.dumps(r.json()).lower()
+    text = r.json().get("classification", {}).get("rawText", "").lower()
     assert any(w in text for w in ["ssh", "brute", "t1110", "authentication", "critical"])
 _()
 
-@test("POST /classify rejects malformed payload with 422")
+@test("POST /classify output uses bracket-tag contract the frontend regex parser expects")
+def _():
+    r = _cached_classify("ssh", SAMPLE_PAYLOAD)
+    if r.status_code != 200:
+        return
+    text = r.json().get("classification", {}).get("rawText", "")
+    assert "[SEVERITY]" in text.upper(), f"Missing [SEVERITY] tag: {text[:200]}"
+    assert "[TECHNIQUE]" in text.upper(), f"Missing [TECHNIQUE] tag: {text[:200]}"
+    assert "[REASONING]" in text.upper(), f"Missing [REASONING] tag: {text[:200]}"
+_()
+
+@test("POST /classify without 'alert' wrapper is rejected with 422")
 def _():
     r = requests.post(f"{FASTAPI_URL}/classify", json={"bad": "data"}, timeout=10)
-    assert r.status_code in (400, 422), f"Expected 400/422, got {r.status_code}"
+    assert r.status_code == 422, f"Expected 422, got {r.status_code}"
 _()
 
 
@@ -444,6 +462,114 @@ def _():
     assert r.status_code == 200
     s = r.json()["stats"]
     assert s["total_alerts"] >= 1, f"Expected >=1 alerts in stats"
+_()
+
+
+# ── GROUP 7: Live alert DB flow (frontend polling contract) ─
+print("\n━━━ GROUP 7: Live Alerts (DB save/fetch contract) ━━━")
+
+LIVE_WAZUH_ALERT = {
+    "id": "1720000000.999999",
+    "timestamp": datetime.now(timezone.utc).isoformat(),
+    "rule": {"id": "5712", "level": 10, "description": "sshd: More than 8 authentication failures",
+              "groups": ["authentication_failed", "sshd"]},
+    "agent": {"id": "001", "name": "kali", "ip": "192.168.80.129"},
+    "severity": "HIGH"
+}
+
+@test("POST /alerts/save accepts a raw Wazuh-shaped alert")
+def _():
+    r = requests.post(f"{FASTAPI_URL}/alerts/save", json=LIVE_WAZUH_ALERT, timeout=10)
+    assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
+    data = r.json()
+    assert data.get("success") is True
+_()
+
+@test("GET /alerts contains the saved alert with matching id")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
+    data = r.json()
+    assert data.get("success") is True
+    ids = [a["id"] for a in data.get("alerts", [])]
+    assert LIVE_WAZUH_ALERT["id"] in ids, f"Saved alert id not found in GET /alerts ({len(ids)} rows)"
+_()
+
+@test("GET /alerts row round-trips rule/agent fields the frontend needs")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    if r.status_code != 200:
+        return
+    row = next((a for a in r.json().get("alerts", []) if a["id"] == LIVE_WAZUH_ALERT["id"]), None)
+    assert row is not None
+    assert row["rule_level"] == 10
+    assert row["agent_ip"] == "192.168.80.129"
+    # raw_data is what frontend's fetchSiemAlerts() maps directly into the Alert type
+    assert row.get("raw_data", {}).get("rule", {}).get("groups") == ["authentication_failed", "sshd"]
+_()
+
+@test("Re-POSTing the same alert id is idempotent (no duplicate row)")
+def _():
+    r1 = requests.post(f"{FASTAPI_URL}/alerts/save", json=LIVE_WAZUH_ALERT, timeout=10)
+    r2 = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    if r1.status_code != 200 or r2.status_code != 200:
+        return
+    ids = [a["id"] for a in r2.json().get("alerts", [])]
+    assert ids.count(LIVE_WAZUH_ALERT["id"]) == 1, "Duplicate rows for same alert id"
+_()
+
+
+# ── GROUP 7: Live alert DB flow (frontend polling contract) ─
+print("\n━━━ GROUP 7: Live Alerts (DB save/fetch contract) ━━━")
+
+LIVE_WAZUH_ALERT = {
+    "id": "1720000000.999999",
+    "timestamp": datetime.now(timezone.utc).isoformat(),
+    "rule": {"id": "5712", "level": 10, "description": "sshd: More than 8 authentication failures",
+              "groups": ["authentication_failed", "sshd"]},
+    "agent": {"id": "001", "name": "kali", "ip": "192.168.80.129"},
+    "severity": "HIGH"
+}
+
+@test("POST /alerts/save accepts a raw Wazuh-shaped alert")
+def _():
+    r = requests.post(f"{FASTAPI_URL}/alerts/save", json=LIVE_WAZUH_ALERT, timeout=10)
+    assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
+    data = r.json()
+    assert data.get("success") is True
+_()
+
+@test("GET /alerts contains the saved alert with matching id")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    assert r.status_code == 200, f"Got {r.status_code}: {r.text[:200]}"
+    data = r.json()
+    assert data.get("success") is True
+    ids = [a["id"] for a in data.get("alerts", [])]
+    assert LIVE_WAZUH_ALERT["id"] in ids, f"Saved alert id not found in GET /alerts ({len(ids)} rows)"
+_()
+
+@test("GET /alerts row round-trips rule/agent fields the frontend needs")
+def _():
+    r = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    if r.status_code != 200:
+        return
+    row = next((a for a in r.json().get("alerts", []) if a["id"] == LIVE_WAZUH_ALERT["id"]), None)
+    assert row is not None
+    assert row["rule_level"] == 10
+    assert row["agent_ip"] == "192.168.80.129"
+    # raw_data is what frontend's fetchSiemAlerts() maps directly into the Alert type
+    assert row.get("raw_data", {}).get("rule", {}).get("groups") == ["authentication_failed", "sshd"]
+_()
+
+@test("Re-POSTing the same alert id is idempotent (no duplicate row)")
+def _():
+    r1 = requests.post(f"{FASTAPI_URL}/alerts/save", json=LIVE_WAZUH_ALERT, timeout=10)
+    r2 = requests.get(f"{FASTAPI_URL}/alerts", timeout=10)
+    if r1.status_code != 200 or r2.status_code != 200:
+        return
+    ids = [a["id"] for a in r2.json().get("alerts", [])]
+    assert ids.count(LIVE_WAZUH_ALERT["id"]) == 1, "Duplicate rows for same alert id"
 _()
 
 

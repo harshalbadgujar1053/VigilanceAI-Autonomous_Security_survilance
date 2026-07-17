@@ -1,0 +1,25 @@
+diff a/agent/classify_alert.py b/agent/classify_alert.py	(rejected hunks)
+@@ -43,17 +43,16 @@ Analyze the following security alert and classify its severity.
+ ALERT:
+ {alert_json}
+ 
+-Respond in this EXACT format (no extra text):
++Respond in this EXACT format (no extra text, no markdown, keep each
++tag on its own line exactly as shown — this is machine-parsed):
+ 
+-SEVERITY: <CRITICAL | MEDIUM | LOW>
+-
+-REASONING:
++[SEVERITY] <CRITICAL | HIGH | MEDIUM | LOW>
++[TECHNIQUE] <MITRE ATT&CK technique ID and name, e.g. "T1110 - Brute Force">
++[REASONING]
+ - <bullet point 1: what triggered this alert>
+ - <bullet point 2: why this severity level>
+ - <bullet point 3: key indicators of compromise>
+-
+-RECOMMENDED ACTION:
+-<one sentence on what the analyst should do>
++[ACTION] <one sentence on what the analyst should do>
+ """
+ )
+ 

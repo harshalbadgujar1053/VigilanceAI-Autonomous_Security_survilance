@@ -50,15 +50,20 @@ def get_mitre_context(alert_description: str, n_results: int = 3) -> str:
 
     # Format results into a readable block for the prompt
     context_lines = []
+    top_technique = None
     for i, doc_id in enumerate(results["ids"][0]):
         technique_name = results["metadatas"][0][i]["technique"]
         technique_text = results["documents"][0][i]
+        if i == 0:
+            # doc_id looks like "T1110" — grounds [TECHNIQUE] deterministically
+            # instead of letting the LLM guess it.
+            top_technique = f"{doc_id} - {technique_name}"
         # Take first 300 chars of each technique to keep prompt manageable
         context_lines.append(
             f"[{doc_id}] {technique_name}:\n{technique_text[:300]}..."
         )
 
-    return "\n\n".join(context_lines)
+    return "\n\n".join(context_lines), top_technique
 
 
 # ─────────────────────────────────────────────
@@ -84,20 +89,16 @@ and classify its severity.
 ALERT:
 {alert_json}
 
-Respond in this EXACT format:
+Respond in this EXACT format (no extra text, no markdown, keep each
+tag on its own line exactly as shown — this is machine-parsed):
 
-SEVERITY: <CRITICAL | MEDIUM | LOW>
-
-MITRE TECHNIQUES IDENTIFIED:
-- <technique ID and name from context above>
-
-REASONING:
+[SEVERITY] <CRITICAL | HIGH | MEDIUM | LOW>
+[TECHNIQUE] <the single best-matching technique ID and name from the MITRE ATT&CK CONTEXT above, e.g. "T1110 - Brute Force">
+[REASONING]
 - <bullet point 1: what triggered this alert>
-- <bullet point 2: how it maps to the MITRE techniques above>
+- <bullet point 2: how it maps to the MITRE technique above>
 - <bullet point 3: key indicators of compromise>
-
-RECOMMENDED ACTION:
-<one sentence on what the analyst should do>
+[ACTION] <one sentence on what the analyst should do>
 """
 )
 
@@ -136,7 +137,7 @@ def classify_alert_with_rag(alert: dict) -> dict:
     print(f"Querying ChromaDB for: '{query}'")
 
     # Step 1: Retrieve MITRE context
-    mitre_context = get_mitre_context(query)
+    mitre_context, top_technique = get_mitre_context(query)
 
     print("\nTop MITRE matches retrieved:")
     for line in mitre_context.split("\n\n"):
@@ -153,10 +154,28 @@ def classify_alert_with_rag(alert: dict) -> dict:
         "mitre_context": mitre_context
     })
 
+    # Step 3: Ground [TECHNIQUE] in the actual top ChromaDB match rather than
+    # trusting the LLM's own read of the context — replaces whatever the LLM
+    # wrote on that line (or appends it if the tag is missing).
+    if top_technique:
+        if "[TECHNIQUE]" in result:
+            lines = result.split("\n")
+            for idx, line in enumerate(lines):
+                if line.strip().upper().startswith("[TECHNIQUE]"):
+                    lines[idx] = f"[TECHNIQUE] {top_technique}"
+                    break
+            result = "\n".join(lines)
+        else:
+            result = result.strip() + f"\n[TECHNIQUE] {top_technique}"
+
     return {
         "mitre_context_used": mitre_context,
         "classification": result
     }
+
+
+# Alias for tests/callers expecting this exact name
+classify_with_rag = classify_alert_with_rag
 
 
 # ─────────────────────────────────────────────

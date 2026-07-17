@@ -45,6 +45,7 @@ import urllib.error
 # ─────────────────────────────────────────────────────────
 FASTAPI_BASE               = "http://localhost:8000"
 FASTAPI_CLASSIFY_ENDPOINT  = f"{FASTAPI_BASE}/classify"
+FASTAPI_ALERTS_SAVE_ENDPOINT = f"{FASTAPI_BASE}/alerts/save"
 
 WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
 WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
@@ -177,7 +178,7 @@ def _post_alert_thread(normalized: dict):
     alert_id = normalized["alert_id"]
     desc     = normalized["rule"]["description"][:50]
     level    = normalized["rule"]["level"]
-    payload  = json.dumps(normalized).encode("utf-8")
+    payload  = json.dumps({"alert": normalized}).encode("utf-8")
 
     log.info(f"  ↑ QUEUED  [{level:2d}] {desc} (alert {alert_id})")
 
@@ -219,12 +220,123 @@ def _post_alert_thread(normalized: dict):
             _pending_count -= 1
 
 
+# Caps how many classify requests can be in-flight to Ollama at once.
+# Without this, every alert in a burst (e.g. a Hydra run) fires its own
+# thread immediately, and dozens of concurrent 30-180s Mistral calls queue
+# up on a single Ollama worker — starving out any other process (like
+# test_integration.py) trying to hit /classify at the same time.
+_classify_semaphore = threading.Semaphore(2)
+
+def _post_alert_thread_limited(normalized: dict):
+    with _classify_semaphore:
+        _post_alert_thread(normalized)
+
 def forward_async(normalized: dict):
     """Launch a background thread to POST the alert — never blocks."""
     global _pending_count
     with _pending_lock:
         _pending_count += 1
-    t = threading.Thread(target=_post_alert_thread, args=(normalized,), daemon=True)
+    t = threading.Thread(target=_post_alert_thread_limited, args=(normalized,), daemon=True)
+    t.start()
+
+
+def _severity_from_level(level: int) -> str:
+    if level >= 12:
+        return "CRITICAL"
+    if level >= 8:
+        return "HIGH"
+    if level >= 4:
+        return "MEDIUM"
+    return "LOW"
+
+
+def _save_alert_thread(raw: dict):
+    """
+    Persists the raw Wazuh alert (already shaped like the frontend's Alert
+    type: id/timestamp/rule.{id,level,description,groups}/agent.{id,name,ip})
+    to Postgres via /alerts/save. This is what makes alerts show up as
+    "live" on the dashboard — the frontend polls GET /alerts.
+    """
+    payload = dict(raw)
+    payload["severity"] = _severity_from_level(int(raw.get("rule", {}).get("level", 0)))
+    body = json.dumps(payload).encode("utf-8")
+    try:
+        if REQUESTS_AVAILABLE:
+            import requests
+            resp = requests.post(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+            if resp.status_code != 200:
+                log.warning(f"  ⚠ /alerts/save returned HTTP {resp.status_code}: {resp.text[:100]}")
+        else:
+            req = urllib.request.Request(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                method="POST"
+            )
+            with urllib.request.urlopen(req, timeout=10):
+                pass
+    except Exception as e:
+        log.warning(f"  ✗ /alerts/save failed for {raw.get('id')}: {e}")
+
+
+def save_alert_async(raw: dict):
+    """Launch a background thread to persist the raw alert — never blocks the poll loop."""
+    t = threading.Thread(target=_save_alert_thread, args=(raw,), daemon=True)
+    t.start()
+
+
+def _severity_from_level(level: int) -> str:
+    if level >= 12:
+        return "CRITICAL"
+    if level >= 8:
+        return "HIGH"
+    if level >= 4:
+        return "MEDIUM"
+    return "LOW"
+
+
+def _save_alert_thread(raw: dict):
+    """
+    Persists the raw Wazuh alert (already shaped like the frontend's Alert
+    type: id/timestamp/rule.{id,level,description,groups}/agent.{id,name,ip})
+    to Postgres via /alerts/save. This is what makes alerts show up as
+    "live" on the dashboard — the frontend polls GET /alerts.
+    """
+    payload = dict(raw)
+    payload["severity"] = _severity_from_level(int(raw.get("rule", {}).get("level", 0)))
+    body = json.dumps(payload).encode("utf-8")
+    try:
+        if REQUESTS_AVAILABLE:
+            import requests
+            resp = requests.post(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+            if resp.status_code != 200:
+                log.warning(f"  ⚠ /alerts/save returned HTTP {resp.status_code}: {resp.text[:100]}")
+        else:
+            req = urllib.request.Request(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                method="POST"
+            )
+            with urllib.request.urlopen(req, timeout=10):
+                pass
+    except Exception as e:
+        log.warning(f"  ✗ /alerts/save failed for {raw.get('id')}: {e}")
+
+
+def save_alert_async(raw: dict):
+    """Launch a background thread to persist the raw alert — never blocks the poll loop."""
+    t = threading.Thread(target=_save_alert_thread, args=(raw,), daemon=True)
     t.start()
 
 
@@ -322,8 +434,9 @@ def run_forwarder():
                 new_alerts = _read_new_lines(current_line)
                 for raw in new_alerts:
                     if should_forward(raw):
+                        save_alert_async(raw)       # ← non-blocking: DB row for live dashboard
                         normalized = normalize_alert(raw)
-                        forward_async(normalized)   # ← non-blocking
+                        forward_async(normalized)   # ← non-blocking: Mistral classification
                         forwarded += 1
                     else:
                         skipped += 1

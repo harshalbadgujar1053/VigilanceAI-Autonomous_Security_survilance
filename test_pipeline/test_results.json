@@ -1,251 +1,305 @@
 {
-  "timestamp": "2026-07-13T05:29:59.483220+00:00",
+  "timestamp": "2026-07-15T05:36:05.917536+00:00",
   "summary": {
-    "passed": 32,
-    "failed": 1,
-    "errors": 7,
-    "total": 40,
-    "total_time_sec": 571.613
+    "passed": 48,
+    "failed": 0,
+    "errors": 1,
+    "total": 49,
+    "total_time_sec": 619.918
   },
   "results": [
     {
       "name": "NormalizedAlert model imports cleanly",
       "status": "PASS",
-      "time": 0.1839884409998831,
+      "time": 0.11041501800013975,
       "error": null
     },
     {
       "name": "NormalizedAlert validates ssh_brute_force sample",
       "status": "PASS",
-      "time": 4.76879999951052e-05,
+      "time": 0.0002727349999531725,
       "error": null
     },
     {
       "name": "All SAMPLE_ALERTS entries are valid NormalizedAlerts",
       "status": "PASS",
-      "time": 2.0475000155784073e-05,
+      "time": 1.8737999880613643e-05,
       "error": null
     },
     {
       "name": "NormalizedAlert rejects missing required fields",
       "status": "PASS",
-      "time": 2.1606000018437044e-05,
+      "time": 0.001956629000005705,
       "error": null
     },
     {
       "name": "query_rag imports and query_threat_intel is callable",
       "status": "PASS",
-      "time": 1.9361463430000185,
+      "time": 1.7997226140000748,
       "error": null
     },
     {
       "name": "SSH brute force query returns results with Brute Force name",
       "status": "PASS",
-      "time": 32.52168871500021,
+      "time": 58.6866329290001,
       "error": null
     },
     {
       "name": "CVE vulnerability query returns results",
       "status": "PASS",
-      "time": 0.2049591180000334,
+      "time": 0.07942377599988504,
       "error": null
     },
     {
       "name": "format_results_for_llm produces non-empty string",
       "status": "PASS",
-      "time": 0.12779283899999427,
+      "time": 0.06066962899990358,
       "error": null
     },
     {
       "name": "query_siem imports cleanly \u2014 get_recent_alerts exists",
-      "status": "ERROR",
-      "time": 1.8581482810000125,
-      "error": "cannot import name 'get_recent_alerts' from 'agent.tools.query_siem' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/tools/query_siem.py)"
+      "status": "PASS",
+      "time": 0.7675531310001134,
+      "error": null
     },
     {
       "name": "get_recent_alerts returns a list",
-      "status": "ERROR",
-      "time": 1.4432000170927495e-05,
-      "error": "cannot import name 'get_recent_alerts' from 'agent.tools.query_siem' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/tools/query_siem.py)"
+      "status": "PASS",
+      "time": 0.8390195200001926,
+      "error": null
     },
     {
       "name": "get_recent_alerts returns alerts from Wazuh (>0)",
-      "status": "ERROR",
-      "time": 3.6219998946762644e-06,
-      "error": "cannot import name 'get_recent_alerts' from 'agent.tools.query_siem' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/tools/query_siem.py)"
+      "status": "PASS",
+      "time": 0.37246920699999464,
+      "error": null
     },
     {
       "name": "get_recent_alerts results match NormalizedAlert shape",
-      "status": "ERROR",
-      "time": 2.7880000743607525e-06,
-      "error": "cannot import name 'get_recent_alerts' from 'agent.tools.query_siem' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/tools/query_siem.py)"
+      "status": "PASS",
+      "time": 0.11272575499992854,
+      "error": null
     },
     {
       "name": "FastAPI root GET / returns 200",
       "status": "PASS",
-      "time": 0.01198511799998414,
+      "time": 0.012457293000124992,
       "error": null
     },
     {
       "name": "FastAPI GET /classify/sample/ssh_brute_force returns 200",
       "status": "ERROR",
-      "time": 180.282272466,
+      "time": 180.19435970799987,
       "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=180)"
     },
     {
-      "name": "POST /classify returns 200 (timeout=180s for Mistral CPU)",
-      "status": "FAIL",
-      "time": 78.17191002899995,
-      "error": "Got 422: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"alert\"],\"msg\":\"Field required\",\"input\":{\"alert_id\":\"TEST-INTEG-001\",\"timestamp\":\"2026-07-13T05:21:04.638469+00:00\",\"source\":{\"agent_name\":\"kali-vm\",\"agent_ip\":\"192.168.80.129\"},\"rule\":{\"id\":\"5712\",\"description\":\"sshd: authentication failed. Brute force\",\"l"
+      "name": "POST /classify (wrapped {alert: ...}) returns 200",
+      "status": "PASS",
+      "time": 126.51164586699997,
+      "error": null
     },
     {
-      "name": "POST /classify response has alert_id and classification",
+      "name": "POST /classify response has success + classification dict with rawText",
       "status": "PASS",
-      "time": 0.008037409999815281,
+      "time": 0.009814397000127428,
       "error": null
     },
     {
       "name": "POST /classify response mentions SSH/brute/T1110",
       "status": "PASS",
-      "time": 0.005820425999900181,
+      "time": 0.00044355200020618213,
       "error": null
     },
     {
-      "name": "POST /classify rejects malformed payload with 422",
+      "name": "POST /classify output uses bracket-tag contract the frontend regex parser expects",
       "status": "PASS",
-      "time": 0.0038652519997413037,
+      "time": 3.227800016247784e-05,
+      "error": null
+    },
+    {
+      "name": "POST /classify without 'alert' wrapper is rejected with 422",
+      "status": "PASS",
+      "time": 0.06411909899998136,
       "error": null
     },
     {
       "name": "classify_alert.py imports cleanly",
       "status": "PASS",
-      "time": 1.937558185999933,
+      "time": 1.8242367709999598,
       "error": null
     },
     {
       "name": "classify_alert runs on ssh_brute_force (timeout 180s)",
       "status": "PASS",
-      "time": 110.30023551400018,
+      "time": 77.20436167499997,
       "error": null
     },
     {
       "name": "classify_alert output contains severity keyword",
       "status": "PASS",
-      "time": 77.76840874200025,
+      "time": 74.88204135199999,
       "error": null
     },
     {
       "name": "lookup_threat_intel (Tool 1) \u2014 invoke works",
       "status": "PASS",
-      "time": 0.6671251339998889,
+      "time": 0.32071403400004783,
       "error": null
     },
     {
       "name": "map_to_mitre (Tool 2) \u2014 invoke works",
       "status": "PASS",
-      "time": 0.046035333999952854,
+      "time": 0.018912155999942115,
       "error": null
     },
     {
       "name": "check_cve (Tool 3) \u2014 invoke works",
       "status": "PASS",
-      "time": 0.06087314200021865,
+      "time": 0.01693323200015584,
       "error": null
     },
     {
       "name": "POST /alerts/save stores alert and returns success",
       "status": "PASS",
-      "time": 0.470240811000167,
+      "time": 0.05027368900005058,
       "error": null
     },
     {
       "name": "GET /alerts returns saved alert",
       "status": "PASS",
-      "time": 0.007113275999927282,
+      "time": 2.413715223000054,
       "error": null
     },
     {
       "name": "POST /classifications/save stores classification",
       "status": "PASS",
-      "time": 0.06561107400011679,
+      "time": 0.1983354959997996,
       "error": null
     },
     {
       "name": "GET /classifications returns saved record",
       "status": "PASS",
-      "time": 0.01286026200023116,
+      "time": 0.0182175229999757,
       "error": null
     },
     {
       "name": "POST /reports/save and GET /reports round-trip",
       "status": "PASS",
-      "time": 0.0535678649998772,
+      "time": 0.028393116999950507,
       "error": null
     },
     {
       "name": "GET /reports/{id} returns correct report",
       "status": "PASS",
-      "time": 0.02417769399971803,
+      "time": 0.00870291899991571,
       "error": null
     },
     {
       "name": "GET /health returns API, DB, Ollama status",
       "status": "PASS",
-      "time": 0.007482304999939515,
+      "time": 0.020907714000031774,
       "error": null
     },
     {
       "name": "GET /health confirms database is connected",
       "status": "PASS",
-      "time": 0.00770921699995597,
+      "time": 0.006292602000030456,
       "error": null
     },
     {
       "name": "GET /stats returns alert counts",
       "status": "PASS",
-      "time": 0.04434224299984635,
+      "time": 0.034096190999889586,
       "error": null
     },
     {
       "name": "GET /logs returns log entries",
       "status": "PASS",
-      "time": 0.021628872999826854,
+      "time": 0.011795905999861134,
       "error": null
     },
     {
       "name": "react_agent.py imports cleanly",
-      "status": "ERROR",
-      "time": 0.09057017699979042,
-      "error": "cannot import name 'run_react_agent' from 'agent.react_agent' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/react_agent.py)"
+      "status": "PASS",
+      "time": 0.05147129900001346,
+      "error": null
     },
     {
       "name": "classify_with_rag.py imports cleanly",
-      "status": "ERROR",
-      "time": 0.025267186000291986,
-      "error": "cannot import name 'classify_with_rag' from 'agent.classify_with_rag' (/home/kali/VigilanceAI-Autonomous_Security_survilance/agent/classify_with_rag.py)"
+      "status": "PASS",
+      "time": 0.0051614109997899504,
+      "error": null
     },
     {
       "name": "generate_report tool imports and is callable",
       "status": "PASS",
-      "time": 0.0026462410000931413,
+      "time": 0.003547367999999551,
       "error": null
     },
     {
       "name": "POST /alerts/ingest accepts and classifies alert",
       "status": "PASS",
-      "time": 84.48275526299994,
+      "time": 83.0785815879999,
       "error": null
     },
     {
       "name": "Ingested alert appears in GET /alerts",
       "status": "PASS",
-      "time": 0.18961981400025252,
+      "time": 1.4006517409998196,
       "error": null
     },
     {
       "name": "GET /stats reflects new data after ingestion",
       "status": "PASS",
-      "time": 0.010877418000291073,
+      "time": 0.017198473000007652,
+      "error": null
+    },
+    {
+      "name": "POST /alerts/save accepts a raw Wazuh-shaped alert",
+      "status": "PASS",
+      "time": 0.003825143000085518,
+      "error": null
+    },
+    {
+      "name": "GET /alerts contains the saved alert with matching id",
+      "status": "PASS",
+      "time": 1.381822401999898,
+      "error": null
+    },
+    {
+      "name": "GET /alerts row round-trips rule/agent fields the frontend needs",
+      "status": "PASS",
+      "time": 1.3649114720001307,
+      "error": null
+    },
+    {
+      "name": "Re-POSTing the same alert id is idempotent (no duplicate row)",
+      "status": "PASS",
+      "time": 1.3560515639999267,
+      "error": null
+    },
+    {
+      "name": "POST /alerts/save accepts a raw Wazuh-shaped alert",
+      "status": "PASS",
+      "time": 0.005070974000091155,
+      "error": null
+    },
+    {
+      "name": "GET /alerts contains the saved alert with matching id",
+      "status": "PASS",
+      "time": 1.8338422269998773,
+      "error": null
+    },
+    {
+      "name": "GET /alerts row round-trips rule/agent fields the frontend needs",
+      "status": "PASS",
+      "time": 1.2895378400000936,
+      "error": null
+    },
+    {
+      "name": "Re-POSTing the same alert id is idempotent (no duplicate row)",
+      "status": "PASS",
+      "time": 1.4447172400000454,
       "error": null
     }
   ]

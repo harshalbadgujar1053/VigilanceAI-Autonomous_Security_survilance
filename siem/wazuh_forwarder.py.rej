@@ -1,0 +1,20 @@
+diff a/siem/wazuh_forwarder.py b/siem/wazuh_forwarder.py	(rejected hunks)
+@@ -45,6 +45,7 @@ import urllib.error
+ # ─────────────────────────────────────────────────────────
+ FASTAPI_BASE               = "http://localhost:8000"
+ FASTAPI_CLASSIFY_ENDPOINT  = f"{FASTAPI_BASE}/classify"
++FASTAPI_ALERTS_SAVE_ENDPOINT = f"{FASTAPI_BASE}/alerts/save"
+ 
+ WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
+ WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
+@@ -322,8 +373,9 @@ def run_forwarder():
+                 new_alerts = _read_new_lines(current_line)
+                 for raw in new_alerts:
+                     if should_forward(raw):
++                        save_alert_async(raw)       # ← non-blocking: DB row for live dashboard
+                         normalized = normalize_alert(raw)
+-                        forward_async(normalized)   # ← non-blocking
++                        forward_async(normalized)   # ← non-blocking: Mistral classification
+                         forwarded += 1
+                     else:
+                         skipped += 1

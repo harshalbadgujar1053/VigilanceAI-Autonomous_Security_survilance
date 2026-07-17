@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Classification } from '../types';
 import { 
   classifyAlert, 
-  generateReport 
+  generateReport,
+  saveClassificationToDB
 } from '../api/vigilanceApi';
 import { generateIncidentPDF } from '../utils/generatePDF';
 import SeverityBadge from './SeverityBadge';
@@ -96,6 +97,16 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       const parsed = parseResult(rawData);
       setResult(parsed);
       setStatus('done');
+      try {
+        await saveClassificationToDB({
+  alert_id: alert.id,
+  severity: parsed.severity,
+  reasoning: parsed.reasoning.join(' | '),
+  mitre_tactics: parsed.technique
+});
+      } catch {
+        // Non-fatal: dashboard already shows the result even if persistence fails
+      }
     } catch (err: any) {
       setStatus('error');
       setErrorMsg(err.message || 'Failed to analyze alert payload via Mistral 7B.');

@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "agent"))
 sys.path.insert(0, str(ROOT / "backend"))
 
 from fastapi import FastAPI, HTTPException, Depends
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
@@ -36,14 +37,15 @@ init_db()
 logger.info("VigilanceAI backend starting — database initialized")
 
 # Import agent modules
-from agent.classify_alert import classify_alert
+from agent.classify_alert import classify_alert, parse_llm_output
+from agent.classify_with_rag import classify_alert_with_rag
 from agent.alert_schema import SAMPLE_ALERTS, NormalizedAlert
 
 app = FastAPI(title="Vigilance AI", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://192.168.43.137:3000"],
+    allow_origins=["http://192.168.80.129:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -87,14 +89,25 @@ def root():
 
 @app.post("/classify")
 async def classify(request: ClassifyRequest):
+    fallback_level = request.alert.get("rule", {}).get("level", 0)
     try:
         logger.info(f"Classify request — alert keys: {list(request.alert.keys())}")
-        result = classify_alert(request.alert)
-        logger.info("Classification complete")
+        # run_in_threadpool: classify_alert_with_rag() is a blocking, synchronous
+        # Ollama call. Without this, it freezes the entire event loop for
+        # 30-180s+, during which NO other request (even /health) can be served.
+        rag_result = await run_in_threadpool(classify_alert_with_rag, request.alert)
+        result = parse_llm_output(rag_result["classification"], fallback_level=fallback_level)
+        logger.info("RAG-grounded classification complete")
         return {"success": True, "classification": result}
     except Exception as e:
-        logger.error(f"Classification failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.warning(f"RAG classification failed, falling back to plain chain: {e}")
+        try:
+            result = await run_in_threadpool(classify_alert, request.alert)
+            logger.info("Fallback classification complete")
+            return {"success": True, "classification": result}
+        except Exception as e2:
+            logger.error(f"Classification failed: {e2}")
+            raise HTTPException(status_code=500, detail=str(e2))
 
 @app.post("/report")
 async def generate_report_endpoint(request: ReportRequest):
@@ -102,7 +115,7 @@ async def generate_report_endpoint(request: ReportRequest):
         logger.info(f"Report request — alert: {request.alert.get('id', 'unknown')}")
         from agent.tools.generate_report import generate_report as gen_report
         findings = f"""Alert: {request.alert}\nClassification: {request.classification or {}}"""
-        report = gen_report.invoke(findings)
+        report = await run_in_threadpool(gen_report.invoke, findings)
         logger.info("Report generated successfully")
         return {"success": True, "report": report}
     except Exception as e:
@@ -114,7 +127,7 @@ async def classify_sample(name: str):
     if name not in SAMPLE_ALERTS:
         raise HTTPException(status_code=404, detail=f"Sample '{name}' not found")
     try:
-        result = classify_alert(SAMPLE_ALERTS[name])
+        result = await run_in_threadpool(classify_alert, SAMPLE_ALERTS[name])
         return {"success": True, "alert": SAMPLE_ALERTS[name], "classification": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -310,7 +323,7 @@ async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
 
     # Auto-classify
     try:
-        classification = classify_alert(alert)
+        classification = await run_in_threadpool(classify_alert, alert)
         # Parse severity from classification text
         sev = "UNKNOWN"
         if isinstance(classification, str):

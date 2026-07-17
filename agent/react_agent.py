@@ -244,6 +244,13 @@ Observation: {observation[:600]}
     return final_report
 
 
+# Alias expected by test_integration.py / other callers.
+# investigate() is the real entry point (manual ReAct loop); this just
+# gives it the name tests look for.
+def run_react_agent(alert_description: str, max_steps: int = 7) -> str:
+    return investigate(alert_description, max_steps=max_steps)
+
+
 # ─────────────────────────────────────────────
 # 6. MAIN ENTRY POINT
 # ─────────────────────────────────────────────

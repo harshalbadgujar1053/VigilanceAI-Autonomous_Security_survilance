@@ -16,10 +16,20 @@ only the data source changes.
 import json
 import sys
 import os
+import time
+import subprocess
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from langchain.tools import tool
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+# NOTE: deliberately NOT importing siem.wazuh_forwarder here — it registers
+# SIGINT/SIGTERM handlers at module import time, which would hijack Ctrl+C
+# in whatever process imports this (e.g. the FastAPI backend, via the
+# ReAct agent's tool list). The docker-exec-tail + normalize logic below
+# is intentionally duplicated in miniature rather than importing that module.
+WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
+WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
 
 
 # ─────────────────────────────────────────────
@@ -135,6 +145,108 @@ def _format_alert_summary(alert: dict) -> str:
         f"Source IP: {srcip}{attempts_str} | "
         f"Time: {alert['timestamp']}"
     )
+
+
+# ─────────────────────────────────────────────
+# 2.5. get_recent_alerts — plain function (not a @tool), used directly
+#      by tests and by other agent code that needs NormalizedAlert dicts
+#      rather than the @tool's formatted-string output.
+# ─────────────────────────────────────────────
+def _infer_category(groups: list, description: str) -> str:
+    text = (" ".join(groups) + " " + description).lower()
+    if any(w in text for w in ["brute", "authentication_fail", "failed_login"]):
+        return "brute_force"
+    if any(w in text for w in ["rootkit", "rootcheck"]):
+        return "rootkit"
+    if any(w in text for w in ["syscheck", "integrity"]):
+        return "integrity_violation"
+    if any(w in text for w in ["diskspace", "disk"]):
+        return "resource"
+    return "other"
+
+
+def _normalize_alert(raw: dict) -> dict:
+    """Same shape as wazuh_forwarder.normalize_alert() — kept in sync manually
+    since importing that module here would register its SIGINT/SIGTERM
+    handlers in whatever process imports query_siem.py (e.g. FastAPI)."""
+    agent  = raw.get("agent", {})
+    rule   = raw.get("rule",  {})
+    data   = raw.get("data",  {})
+    mitre  = rule.get("mitre", {})
+    technique_ids   = mitre.get("id",        [])
+    technique_names = mitre.get("technique", [])
+    groups   = rule.get("groups", [])
+    category = _infer_category(groups, rule.get("description", ""))
+    src_ip   = data.get("srcip")  or data.get("src_ip")
+    dst_ip   = data.get("dstip")  or agent.get("ip")
+    username = data.get("dstuser") or data.get("srcuser") or data.get("user")
+    return {
+        "alert_id":  raw.get("id", f"wazuh-{int(time.time())}"),
+        "timestamp": raw.get("timestamp", datetime.now(timezone.utc).isoformat()),
+        "source": {
+            "agent_name": agent.get("name", "unknown"),
+            "agent_ip":   agent.get("ip",   "unknown")
+        },
+        "rule": {
+            "id":          str(rule.get("id", "0")),
+            "description": rule.get("description", "Unknown"),
+            "level":       int(rule.get("level", 0))
+        },
+        "category": category,
+        "raw_log":  raw.get("full_log", raw.get("message", ""))[:500],
+        "indicators": {
+            "src_ip":       src_ip,
+            "dst_ip":       dst_ip,
+            "src_port":     None,
+            "dst_port":     None,
+            "username":     username,
+            "process_name": data.get("process", None),
+            "file_hash":    data.get("md5", data.get("sha256", None))
+        },
+        "mitre_hint": {
+            "technique_id":   technique_ids[0]   if technique_ids   else None,
+            "technique_name": technique_names[0] if technique_names else None
+        },
+        "status": "new"
+    }
+
+
+def get_recent_alerts(n: int = 10, limit: int = None) -> list:
+    if limit is not None:
+        n = limit
+    """
+    Returns the last `n` Wazuh alerts, normalized to the NormalizedAlert
+    schema (agent.alert_schema.NormalizedAlert), by tailing the live
+    alerts.json inside the Wazuh manager container.
+
+    Falls back to the SIMULATED_ALERTS above (also normalized, so callers
+    get a consistent shape either way) if the Wazuh container isn't
+    reachable — e.g. running tests without Docker up.
+    """
+    try:
+        result = subprocess.run(
+            ["docker", "exec", WAZUH_MANAGER_CONTAINER,
+             "tail", "-n", str(n), WAZUH_ALERTS_FILE],
+            capture_output=True, text=True, timeout=10
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            raw_alerts = []
+            for line in result.stdout.strip().split("\n"):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    raw_alerts.append(json.loads(line))
+                except json.JSONDecodeError:
+                    continue
+            if raw_alerts:
+                return [_normalize_alert(a) for a in raw_alerts]
+    except Exception:
+        pass
+
+    # Fallback: Wazuh unreachable — normalize the simulated set instead
+    # of returning an empty list, so callers always get NormalizedAlert dicts.
+    return [_normalize_alert(a) for a in SIMULATED_ALERTS[:n]]
 
 
 # ─────────────────────────────────────────────

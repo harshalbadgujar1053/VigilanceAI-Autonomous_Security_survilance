@@ -453,8 +453,10 @@ export const fetchSiemAlerts = async (): Promise<Alert[]> => {
     const res = await fetch(`${BASE_URL}/alerts`);
     if (res.ok) {
       const data = await res.json();
-      if (data.success && data.alerts && data.alerts.length > 0) {
-        // Transform DB records to the shape AlertCard expects
+      if (data.success && Array.isArray(data.alerts)) {
+        // Transform DB records to the shape AlertCard expects.
+        // No sample-data fallback: an empty backend means an empty
+        // dashboard, not fabricated data.
         return data.alerts.map((a: any) => ({
           id: a.id,
           timestamp: a.timestamp,
@@ -472,136 +474,72 @@ export const fetchSiemAlerts = async (): Promise<Alert[]> => {
           data: a.raw_data?.data || {},
           location: a.raw_data?.location || '',
           severity: a.severity,
-          _source: 'live'  // Flag for UI to show live badge
+          _source: 'live'
         }));
       }
     }
+    console.warn('Backend /alerts returned no usable data.');
+    return [];
   } catch (e: any) {
-    console.warn('Backend /alerts unavailable, using sample alerts:', e.message);
+    console.warn('Backend /alerts unreachable:', e.message);
+    return [];
   }
-  // Fallback to sample alerts
-  return Object.values(SAMPLE_ALERTS).map(a => ({ ...a, _source: 'sample' }));
 };
 
 export const classifyAlert = async (alert: Alert): Promise<Classification> => {
-  try {
-    const res = await fetch(`${BASE_URL}/classify`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ alert })
-    });
-    if (!res.ok) throw new Error('API server error');
-    const data = await res.json();
+  const res = await fetch(`${BASE_URL}/classify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ alert })
+  });
+  if (!res.ok) throw new Error('API server error');
+  const data = await res.json();
 
-    if (data.success && data.classification) {
-      // Auto-save classification state to backend DB
-      const parsed = {
-        severity: 'MEDIUM', // placeholder, AlertCard will parse from rawText
-        technique: 'T1543 - Threat Behavior', // placeholder
-        reasoning: [], // placeholder
-        rawText: data.classification
-      };
-      
-      // Auto-save classification to backend DB asynchronously
-      saveClassificationToDB({
-        alert_id: alert.id,
-        severity: alert.severity || 'UNKNOWN',
-        reasoning: data.classification,
-        mitre_tactics: alert.rule.groups.join(', ')
-      }).catch(err => console.warn('DB save classification failed:', err));
-
-      return parsed as any;
-    }
+  if (!data.success || !data.classification) {
     throw new Error('Invalid classification response');
-  } catch (err) {
-    console.warn("Backend not reachable. Falling back to high-fidelity local classifier.");
-    // Fallback classification using high-fidelity local dataset
-    const mock = AI_MOCK_DATA[alert.id] || {
-      severity: alert.rule.level >= 12 ? 'CRITICAL' : alert.rule.level >= 8 ? 'HIGH' : alert.rule.level >= 4 ? 'MEDIUM' : 'LOW',
-      technique: "T1543 - Create or Modify System Process",
-      reasoning: [
-        "Unusual activity detected that matches alert rule definitions.",
-        `Alert triggered rule id ${alert.rule.id} with priority level ${alert.rule.level}.`,
-        "Recommended to analyze logs around this host."
-      ],
-      reportText: ""
-    };
-
-    const classification: Classification = {
-      severity: mock.severity,
-      technique: mock.technique,
-      reasoning: mock.reasoning,
-      rawText: `[SEVERITY] ${mock.severity}\n[TECHNIQUE] ${mock.technique}\n[REASONING]\n` + mock.reasoning.map(r => `- ${r}`).join('\n')
-    };
-
-    // Auto-save classification state locally in fallback
-    saveClassificationToDB({
-      alert_id: alert.id,
-      severity: mock.severity,
-      reasoning: classification.rawText || '',
-      mitre_tactics: mock.technique
-    }).catch(err => console.warn('Local save failed:', err));
-
-    return classification;
   }
+
+  // backend's classify_alert() already returns a fully-parsed dict:
+  // { severity, technique, reasoning: string[], rawText }. Use it as-is.
+  const c = data.classification;
+  const classification: Classification = {
+    severity: c.severity,
+    technique: c.technique,
+    reasoning: Array.isArray(c.reasoning) ? c.reasoning : [String(c.reasoning ?? '')],
+    rawText: c.rawText ?? ''
+  };
+
+  saveClassificationToDB({
+    alert_id: alert.id,
+    severity: classification.severity,
+    reasoning: classification.reasoning.join(' | '),
+    mitre_tactics: classification.technique
+  }).catch(err => console.warn('DB save classification failed:', err));
+
+  return classification;
+  // No mock fallback: if the backend or Mistral is unreachable, the caller
+  // (AlertCard.tsx) should show an error state, not fabricated severity data.
 };
 
 export const generateReport = async (alert: Alert, classification: Classification): Promise<{ report: string }> => {
-  try {
-    const res = await fetch(`${BASE_URL}/report`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ alert, classification })
-    });
-    if (!res.ok) throw new Error('API server error');
-    const data = await res.json();
+  const res = await fetch(`${BASE_URL}/report`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ alert, classification })
+  });
+  if (!res.ok) throw new Error('API server error');
+  const data = await res.json();
 
-    if (data.success && data.report) {
-      // Auto-save report to backend DB
-      saveReportToDB({
-        alert_id: alert.id,
-        severity: classification.severity,
-        agent_name: alert.agent.name,
-        report_text: data.report
-      }).catch(err => console.warn('DB save report failed:', err));
-    }
-
-    return data;
-  } catch (err) {
-    console.warn("Backend not reachable. Falling back to local report generation.");
-    const mock = AI_MOCK_DATA[alert.id];
-    let reportText = "";
-
-    if (mock) {
-      reportText = mock.reportText;
-    } else {
-      reportText = `EXECUTIVE SUMMARY\nAn investigative review of event logs on agent ${alert.agent.name} (${alert.agent.ip}) was executed due to Rule ID ${alert.rule.id}.\n\nTECHNICAL ANALYSIS\nAlert Rule Level: ${alert.rule.level}\nRule Description: ${alert.rule.description}\nCategory: ${classification.technique}\n\nAI ANALYSIS\n- The threat severity level has been validated as ${classification.severity}.\n- Detailed forensic markers were assessed based on Mitre ATT&CK classifications.\n- Host state analysis indicates potential anomalous behavior in directory space.\n\nRECOMMENDED ACTIONS\n1. Ensure appropriate log backups are securely offline.\n2. Triage connection sequences mapping to this host agent.\n3. Validate SUID bin integrity.`;
-    }
-
-    // Auto-save report to local storage
-    const newReport: IncidentReport = {
-      id: `rep-${Math.floor(Math.random() * 900000) + 100000}`,
-      alert_id: alert.id,
-      title: `Incident Triage Report - ${alert.rule.description.substring(0, 30).toUpperCase()}`,
-      severity: classification.severity,
-      agent_name: alert.agent.name,
-      preview: reportText.substring(0, 80) + "...",
-      created_at: new Date().toISOString(),
-      report_text: reportText
-    };
-
-    saveLocalReport(newReport);
-
-    // Save report to backend DB
+  if (data.success && data.report) {
     saveReportToDB({
       alert_id: alert.id,
       severity: classification.severity,
       agent_name: alert.agent.name,
-      report_text: reportText
-    }).catch(err => console.warn('Local save failed:', err));
-
-    return { report: reportText };
+      report_text: data.report
+    }).catch(err => console.warn('DB save report failed:', err));
   }
+
+  return data;
 };
 
 export const saveClassificationToDB = async (payload: { alert_id: string; severity: string; reasoning: string; mitre_tactics: string }) => {

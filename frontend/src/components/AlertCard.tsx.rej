@@ -1,0 +1,23 @@
+diff a/frontend/src/components/AlertCard.tsx b/frontend/src/components/AlertCard.tsx	(rejected hunks)
+@@ -2,7 +2,8 @@ import React, { useState } from 'react';
+ import { Alert, Classification } from '../types';
+ import { 
+   classifyAlert, 
+-  generateReport 
++  generateReport,
++  saveClassificationToDB
+ } from '../api/vigilanceApi';
+ import { generateIncidentPDF } from '../utils/generatePDF';
+ import SeverityBadge from './SeverityBadge';
+@@ -75,6 +76,11 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
+       const parsed = parseResult(rawData);
+       setResult(parsed);
+       setStatus('done');
++      try {
++        await saveClassificationToDB({ alert_id: alert.id, classification: parsed });
++      } catch {
++        // Non-fatal: dashboard already shows the result even if persistence fails
++      }
+     } catch (err: any) {
+       setStatus('error');
+       setErrorMsg(err.message || 'Failed to analyze alert payload via Mistral 7B.');

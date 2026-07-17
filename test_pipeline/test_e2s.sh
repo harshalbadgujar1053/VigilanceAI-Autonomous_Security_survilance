@@ -167,7 +167,7 @@ CLASSIFY_RESP=$(curl -s -X POST "$FASTAPI_URL/classify" \
 if echo "$CLASSIFY_RESP" | python3 -c "
 import sys,json
 d=json.load(sys.stdin)
-assert 'classification' in d or 'severity' in d or 'result' in d
+assert d.get('success') is True and 'classification' in d
 print('CLASSIFY_OK')
 print(json.dumps(d,indent=2)[:500])
 " 2>/dev/null; then
@@ -246,7 +246,7 @@ if rag_results:
 
 # Step C: POST to /classify
 import requests
-resp = requests.post("http://localhost:8000/classify", json=alert, timeout=300)
+resp = requests.post("http://localhost:8000/classify", json={"alert": alert}, timeout=300)
 print(f"CLASSIFY_HTTP: {resp.status_code}")
 if resp.status_code == 200:
     data = resp.json()
