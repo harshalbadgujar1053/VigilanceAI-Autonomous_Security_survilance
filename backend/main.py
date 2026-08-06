@@ -45,7 +45,7 @@ app = FastAPI(title="Vigilance AI", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://192.168.80.129:3000"],
+    allow_origins=["http://3.110.76.135:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

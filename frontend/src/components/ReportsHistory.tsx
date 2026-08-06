@@ -95,7 +95,7 @@ export default function ReportsHistory() {
     if (!searchQuery.trim()) return reports;
     const q = searchQuery.toLowerCase();
     return reports.filter(rep => 
-      rep.id.toLowerCase().includes(q) ||
+      String(rep.id).toLowerCase().includes(q) ||
       rep.alert_id.toLowerCase().includes(q) ||
       rep.agent_name.toLowerCase().includes(q) ||
       (rep.title && rep.title.toLowerCase().includes(q)) ||
@@ -193,7 +193,7 @@ export default function ReportsHistory() {
                 {filteredReports.map((rep) => (
                   <tr key={rep.id} className="report-row-hover">
                     <td className="text-bold text-mono">
-                      #{rep.id.substring(rep.id.length - 6).toUpperCase()}
+                      #{String(rep.id).slice(-6).toUpperCase()}
                     </td>
                     <td className="text-mono">
                       {rep.alert_id.substring(0, 8)}...
@@ -262,7 +262,7 @@ export default function ReportsHistory() {
                 {/* Meta details bar */}
                 <div className="modal-meta-bar">
                   <div className="modal-meta-item">
-                    Dossier: <strong className="text-mono">#{selectedReport.id.toUpperCase()}</strong>
+                    Dossier: <strong className="text-mono">#{String(selectedReport.id).toUpperCase()}</strong>
                   </div>
                   <div className="modal-meta-item">
                     Target Alert: <strong className="text-mono">{selectedReport.alert_id}</strong>

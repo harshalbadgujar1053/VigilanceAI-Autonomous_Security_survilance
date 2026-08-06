@@ -110,14 +110,6 @@ export default function App({ onLogout }: AppProps) {
     syncDashboard();
   }, []);
 
-  // Auto-refresh every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      syncDashboard();
-    }, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Compute stats based on standard rules
   // Severity counting: level >= 12 is CRITICAL, >= 8 is HIGH, >= 4 is MEDIUM, else LOW
   const totalCount = alerts.length;

@@ -42839,3 +42839,137 @@
 2026-07-15 13:07:11,323 [INFO]   Stats: 220 queued | 0 skipped | 220 awaiting Mistral response
 2026-07-15 13:07:17,231 [INFO]   Stats: 236 queued | 0 skipped | 236 awaiting Mistral response
 2026-07-15 13:07:35,294 [INFO]   Stats: 267 queued | 0 skipped | 267 awaiting Mistral response
+2026-08-01 17:09:42,879 [INFO] ============================================================
+2026-08-01 17:09:42,879 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 17:09:42,880 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 17:09:42,880 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 17:09:42,880 [INFO]   Min alert level : 5
+2026-08-01 17:09:42,880 [INFO]   Poll interval   : 5s
+2026-08-01 17:09:42,880 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 17:09:42,880 [INFO] ============================================================
+2026-08-01 17:09:42,884 [INFO] ✓ FastAPI backend is reachable
+2026-08-01 17:09:42,946 [INFO] ✓ Bookmarked alerts.json at line 236
+2026-08-01 17:09:42,946 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 17:09:42,946 [INFO] 
+2026-08-01 17:10:13,439 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785604209.128086)
+2026-08-01 17:10:13,439 [INFO]   Stats: 1 queued | 0 skipped | 1 awaiting Mistral response
+2026-08-01 17:10:18,577 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785604215.128611)
+2026-08-01 17:10:18,579 [INFO]   Stats: 3 queued | 0 skipped | 3 awaiting Mistral response
+2026-08-01 17:10:23,709 [INFO]   Stats: 4 queued | 0 skipped | 4 awaiting Mistral response
+2026-08-01 17:10:28,831 [INFO]   Stats: 6 queued | 0 skipped | 6 awaiting Mistral response
+2026-08-01 17:10:33,711 [WARNING]   ✗ /alerts/save failed for 1785604219.129654: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:10:33,958 [INFO]   Stats: 8 queued | 0 skipped | 8 awaiting Mistral response
+2026-08-01 17:10:38,841 [WARNING]   ✗ /alerts/save failed for 1785604223.130188: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:10:38,842 [WARNING]   ✗ /alerts/save failed for 1785604223.130722: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:10:39,083 [INFO]   Stats: 9 queued | 0 skipped | 9 awaiting Mistral response
+2026-08-01 17:10:43,968 [WARNING]   ✗ /alerts/save failed for 1785604229.131247: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:10:43,969 [WARNING]   ✗ /alerts/save failed for 1785604231.131760: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:10:49,094 [WARNING]   ✗ /alerts/save failed for 1785604235.132294: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:14,583 [INFO]   Stats: 12 queued | 0 skipped | 12 awaiting Mistral response
+2026-08-01 17:11:19,718 [INFO]   Stats: 22 queued | 0 skipped | 22 awaiting Mistral response
+2026-08-01 17:11:24,592 [WARNING]   ✗ /alerts/save failed for 1785604273.134184: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:24,593 [WARNING]   ✗ /alerts/save failed for 1785604273.134709: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:24,593 [WARNING]   ✗ /alerts/save failed for 1785604273.132828: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,716 [WARNING]   ✗ /alerts/save failed for 1785604275.135239: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,720 [WARNING]   ✗ /alerts/save failed for 1785604275.135773: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,721 [WARNING]   ✗ /alerts/save failed for 1785604275.136303: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,720 [WARNING]   ✗ /alerts/save failed for 1785604275.137362: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,721 [WARNING]   ✗ /alerts/save failed for 1785604277.138955: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,722 [WARNING]   ✗ /alerts/save failed for 1785604275.136837: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,725 [WARNING]   ✗ /alerts/save failed for 1785604275.137896: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,726 [WARNING]   ✗ /alerts/save failed for 1785604275.138430: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,727 [WARNING]   ✗ /alerts/save failed for 1785604277.139485: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:11:29,729 [WARNING]   ✗ /alerts/save failed for 1785604277.140019: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:13:13,532 [WARNING]   ✗ POST failed for 1785604209.128086: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=180)
+2026-08-01 17:13:13,532 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1785604217.129141)
+2026-08-01 17:13:18,397 [INFO] Shutdown signal received — stopping forwarder...
+2026-08-01 17:13:18,653 [WARNING]   ✗ POST failed for 1785604215.128611: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=180)
+2026-08-01 17:13:18,653 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785604219.129654)
+2026-08-01 17:17:52,689 [INFO] ============================================================
+2026-08-01 17:17:52,689 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 17:17:52,689 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 17:17:52,689 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 17:17:52,689 [INFO]   Min alert level : 5
+2026-08-01 17:17:52,689 [INFO]   Poll interval   : 5s
+2026-08-01 17:17:52,690 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 17:17:52,690 [INFO] ============================================================
+2026-08-01 17:17:55,695 [WARNING] ⚠ FastAPI not reachable — start: python3 -m uvicorn backend.main:app --port 8000
+2026-08-01 17:17:55,760 [INFO] ✓ Bookmarked alerts.json at line 258
+2026-08-01 17:17:55,761 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 17:17:55,761 [INFO] 
+2026-08-01 17:18:56,639 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785604733.140553)
+2026-08-01 17:18:56,640 [INFO]   Stats: 1 queued | 0 skipped | 1 awaiting Mistral response
+2026-08-01 17:19:01,764 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1785604737.141078)
+2026-08-01 17:19:01,765 [INFO]   Stats: 3 queued | 0 skipped | 3 awaiting Mistral response
+2026-08-01 17:19:06,651 [WARNING]   ✗ /alerts/save failed for 1785604733.140553: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:19:06,897 [INFO]   Stats: 4 queued | 0 skipped | 4 awaiting Mistral response
+2026-08-01 17:19:11,777 [WARNING]   ✗ /alerts/save failed for 1785604737.141078: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:19:11,777 [WARNING]   ✗ /alerts/save failed for 1785604739.141591: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:19:12,029 [INFO]   Stats: 6 queued | 0 skipped | 6 awaiting Mistral response
+2026-08-01 17:19:16,908 [WARNING]   ✗ /alerts/save failed for 1785604743.142125: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:19:22,039 [WARNING]   ✗ /alerts/save failed for 1785604749.142659: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:19:22,039 [WARNING]   ✗ /alerts/save failed for 1785604749.143193: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-01 17:29:48,720 [INFO] ============================================================
+2026-08-01 17:29:48,721 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 17:29:48,721 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 17:29:48,721 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 17:29:48,721 [INFO]   Min alert level : 5
+2026-08-01 17:29:48,721 [INFO]   Poll interval   : 5s
+2026-08-01 17:29:48,721 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 17:29:48,721 [INFO] ============================================================
+2026-08-01 17:29:48,725 [INFO] ✓ FastAPI backend is reachable
+2026-08-01 17:29:48,788 [INFO] ✓ Bookmarked alerts.json at line 264
+2026-08-01 17:29:48,788 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 17:29:48,788 [INFO] 
+2026-08-01 17:30:39,599 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785605434.143701)
+2026-08-01 17:30:39,602 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1785605436.144226)
+2026-08-01 17:30:39,604 [INFO]   Stats: 3 queued | 0 skipped | 3 awaiting Mistral response
+2026-08-01 17:30:49,868 [INFO]   Stats: 5 queued | 0 skipped | 5 awaiting Mistral response
+2026-08-01 17:30:55,076 [INFO]   Stats: 6 queued | 0 skipped | 6 awaiting Mistral response
+2026-08-01 17:32:43,423 [WARNING]   ✗ POST failed for 1785605434.143701: slice(None, 200, None)
+2026-08-01 17:32:43,424 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785605438.144739)
+2026-08-01 17:33:39,704 [WARNING]   ✗ POST failed for 1785605436.144226: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=180)
+2026-08-01 17:33:39,705 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1785605444.145273)
+2026-08-01 17:53:53,717 [INFO] ============================================================
+2026-08-01 17:53:53,717 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 17:53:53,717 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 17:53:53,717 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 17:53:53,717 [INFO]   Min alert level : 5
+2026-08-01 17:53:53,717 [INFO]   Poll interval   : 5s
+2026-08-01 17:53:53,717 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 17:53:53,717 [INFO] ============================================================
+2026-08-01 17:53:56,723 [WARNING] ⚠ FastAPI not reachable — start: python3 -m uvicorn backend.main:app --port 8000
+2026-08-01 17:53:56,787 [INFO] ✓ Bookmarked alerts.json at line 270
+2026-08-01 17:53:56,787 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 17:53:56,787 [INFO] 
+2026-08-01 18:34:27,569 [INFO] ============================================================
+2026-08-01 18:34:27,570 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 18:34:27,570 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 18:34:27,570 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 18:34:27,570 [INFO]   Min alert level : 5
+2026-08-01 18:34:27,570 [INFO]   Poll interval   : 5s
+2026-08-01 18:34:27,570 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 18:34:27,570 [INFO] ============================================================
+2026-08-01 18:34:27,576 [INFO] ✓ FastAPI backend is reachable
+2026-08-01 18:34:27,664 [INFO] ✓ Bookmarked alerts.json at line 272
+2026-08-01 18:34:27,664 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 18:34:27,664 [INFO] 
+2026-08-01 18:50:41,492 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-01 18:57:36,543 [INFO]   ↑ QUEUED  [ 5] Systemd: Service exited due to a failure. (alert 1785610650.151187)
+2026-08-01 18:57:36,543 [INFO]   Stats: 1 queued | 2 skipped | 1 awaiting Mistral response
+2026-08-01 18:59:54,280 [WARNING]   ✗ POST failed for 1785610650.151187: slice(None, 200, None)
+2026-08-01 19:39:27,771 [INFO] ============================================================
+2026-08-01 19:39:27,772 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-01 19:39:27,772 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-01 19:39:27,772 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-01 19:39:27,772 [INFO]   Min alert level : 5
+2026-08-01 19:39:27,772 [INFO]   Poll interval   : 5s
+2026-08-01 19:39:27,772 [INFO]   Mistral timeout : 180s (non-blocking)
+2026-08-01 19:39:27,772 [INFO] ============================================================
+2026-08-01 19:39:27,778 [INFO] ✓ FastAPI backend is reachable
+2026-08-01 19:39:27,865 [INFO] ✓ Bookmarked alerts.json at line 275
+2026-08-01 19:39:27,866 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-01 19:39:27,866 [INFO] 
+2026-08-01 20:33:51,450 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-02 09:41:04,874 [INFO] Shutdown signal received — stopping forwarder...
+2026-08-02 09:41:04,874 [INFO] Stopping — waiting for 4 in-flight requests...

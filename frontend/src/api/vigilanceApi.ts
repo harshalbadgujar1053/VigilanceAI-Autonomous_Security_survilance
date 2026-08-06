@@ -1,6 +1,6 @@
 import { Alert, Classification, IncidentReport } from '../types';
 
-export const BASE_URL = 'http://127.0.0.1:8000';
+export const BASE_URL = 'http://3.110.76.135:8000';
 
 export const SAMPLE_ALERTS: Record<string, Alert> = {
   "alert-001": {
