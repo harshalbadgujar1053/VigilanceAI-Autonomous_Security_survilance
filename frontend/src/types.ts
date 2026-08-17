@@ -26,6 +26,7 @@ export interface Classification {
   severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   technique: string;
   reasoning: string[];
+  recommendedActions?: string[];
   rawText?: string;
 }
 

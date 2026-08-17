@@ -45,7 +45,7 @@ app = FastAPI(title="Vigilance AI", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://3.110.76.135:3000"],
+    allow_origins=["http://15.207.102.82:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -78,6 +78,7 @@ class SaveClassificationRequest(BaseModel):
     severity: str
     reasoning: str
     mitre_tactics: Optional[str] = ""
+    recommended_actions: Optional[str] = ""
 
 # ──────────────────────────────────────────
 # ORIGINAL ENDPOINTS
@@ -181,7 +182,8 @@ def save_classification(req: SaveClassificationRequest, db: Session = Depends(ge
         alert_id=req.alert_id,
         severity=req.severity,
         reasoning=req.reasoning,
-        mitre_tactics=req.mitre_tactics
+        mitre_tactics=req.mitre_tactics,
+        recommended_actions=req.recommended_actions
     )
     db.add(record)
     db.commit()
@@ -323,14 +325,30 @@ async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
 
     # Auto-classify
     try:
-        classification = await run_in_threadpool(classify_alert, alert)
+        rag_result = await run_in_threadpool(classify_alert_with_rag, alert)
+        classification_text = rag_result.get("classification", "") if isinstance(rag_result, dict) else str(rag_result)
+
         # Parse severity from classification text
         sev = "UNKNOWN"
-        if isinstance(classification, str):
-            for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
-                if s in classification.upper():
-                    sev = s
-                    break
+        for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+            if s in classification_text.upper():
+                sev = s
+                break
+
+        # Parse MITRE technique from the [TECHNIQUE] line
+        mitre_technique = ""
+        for line in classification_text.split("\n"):
+            if line.strip().upper().startswith("[TECHNIQUE]"):
+                mitre_technique = line.split("]", 1)[-1].strip()
+                break
+
+        # Parse [RECOMMENDED ACTIONS] block (everything after the tag)
+        recommended_actions = ""
+        if "[RECOMMENDED ACTIONS]" in classification_text.upper():
+            idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
+            after = classification_text[idx + len("[RECOMMENDED ACTIONS]"):]
+            recommended_actions = after.strip()
+
         # Update alert severity
         record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
         if record_to_update:
@@ -340,13 +358,14 @@ async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
         cls_record = ClassificationRecord(
             alert_id=alert_id,
             severity=sev,
-            reasoning=classification if isinstance(classification, str) else str(classification),
-            mitre_tactics=""
+            reasoning=classification_text,
+            mitre_tactics=mitre_technique,
+            recommended_actions=recommended_actions
         )
         db.add(cls_record)
         db.commit()
         logger.info(f"Alert {alert_id} classified as {sev}")
-        return {"success": True, "alert_id": alert_id, "severity": sev, "classification": classification}
+        return {"success": True, "alert_id": alert_id, "severity": sev, "classification": classification_text}
     except Exception as e:
         logger.error(f"Classification failed for {alert_id}: {e}")
         return {"success": True, "alert_id": alert_id, "severity": "PENDING",

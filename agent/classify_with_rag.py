@@ -98,7 +98,10 @@ tag on its own line exactly as shown — this is machine-parsed):
 - <bullet point 1: what triggered this alert>
 - <bullet point 2: how it maps to the MITRE technique above>
 - <bullet point 3: key indicators of compromise>
-[ACTION] <one sentence on what the analyst should do>
+[RECOMMENDED ACTIONS]
+- <action 1>
+- <action 2>
+- <action 3>
 """
 )
 

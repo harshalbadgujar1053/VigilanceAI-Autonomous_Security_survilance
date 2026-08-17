@@ -28,7 +28,7 @@ interface AppProps {
 // LiveClock Sub-component: Updates every 1s, displays HH:MM:SS + DD Mon YYYY
 function LiveClock() {
   const [time, setTime] = useState(new Date());
-
+  
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
@@ -88,7 +88,7 @@ export default function App({ onLogout }: AppProps) {
 
       const siemAlerts = await fetchSiemAlerts();
       setAlerts(siemAlerts);
-
+      
       // Detect data source from the custom _source property in transformed alerts
       const src = siemAlerts.length > 0 && (siemAlerts[0] as any)._source === 'live' ? 'live' : 'sample';
       setDataSource(src);
@@ -378,13 +378,13 @@ export default function App({ onLogout }: AppProps) {
                       <AlertCard 
                         key={alert.id} 
                         alert={alert} 
-                        index={index} 
+                        index={index}
                       />
                     ))}
                   </div>
                 )}
               </motion.div>
-            )}
+         )}
 
             {/* KPI DASHBOARD TAB */}
             {tab === 'analytics' && (

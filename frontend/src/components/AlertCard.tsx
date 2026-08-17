@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Classification } from '../types';
-import { 
-  classifyAlert, 
-  generateReport,
-  saveClassificationToDB
-} from '../api/vigilanceApi';
+import { classifyAlert, generateReport, saveClassificationToDB } from '../api/vigilanceApi';
 import { generateIncidentPDF } from '../utils/generatePDF';
 import SeverityBadge from './SeverityBadge';
 import { 
@@ -45,7 +41,7 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       setStatus('done');
     }
   }, [alert.severity]);
-
+     
   // Severity Level Mapping
   const level = alert.rule.level;
   let severityCategory: 'critical' | 'high' | 'medium' | 'low' = 'low';
@@ -82,10 +78,24 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       });
     }
 
+    // Support [RECOMMENDED ACTIONS] block, bulleted, one item per line
+    const recommendedActionsLines: string[] = [];
+    const recommendedActionsMatch = text.match(/\[RECOMMENDED ACTIONS\]\s*([\s\S]+?)(?=\[|$)/i);
+    if (recommendedActionsMatch) {
+      const lines = recommendedActionsMatch[1].split('\n');
+      lines.forEach((line: string) => {
+        const cleaned = line.replace(/^\s*[-\d.]+\s*/, '').trim();
+        if (cleaned) {
+          recommendedActionsLines.push(cleaned);
+        }
+      });
+    }
+
     return {
       severity: (severityMatch ? severityMatch[1].toUpperCase() : (alert.rule.level >= 12 ? 'CRITICAL' : alert.rule.level >= 8 ? 'HIGH' : alert.rule.level >= 4 ? 'MEDIUM' : 'LOW')) as any,
       technique: techniqueMatch ? techniqueMatch[1].trim() : 'T1543 - Threat Behavior',
-      reasoning: reasoningLines.length > 0 ? reasoningLines : ['Anomalous host event detected requiring automated SOC triage.']
+      reasoning: reasoningLines.length > 0 ? reasoningLines : ['Anomalous host event detected requiring automated SOC triage.'],
+      recommendedActions: recommendedActionsLines.length > 0 ? recommendedActionsLines : ['No specific recommended actions provided.']
     };
   };
 
@@ -102,7 +112,8 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   alert_id: alert.id,
   severity: parsed.severity,
   reasoning: parsed.reasoning.join(' | '),
-  mitre_tactics: parsed.technique
+  mitre_tactics: parsed.technique,
+  recommended_actions: (parsed.recommendedActions ?? []).join(' | ')
 });
       } catch {
         // Non-fatal: dashboard already shows the result even if persistence fails
@@ -526,12 +537,12 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
             </span>
             {alert._source === 'live' && (
               <span className="meta-tag" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.2)', fontWeight: 700, fontSize: '10px' }}>
-                ⚡ LIVE
+                LIVE
               </span>
             )}
             {alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && (
               <span className="meta-tag" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0EA5E9', border: '1px solid rgba(56, 189, 248, 0.2)', fontWeight: 700, fontSize: '10px' }}>
-                🏷️ {alert.severity}
+                {alert.severity}
               </span>
             )}
             <span className={`severity-badge ${severityCategory}`}>
@@ -765,6 +776,50 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
                   ))}
                 </ul>
               </div>
+
+              {result.recommendedActions && result.recommendedActions.length > 0 && (
+                <div 
+                  className="class-section"
+                  style={{
+                    background: 'var(--color-surface)',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid var(--color-border-light)',
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.01)'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2px' }}>
+                    <span className="section-label emerald" style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', padding: '3px 8px', borderRadius: '4px', background: '#D1FAE5', color: '#065F46', letterSpacing: '0.05em' }}>
+                      RECOMMENDED ACTIONS
+                    </span>
+                  </div>
+                  <ul className="reasoning-bullets" style={{ margin: 0, padding: 0, listStyleType: 'none', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                    {result.recommendedActions.map((item, idx) => (
+                      <li 
+                        key={idx} 
+                        style={{ 
+                          fontSize: '12px', 
+                          color: 'var(--color-text-secondary)', 
+                          position: 'relative', 
+                          paddingLeft: '12px',
+                          lineHeight: '1.4'
+                        }}
+                      >
+                        <span style={{ 
+                          position: 'absolute', 
+                          left: '0', 
+                          top: '6px', 
+                          width: '4px', 
+                          height: '4px', 
+                          borderRadius: '50%', 
+                          background: '#059669' 
+                        }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         );

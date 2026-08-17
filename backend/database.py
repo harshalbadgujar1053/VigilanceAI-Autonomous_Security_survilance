@@ -31,6 +31,7 @@ class ClassificationRecord(Base):
     severity       = Column(String)
     reasoning      = Column(Text)
     mitre_tactics  = Column(Text)
+    recommended_actions = Column(Text)
     classified_at  = Column(DateTime, default=datetime.utcnow)
 
 class ReportRecord(Base):

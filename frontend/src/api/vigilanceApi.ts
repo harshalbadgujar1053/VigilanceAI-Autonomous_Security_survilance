@@ -1,6 +1,6 @@
 import { Alert, Classification, IncidentReport } from '../types';
 
-export const BASE_URL = 'http://3.110.76.135:8000';
+export const BASE_URL = 'http://15.207.102.82:8000';
 
 export const SAMPLE_ALERTS: Record<string, Alert> = {
   "alert-001": {
@@ -506,6 +506,7 @@ export const classifyAlert = async (alert: Alert): Promise<Classification> => {
     severity: c.severity,
     technique: c.technique,
     reasoning: Array.isArray(c.reasoning) ? c.reasoning : [String(c.reasoning ?? '')],
+    recommendedActions: Array.isArray(c.recommendedActions) ? c.recommendedActions : (c.recommendedActions ? [String(c.recommendedActions)] : []),
     rawText: c.rawText ?? ''
   };
 
@@ -513,7 +514,8 @@ export const classifyAlert = async (alert: Alert): Promise<Classification> => {
     alert_id: alert.id,
     severity: classification.severity,
     reasoning: classification.reasoning.join(' | '),
-    mitre_tactics: classification.technique
+    mitre_tactics: classification.technique,
+    recommended_actions: (classification.recommendedActions ?? []).join(' | ')
   }).catch(err => console.warn('DB save classification failed:', err));
 
   return classification;
@@ -542,7 +544,7 @@ export const generateReport = async (alert: Alert, classification: Classificatio
   return data;
 };
 
-export const saveClassificationToDB = async (payload: { alert_id: string; severity: string; reasoning: string; mitre_tactics: string }) => {
+export const saveClassificationToDB = async (payload: { alert_id: string; severity: string; reasoning: string; mitre_tactics: string; recommended_actions?: string }) => {
   try {
     const res = await fetch(`${BASE_URL}/classifications/save`, {
       method: 'POST',

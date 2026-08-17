@@ -46,13 +46,14 @@ import urllib.error
 FASTAPI_BASE               = "http://localhost:8000"
 FASTAPI_CLASSIFY_ENDPOINT  = f"{FASTAPI_BASE}/classify"
 FASTAPI_ALERTS_SAVE_ENDPOINT = f"{FASTAPI_BASE}/alerts/save"
+FASTAPI_CLASSIFICATIONS_SAVE_ENDPOINT = f"{FASTAPI_BASE}/classifications/save"
 
 WAZUH_MANAGER_CONTAINER = "single-node-wazuh.manager-1"
 WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
 
 POLL_INTERVAL   = 5    # seconds between file checks
 MIN_ALERT_LEVEL = 5    # only forward at this level or above
-MISTRAL_TIMEOUT = 180  # seconds — Mistral on CPU can take up to 3 min
+MISTRAL_TIMEOUT = 300  # seconds — Mistral on CPU can take up to 3 min
 
 SKIP_RULE_IDS = {"533", "531", "510"}
 
@@ -195,9 +196,43 @@ def _post_alert_thread(normalized: dict):
             )
             if resp.status_code == 200:
                 data = resp.json()
-                classification = data.get("classification", str(data))[:200]
+                classification_full = data.get("classification", str(data))
+                classification = classification_full[:200]
                 log.info(f"  ✅ CLASSIFIED [{level:2d}] {desc}")
                 log.info(f"     → {classification}")
+
+                # Parse severity and MITRE technique out of the classification text
+                sev = "UNKNOWN"
+                for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+                    if s in classification_full.upper():
+                        sev = s
+                        break
+                mitre_technique = ""
+                for line in classification_full.split("\n"):
+                    if line.strip().upper().startswith("[TECHNIQUE]"):
+                        mitre_technique = line.split("]", 1)[-1].strip()
+                        break
+
+                # Persist the classification so the dashboard shows real MITRE data
+                try:
+                    save_payload = json.dumps({
+                        "alert_id": alert_id,
+                        "severity": sev,
+                        "reasoning": classification_full,
+                        "mitre_tactics": mitre_technique
+                    }).encode("utf-8")
+                    save_resp = requests.post(
+                        FASTAPI_CLASSIFICATIONS_SAVE_ENDPOINT,
+                        data=save_payload,
+                        headers={"Content-Type": "application/json"},
+                        timeout=10
+                    )
+                    if save_resp.status_code == 200:
+                        log.info(f"     ✓ Classification saved for {alert_id}")
+                    else:
+                        log.warning(f"     ⚠ Classification save returned HTTP {save_resp.status_code}")
+                except Exception as save_err:
+                    log.warning(f"     ✗ Failed to save classification for {alert_id}: {save_err}")
             else:
                 log.warning(f"  ⚠ FastAPI returned HTTP {resp.status_code}: {resp.text[:100]}")
         else:
@@ -225,7 +260,7 @@ def _post_alert_thread(normalized: dict):
 # thread immediately, and dozens of concurrent 30-180s Mistral calls queue
 # up on a single Ollama worker — starving out any other process (like
 # test_integration.py) trying to hit /classify at the same time.
-_classify_semaphore = threading.Semaphore(2)
+_classify_semaphore = threading.Semaphore(1)
 
 def _post_alert_thread_limited(normalized: dict):
     with _classify_semaphore:
