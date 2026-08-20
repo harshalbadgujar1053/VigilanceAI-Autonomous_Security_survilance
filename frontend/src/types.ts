@@ -20,6 +20,12 @@ export interface Alert {
   location?: string;
   severity?: string;
   _source?: 'live' | 'sample';
+  // Populated by GET /alerts when the backend has already classified
+  // this alert at ingestion time (Option 2 architecture) — lets the
+  // frontend show Recommended Actions immediately, no extra call needed.
+  technique?: string;
+  reasoning?: string;
+  recommended_actions?: string;
 }
 
 export interface Classification {

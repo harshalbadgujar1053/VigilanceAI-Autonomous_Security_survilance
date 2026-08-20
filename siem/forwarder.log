@@ -45356,3 +45356,271 @@
 2026-08-17 06:57:38,799 [INFO]   Stats: 8 queued | 49 skipped | 0 awaiting Mistral response
 2026-08-17 07:05:16,290 [INFO]   Stats: 8 queued | 53 skipped | 0 awaiting Mistral response
 2026-08-17 07:07:07,764 [INFO]   Stats: 8 queued | 56 skipped | 0 awaiting Mistral response
+2026-08-19 01:58:19,405 [INFO] ============================================================
+2026-08-19 01:58:19,408 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-19 01:58:19,408 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-19 01:58:19,408 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-19 01:58:19,409 [INFO]   Min alert level : 5
+2026-08-19 01:58:19,409 [INFO]   Poll interval   : 5s
+2026-08-19 01:58:19,409 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-19 01:58:19,409 [INFO] ============================================================
+2026-08-19 01:58:19,591 [INFO] ✓ FastAPI backend is reachable
+2026-08-19 01:58:20,107 [INFO] ✓ Bookmarked alerts.json at line 217
+2026-08-19 01:58:20,107 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-19 01:58:20,107 [INFO] 
+2026-08-19 02:10:49,682 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.815686)
+2026-08-19 02:10:49,740 [INFO]   Stats: 13 queued | 19 skipped | 13 awaiting Mistral response
+2026-08-19 02:10:55,852 [INFO]   Stats: 13 queued | 27 skipped | 13 awaiting Mistral response
+2026-08-19 02:11:02,036 [INFO]   Stats: 13 queued | 35 skipped | 13 awaiting Mistral response
+2026-08-19 02:11:18,999 [INFO]   Stats: 13 queued | 38 skipped | 13 awaiting Mistral response
+2026-08-19 02:11:21,954 [WARNING]   ✗ POST failed for 1787085648.815686: slice(None, 200, None)
+2026-08-19 02:11:21,965 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.817327)
+2026-08-19 02:11:23,671 [WARNING]   ✗ POST failed for 1787085648.817327: slice(None, 200, None)
+2026-08-19 02:11:23,671 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.818839)
+2026-08-19 02:11:25,422 [WARNING]   ✗ POST failed for 1787085648.818839: slice(None, 200, None)
+2026-08-19 02:11:25,425 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.820350)
+2026-08-19 02:11:27,668 [WARNING]   ✗ POST failed for 1787085648.820350: slice(None, 200, None)
+2026-08-19 02:11:27,677 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.821917)
+2026-08-19 02:11:29,497 [WARNING]   ✗ POST failed for 1787085648.821917: slice(None, 200, None)
+2026-08-19 02:11:29,499 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.823545)
+2026-08-19 02:11:30,288 [INFO]   Stats: 13 queued | 40 skipped | 8 awaiting Mistral response
+2026-08-19 02:11:31,566 [WARNING]   ✗ POST failed for 1787085648.823545: slice(None, 200, None)
+2026-08-19 02:11:31,570 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.825174)
+2026-08-19 02:11:33,397 [WARNING]   ✗ POST failed for 1787085648.825174: slice(None, 200, None)
+2026-08-19 02:11:33,402 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.826881)
+2026-08-19 02:11:35,150 [WARNING]   ✗ POST failed for 1787085648.826881: slice(None, 200, None)
+2026-08-19 02:11:35,151 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.828712)
+2026-08-19 02:11:35,681 [INFO]   Stats: 13 queued | 41 skipped | 5 awaiting Mistral response
+2026-08-19 02:11:36,940 [WARNING]   ✗ POST failed for 1787085648.828712: slice(None, 200, None)
+2026-08-19 02:11:36,944 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1787085648.830476)
+2026-08-19 02:11:38,744 [WARNING]   ✗ POST failed for 1787085648.830476: slice(None, 200, None)
+2026-08-19 02:11:38,747 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure lockou (alert 1787085648.849872)
+2026-08-19 02:11:40,769 [WARNING]   ✗ POST failed for 1787085648.849872: slice(None, 200, None)
+2026-08-19 02:11:40,781 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure passwo (alert 1787085648.856686)
+2026-08-19 02:11:42,554 [WARNING]   ✗ POST failed for 1787085648.856686: slice(None, 200, None)
+2026-08-19 02:11:42,555 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure auditd (alert 1787085648.862771)
+2026-08-19 02:11:44,467 [WARNING]   ✗ POST failed for 1787085648.862771: slice(None, 200, None)
+2026-08-19 02:28:58,153 [INFO]   Stats: 13 queued | 42 skipped | 0 awaiting Mistral response
+2026-08-19 11:34:53,791 [INFO] ============================================================
+2026-08-19 11:34:53,791 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-19 11:34:53,791 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-19 11:34:53,792 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-19 11:34:53,792 [INFO]   Min alert level : 5
+2026-08-19 11:34:53,792 [INFO]   Poll interval   : 5s
+2026-08-19 11:34:53,792 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-19 11:34:53,792 [INFO] ============================================================
+2026-08-19 11:34:53,806 [INFO] ✓ FastAPI backend is reachable
+2026-08-19 11:34:54,096 [INFO] ✓ Bookmarked alerts.json at line 28
+2026-08-19 11:34:54,097 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-19 11:34:54,097 [INFO] 
+2026-08-19 11:37:06,399 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-19 11:52:08,445 [INFO] ============================================================
+2026-08-19 11:52:08,449 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-19 11:52:08,449 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-19 11:52:08,449 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-19 11:52:08,449 [INFO]   Min alert level : 5
+2026-08-19 11:52:08,449 [INFO]   Poll interval   : 5s
+2026-08-19 11:52:08,449 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-19 11:52:08,449 [INFO] ============================================================
+2026-08-19 11:52:08,486 [INFO] ✓ FastAPI backend is reachable
+2026-08-19 11:52:08,596 [INFO] ✓ Bookmarked alerts.json at line 29
+2026-08-19 11:52:08,596 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-19 11:52:08,596 [INFO] 
+2026-08-19 12:01:04,704 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-19 12:09:24,692 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787121560.23539)
+2026-08-19 12:09:24,712 [INFO]   Stats: 6 queued | 2 skipped | 6 awaiting Mistral response
+2026-08-19 12:09:29,980 [INFO]   Stats: 7 queued | 2 skipped | 7 awaiting Mistral response
+2026-08-19 12:09:34,713 [WARNING]   ✗ /alerts/save failed for 1787121560.24009: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:34,716 [WARNING]   ✗ /alerts/save failed for 1787121560.24465: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:34,720 [WARNING]   ✗ /alerts/save failed for 1787121560.23539: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:34,721 [WARNING]   ✗ /alerts/save failed for 1787121564.25857: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:34,725 [WARNING]   ✗ /alerts/save failed for 1787121562.25387: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:34,732 [WARNING]   ✗ /alerts/save failed for 1787121562.24933: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-19 12:09:49,587 [WARNING]   ✗ POST failed for 1787121560.23539: slice(None, 200, None)
+2026-08-19 12:09:49,589 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787121560.24009)
+2026-08-19 12:09:51,501 [WARNING]   ✗ POST failed for 1787121560.24009: slice(None, 200, None)
+2026-08-19 12:09:51,504 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787121560.24465)
+2026-08-19 12:09:53,892 [WARNING]   ✗ POST failed for 1787121560.24465: slice(None, 200, None)
+2026-08-19 12:09:53,892 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787121562.24933)
+2026-08-19 12:09:55,804 [WARNING]   ✗ POST failed for 1787121562.24933: slice(None, 200, None)
+2026-08-19 12:09:55,808 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787121562.25387)
+2026-08-19 12:09:57,420 [WARNING]   ✗ POST failed for 1787121562.25387: slice(None, 200, None)
+2026-08-19 12:09:57,421 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787121564.25857)
+2026-08-19 12:09:59,542 [WARNING]   ✗ POST failed for 1787121564.25857: slice(None, 200, None)
+2026-08-19 12:09:59,544 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787121564.25857)
+2026-08-19 12:10:01,377 [WARNING]   ✗ POST failed for 1787121564.25857: slice(None, 200, None)
+2026-08-19 12:19:07,492 [INFO]   Stats: 7 queued | 3 skipped | 0 awaiting Mistral response
+2026-08-19 12:25:10,134 [INFO]   Stats: 7 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-20 10:04:18,541 [INFO] ============================================================
+2026-08-20 10:04:18,541 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-20 10:04:18,541 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-20 10:04:18,541 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-20 10:04:18,542 [INFO]   Min alert level : 5
+2026-08-20 10:04:18,542 [INFO]   Poll interval   : 5s
+2026-08-20 10:04:18,542 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-20 10:04:18,542 [INFO] ============================================================
+2026-08-20 10:04:18,554 [INFO] ✓ FastAPI backend is reachable
+2026-08-20 10:04:18,828 [INFO] ✓ Bookmarked alerts.json at line 18
+2026-08-20 10:04:18,829 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-20 10:04:18,829 [INFO] 
+2026-08-20 10:08:39,328 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-20 10:14:39,150 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-20 10:20:23,844 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201419.16321)
+2026-08-20 10:20:23,870 [INFO]   Stats: 13 queued | 6 skipped | 13 awaiting Mistral response
+2026-08-20 10:20:29,309 [INFO]   Stats: 14 queued | 6 skipped | 14 awaiting Mistral response
+2026-08-20 10:20:38,474 [WARNING]   ✗ POST failed for 1787201419.16321: slice(None, 200, None)
+2026-08-20 10:20:38,476 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201419.16799)
+2026-08-20 10:20:38,740 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:38,741 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201419.17263)
+2026-08-20 10:20:38,970 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:38,970 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201419.17747)
+2026-08-20 10:20:39,227 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:39,227 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201419.18217)
+2026-08-20 10:20:39,474 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:39,475 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201419.18707)
+2026-08-20 10:20:39,728 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:39,729 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201419.19183)
+2026-08-20 10:20:40,008 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:40,009 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201421.19657)
+2026-08-20 10:20:40,460 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:40,460 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201421.20117)
+2026-08-20 10:20:40,676 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:40,676 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201421.20587)
+2026-08-20 10:20:40,918 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:40,919 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201421.21043)
+2026-08-20 10:20:41,211 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:41,211 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201421.21513)
+2026-08-20 10:20:41,484 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:41,485 [INFO]   ↑ QUEUED  [ 7] Dpkg (Debian Package) half configured. (alert 1787201421.21969)
+2026-08-20 10:20:41,717 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:41,717 [INFO]   ↑ QUEUED  [ 7] New dpkg (Debian Package) installed. (alert 1787201423.22437)
+2026-08-20 10:20:41,965 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:20:44,677 [INFO]   Stats: 14 queued | 7 skipped | 0 awaiting Mistral response
+2026-08-20 10:24:02,426 [INFO]   Stats: 14 queued | 18 skipped | 0 awaiting Mistral response
+2026-08-20 10:24:07,789 [INFO]   Stats: 14 queued | 19 skipped | 0 awaiting Mistral response
+2026-08-20 10:24:34,326 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201653.30904)
+2026-08-20 10:24:34,965 [INFO]   Stats: 27 queued | 21 skipped | 13 awaiting Mistral response
+2026-08-20 10:24:38,030 [WARNING]   ✗ POST failed for 1787201653.30904: slice(None, 200, None)
+2026-08-20 10:24:38,035 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201653.31440)
+2026-08-20 10:24:40,076 [WARNING]   ✗ POST failed for 1787201653.31440: slice(None, 200, None)
+2026-08-20 10:24:40,077 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201655.31964)
+2026-08-20 10:24:41,141 [INFO]   Stats: 33 queued | 24 skipped | 17 awaiting Mistral response
+2026-08-20 10:24:42,010 [WARNING]   ✗ POST failed for 1787201655.31964: slice(None, 200, None)
+2026-08-20 10:24:42,013 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201669.32509)
+2026-08-20 10:24:42,385 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:42,386 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201669.33045)
+2026-08-20 10:24:44,843 [WARNING]   ✗ POST failed for 1787201669.33045: slice(None, 200, None)
+2026-08-20 10:24:44,844 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201669.33569)
+2026-08-20 10:24:45,431 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:45,434 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201671.34114)
+2026-08-20 10:24:45,771 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:45,772 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201671.34650)
+2026-08-20 10:24:46,024 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:46,024 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201672.35174)
+2026-08-20 10:24:46,286 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:46,286 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201672.35719)
+2026-08-20 10:24:46,320 [INFO]   Stats: 37 queued | 24 skipped | 14 awaiting Mistral response
+2026-08-20 10:24:46,535 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:46,536 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201673.36255)
+2026-08-20 10:24:46,758 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:46,759 [INFO]   ↑ QUEUED  [11] Possible kernel level rootkit (alert 1787201673.36779)
+2026-08-20 10:24:47,013 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:47,013 [INFO]   ↑ QUEUED  [11] Possible kernel level rootkit (alert 1787201674.37442)
+2026-08-20 10:24:47,246 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:47,246 [INFO]   ↑ QUEUED  [10] sshd: brute force trying to get access to the syst (alert 1787201675.39298)
+2026-08-20 10:24:47,470 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:47,472 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201676.41289)
+2026-08-20 10:24:47,720 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:47,721 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201677.41825)
+2026-08-20 10:24:47,973 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:47,977 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201679.42349)
+2026-08-20 10:24:48,230 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:48,230 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201679.42894)
+2026-08-20 10:24:48,485 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:48,493 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201679.43430)
+2026-08-20 10:24:48,744 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:48,745 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201681.43954)
+2026-08-20 10:24:48,972 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:48,972 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201681.44499)
+2026-08-20 10:24:49,210 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:49,212 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1787201681.45035)
+2026-08-20 10:24:49,452 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:49,454 [INFO]   ↑ QUEUED  [ 5] sshd: Attempt to login using a non-existent user (alert 1787201683.45559)
+2026-08-20 10:24:49,687 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"[Errno 111] Connection refused"}
+2026-08-20 10:24:51,484 [INFO]   Stats: 37 queued | 27 skipped | 0 awaiting Mistral response
+2026-08-20 10:30:49,666 [INFO]   Stats: 37 queued | 33 skipped | 0 awaiting Mistral response
+2026-08-20 10:36:06,835 [INFO]   Stats: 37 queued | 34 skipped | 0 awaiting Mistral response
+2026-08-20 18:22:25,763 [INFO] ============================================================
+2026-08-20 18:22:25,763 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-20 18:22:25,763 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-20 18:22:25,763 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-20 18:22:25,763 [INFO]   Min alert level : 5
+2026-08-20 18:22:25,763 [INFO]   Poll interval   : 5s
+2026-08-20 18:22:25,763 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-20 18:22:25,763 [INFO] ============================================================
+2026-08-20 18:22:25,778 [INFO] ✓ FastAPI backend is reachable
+2026-08-20 18:22:25,994 [INFO] ✓ Bookmarked alerts.json at line 117
+2026-08-20 18:22:25,994 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-20 18:22:25,994 [INFO] 
+2026-08-20 18:25:39,463 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-20 18:34:17,843 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-20 18:40:17,495 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting Mistral response
+2026-08-20 18:57:22,658 [INFO]   Stats: 0 queued | 5 skipped | 0 awaiting Mistral response
+2026-08-20 18:58:18,863 [INFO]   Stats: 0 queued | 6 skipped | 0 awaiting Mistral response
+2026-08-20 18:58:29,149 [INFO]   Stats: 0 queued | 9 skipped | 0 awaiting Mistral response
+2026-08-20 19:02:54,159 [INFO]   Stats: 0 queued | 15 skipped | 0 awaiting Mistral response
+2026-08-20 19:03:29,903 [INFO]   Stats: 0 queued | 17 skipped | 0 awaiting Mistral response
+2026-08-20 19:03:35,086 [INFO]   Stats: 0 queued | 18 skipped | 0 awaiting Mistral response
+2026-08-20 19:03:40,337 [INFO]   Stats: 0 queued | 21 skipped | 0 awaiting Mistral response
+2026-08-20 19:12:17,490 [INFO]   Stats: 0 queued | 22 skipped | 0 awaiting Mistral response
+2026-08-20 19:18:15,493 [INFO]   Stats: 0 queued | 23 skipped | 0 awaiting Mistral response
+2026-08-20 19:23:47,058 [INFO]   Stats: 0 queued | 26 skipped | 0 awaiting Mistral response
+2026-08-20 19:45:28,046 [INFO]   Stats: 0 queued | 28 skipped | 0 awaiting Mistral response
+2026-08-20 19:45:33,234 [INFO]   Stats: 0 queued | 29 skipped | 0 awaiting Mistral response
+2026-08-20 19:45:43,498 [INFO]   Stats: 0 queued | 32 skipped | 0 awaiting Mistral response
+2026-08-20 19:45:48,696 [INFO]   Stats: 0 queued | 35 skipped | 0 awaiting Mistral response
+2026-08-20 20:36:54,102 [INFO] ============================================================
+2026-08-20 20:36:54,104 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-20 20:36:54,105 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-20 20:36:54,105 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-20 20:36:54,105 [INFO]   Min alert level : 5
+2026-08-20 20:36:54,105 [INFO]   Poll interval   : 5s
+2026-08-20 20:36:54,105 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-20 20:36:54,105 [INFO] ============================================================
+2026-08-20 20:36:54,110 [WARNING] ⚠ FastAPI not reachable — start: python3 -m uvicorn backend.main:app --port 8000
+2026-08-20 20:36:54,297 [INFO] ✓ Bookmarked alerts.json at line 181
+2026-08-20 20:36:54,298 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-20 20:36:54,298 [INFO] 
+2026-08-20 20:39:23,784 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-20 20:51:27,616 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-20 20:54:16,186 [INFO] Shutdown signal received — stopping forwarder...
+2026-08-20 20:54:17,044 [INFO] Stopping — waiting for 0 in-flight requests...
+2026-08-20 20:54:17,045 [INFO] Forwarder stopped. Queued: 0 | Skipped: 2
+2026-08-20 20:54:19,101 [INFO] ============================================================
+2026-08-20 20:54:19,101 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-20 20:54:19,101 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-20 20:54:19,101 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-20 20:54:19,101 [INFO]   Min alert level : 5
+2026-08-20 20:54:19,101 [INFO]   Poll interval   : 5s
+2026-08-20 20:54:19,101 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-20 20:54:19,101 [INFO] ============================================================
+2026-08-20 20:54:19,132 [INFO] ✓ FastAPI backend is reachable
+2026-08-20 20:54:19,228 [INFO] ✓ Bookmarked alerts.json at line 183
+2026-08-20 20:54:19,228 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-20 20:54:19,228 [INFO] 
+2026-08-20 20:57:24,587 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-20 21:01:36,738 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-20 21:05:01,328 [INFO]   Stats: 0 queued | 10 skipped | 0 awaiting Mistral response
+                                                                                            2026-08-21 00:47:45,615 [INFO] ============================================================
+2026-08-21 00:47:45,616 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-21 00:47:45,616 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-21 00:47:45,616 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-21 00:47:45,616 [INFO]   Min alert level : 5
+2026-08-21 00:47:45,616 [INFO]   Poll interval   : 5s
+2026-08-21 00:47:45,616 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-21 00:47:45,616 [INFO] ============================================================
+2026-08-21 00:47:45,630 [INFO] ✓ FastAPI backend is reachable
+2026-08-21 00:47:45,835 [INFO] ✓ Bookmarked alerts.json at line 220
+2026-08-21 00:47:45,836 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-21 00:47:45,836 [INFO] 
+2026-08-21 00:49:53,243 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response

@@ -10,7 +10,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "agent"))
 sys.path.insert(0, str(ROOT / "backend"))
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, BackgroundTasks
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -45,7 +45,7 @@ app = FastAPI(title="Vigilance AI", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://15.207.102.82:3000"],
+    allow_origins=["http://192.168.80.129:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -93,22 +93,13 @@ async def classify(request: ClassifyRequest):
     fallback_level = request.alert.get("rule", {}).get("level", 0)
     try:
         logger.info(f"Classify request — alert keys: {list(request.alert.keys())}")
-        # run_in_threadpool: classify_alert_with_rag() is a blocking, synchronous
-        # Ollama call. Without this, it freezes the entire event loop for
-        # 30-180s+, during which NO other request (even /health) can be served.
         rag_result = await run_in_threadpool(classify_alert_with_rag, request.alert)
         result = parse_llm_output(rag_result["classification"], fallback_level=fallback_level)
         logger.info("RAG-grounded classification complete")
         return {"success": True, "classification": result}
     except Exception as e:
-        logger.warning(f"RAG classification failed, falling back to plain chain: {e}")
-        try:
-            result = await run_in_threadpool(classify_alert, request.alert)
-            logger.info("Fallback classification complete")
-            return {"success": True, "classification": result}
-        except Exception as e2:
-            logger.error(f"Classification failed: {e2}")
-            raise HTTPException(status_code=500, detail=str(e2))
+        logger.error(f"Classification failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/report")
 async def generate_report_endpoint(request: ReportRequest):
@@ -140,8 +131,27 @@ async def classify_sample(name: str):
 @app.get("/alerts")
 def get_alerts(db: Session = Depends(get_db)):
     alerts = db.query(AlertRecord).order_by(AlertRecord.created_at.desc()).all()
-    return {"success": True, "count": len(alerts), "alerts": [
-        {
+
+    # Fetch the latest classification per alert_id in one query, so the
+    # frontend gets technique/reasoning/recommended_actions for free on
+    # load instead of having to trigger classification itself.
+    alert_ids = [a.id for a in alerts]
+    latest_by_alert = {}
+    if alert_ids:
+        classifications = (
+            db.query(ClassificationRecord)
+            .filter(ClassificationRecord.alert_id.in_(alert_ids))
+            .order_by(ClassificationRecord.classified_at.desc())
+            .all()
+        )
+        for c in classifications:
+            if c.alert_id not in latest_by_alert:
+                latest_by_alert[c.alert_id] = c
+
+    result = []
+    for a in alerts:
+        cls = latest_by_alert.get(a.id)
+        entry = {
             "id": a.id,
             "timestamp": a.timestamp,
             "rule_id": a.rule_id,
@@ -152,11 +162,72 @@ def get_alerts(db: Session = Depends(get_db)):
             "severity": a.severity,
             "raw_data": a.raw_data,
             "created_at": str(a.created_at)
-        } for a in alerts
-    ]}
+        }
+        if cls:
+            entry["technique"] = cls.mitre_tactics
+            entry["reasoning"] = cls.reasoning
+            entry["recommended_actions"] = cls.recommended_actions
+        result.append(entry)
+
+    return {"success": True, "count": len(result), "alerts": result}
+
+def _classify_and_store(alert_id: str, alert: dict):
+    """
+    Runs in the background AFTER the /alerts/save response has already
+    been sent to the forwarder. This is intentional: ingestion must never
+    block on a slow downstream classification call (Gemini can take a
+    few seconds, and under a burst of alerts that adds up past a client's
+    request timeout). Uses its own DB session since the request-scoped
+    session from the original request is already closed by the time this runs.
+    """
+    db = SessionLocal()
+    try:
+        rag_result = classify_alert_with_rag(alert)
+        classification_text = rag_result.get("classification", "") if isinstance(rag_result, dict) else str(rag_result)
+
+        sev = "UNKNOWN"
+        for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+            if s in classification_text.upper():
+                sev = s
+                break
+
+        mitre_technique = ""
+        for line in classification_text.split("\n"):
+            if line.strip().upper().startswith("[TECHNIQUE]"):
+                mitre_technique = line.split("]", 1)[-1].strip()
+                break
+
+        import re as _re
+        m = _re.search(r"\[REASONING\]\s*([\s\S]+?)(?=\[RECOMMENDED|$)", classification_text, _re.IGNORECASE)
+        reasoning_text = m.group(1).strip() if m else ""
+
+        recommended_actions = ""
+        if "[RECOMMENDED ACTIONS]" in classification_text.upper():
+            idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
+            recommended_actions = classification_text[idx + len("[RECOMMENDED ACTIONS]"):].strip()
+
+        record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+        cls_record = ClassificationRecord(
+            alert_id=alert_id,
+            severity=sev,
+            reasoning=classification_text,
+            mitre_tactics=mitre_technique,
+            recommended_actions=recommended_actions
+        )
+        db.add(cls_record)
+        if record_to_update:
+            record_to_update.severity = sev
+        db.commit()
+        logger.info(f"Alert {alert_id} auto-classified as {sev} (background)")
+    except Exception as e:
+        logger.warning(f"Background auto-classification failed for {alert_id}: {e}. "
+                        f"Alert stays at its last saved severity; can be classified manually later.")
+    finally:
+        db.close()
+
 
 @app.post("/alerts/save")
-def save_alert(alert: dict, db: Session = Depends(get_db)):
+def save_alert(alert: dict, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     existing = db.query(AlertRecord).filter(AlertRecord.id == alert.get("id")).first()
     if existing:
         return {"success": True, "message": "Alert already exists", "id": existing.id}
@@ -174,6 +245,13 @@ def save_alert(alert: dict, db: Session = Depends(get_db)):
     db.add(record)
     db.commit()
     logger.info(f"Alert saved: {record.id}")
+
+    # Kick off classification AFTER this response is sent — ingestion
+    # returns immediately (well under the forwarder's request timeout),
+    # and the classification result lands in Postgres a few seconds
+    # later. The frontend's next GET /alerts poll picks it up naturally.
+    background_tasks.add_task(_classify_and_store, record.id, alert)
+
     return {"success": True, "message": "Alert saved", "id": record.id}
 
 @app.post("/classifications/save")
@@ -240,27 +318,25 @@ def get_report_by_id(report_id: int, db: Session = Depends(get_db)):
 
 @app.get("/health")
 def health_check(db: Session = Depends(get_db)):
-    """Detailed health status — checks API, Database, Ollama."""
     status = {
         "api": True,
         "database": False,
-        "ollama": False,
+        "gemini": False,
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
-    # Test DB
     try:
         db.execute(text("SELECT 1"))
         status["database"] = True
     except Exception:
         pass
-    # Test Ollama
     try:
-        import requests as req
-        r = req.get("http://localhost:11434/api/tags", timeout=3)
-        status["ollama"] = r.status_code == 200
+        import google.generativeai as genai
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])  # or however classify_with_rag.py loads it
+        list(genai.list_models())
+        status["gemini"] = True
     except Exception:
-        pass
-    return {"success": True, "health": status}
+        status["gemini"] = False
+    return status
 
 
 @app.get("/classifications")
@@ -299,7 +375,7 @@ def get_stats(db: Session = Depends(get_db)):
 
 @app.post("/alerts/ingest")
 async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
-    """Ingest an alert and auto-classify it via Mistral."""
+    """Ingest an alert and auto-classify it via Gemini."""
     alert_id = alert.get("id", alert.get("alert_id",
         f"auto-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"))
     logger.info(f"Ingesting alert: {alert_id}")

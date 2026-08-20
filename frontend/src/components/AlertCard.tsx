@@ -30,17 +30,29 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   const [report, setReport] = useState<string>('');
   const [reportStatus, setReportStatus] = useState<'idle' | 'loading' | 'done'>('idle');
 
-  // Auto-populate classification if the alert already has a pre-triaged severity in database
+  // Auto-populate classification from the backend's eager, ingestion-time
+  // classification (Option 2 architecture) — the alert already carries
+  // technique/reasoning/recommended_actions from GET /alerts by the time
+  // this card renders, so Recommended Actions shows immediately with no
+  // click needed, and Case Creation just needs to generate the report.
   useEffect(() => {
     if (alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && !result) {
+      const reasoningLines = alert.reasoning
+        ? alert.reasoning.split('|').map(s => s.trim()).filter(Boolean)
+        : ['Alert classified during ingestion.'];
+      const recommendedActionsLines = alert.recommended_actions
+        ? alert.recommended_actions.split('|').map(s => s.trim()).filter(Boolean)
+        : undefined;
+
       setResult({
         severity: alert.severity as any,
-        technique: alert.rule.groups.length > 0 ? alert.rule.groups[0].toUpperCase() : 'T1543 - THREAT BEHAVIOR',
-        reasoning: ['Alert pre-classified and loaded from persistent security databases.']
+        technique: alert.technique || (alert.rule.groups.length > 0 ? alert.rule.groups[0].toUpperCase() : 'T1543 - THREAT BEHAVIOR'),
+        reasoning: reasoningLines,
+        recommendedActions: recommendedActionsLines
       });
       setStatus('done');
     }
-  }, [alert.severity]);
+  }, [alert.severity, alert.technique, alert.reasoning, alert.recommended_actions]);
      
   // Severity Level Mapping
   const level = alert.rule.level;
@@ -388,7 +400,7 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
             <p>
               An automated high-priority alert was cataloged from <strong>${alert.agent.name}</strong> on interface IP <strong>${alert.agent.ip}</strong>. 
               The rule event description indicates <strong>"${alert.rule.description}"</strong>. 
-              Applying Mistral 7B AI-assisted analysis, the threat category has been mapped as <strong>${result.technique}</strong> with <strong>${result.severity}</strong> priority tags.
+              Applying Gemini-powered RAG analysis, the threat category has been mapped as <strong>${result.technique}</strong> with <strong>${result.severity}</strong> priority tags.
             </p>
           </div>
 

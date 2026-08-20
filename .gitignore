@@ -12,3 +12,9 @@ datasets/enterprise-attack.json
 datasets/nvd_sample.json
 datasets/*.csv
 datasets/*.json
+.env
+venv/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store

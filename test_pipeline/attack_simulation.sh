@@ -1,81 +1,75 @@
 #!/bin/bash
-# VigilanceAI - Attack Simulation Script
-# Purpose: Generate diverse attack telemetry against YOUR OWN authorized EC2 target
-#          to validate Wazuh detection + MITRE ATT&CK mapping coverage.
-# Usage:   sudo ./attack_simulation.sh <TARGET_IP>
-# WARNING: Only run against infrastructure you own/control and are authorized to test.
+# ============================================================
+# attack_simulation.sh — VigilanceAI fast attack simulation
+# ------------------------------------------------------------
+# Trimmed version: excludes full Nmap scans (too slow for quick
+# testing). Keeps only attacks that complete in a few seconds
+# to ~1 minute each, so you can trigger a batch of alerts and
+# verify the classification pipeline quickly.
+#
+# Edit TARGET_IP below before running.
+# ============================================================
 
-set -uo pipefail
+set -e
 
-TARGET="${1:-}"
-if [[ -z "$TARGET" ]]; then
-    echo "Usage: $0 <TARGET_IP>"
-    exit 1
-fi
+TARGET_IP="192.168.80.129"       # <-- set to your actual target (e.g. ec2-target's IP)
+SSH_PORT=22
+WEB_PORT=80
 
-LOGFILE="attack_sim_$(date +%Y%m%d_%H%M%S).log"
-echo "=== VigilanceAI Attack Simulation against $TARGET ===" | tee -a "$LOGFILE"
-echo "Started: $(date)" | tee -a "$LOGFILE"
+echo "============================================================"
+echo "VigilanceAI Fast Attack Simulation"
+echo "Target: $TARGET_IP"
+echo "Started: $(date)"
+echo "============================================================"
 
-pause() { sleep 2; }
-
-section() {
-    echo "" | tee -a "$LOGFILE"
-    echo "### $1 ###" | tee -a "$LOGFILE"
-}
-
-# ---------- LEVEL 1: Reconnaissance (MITRE TA0043) ----------
-section "Reconnaissance - Nmap Port/Service Scan"
-nmap -sV -T4 "$TARGET" 2>&1 | tee -a "$LOGFILE"
-pause
-
-section "Reconnaissance - Aggressive OS/Script Scan"
-nmap -A -T4 "$TARGET" 2>&1 | tee -a "$LOGFILE"
-pause
-
-section "Reconnaissance - Full Port Sweep"
-nmap -p- -T4 "$TARGET" 2>&1 | tee -a "$LOGFILE"
-pause
-
-# ---------- LEVEL 2: Credential Access (MITRE TA0006) ----------
-section "Brute Force - SSH (Hydra)"
-# Requires a small wordlist; using rockyou sample or a throwaway list
-if [[ -f /usr/share/wordlists/rockyou.txt ]]; then
-    hydra -l fakeuser -P /usr/share/wordlists/rockyou.txt -t 4 -f "$TARGET" ssh 2>&1 | tee -a "$LOGFILE"
+# ------------------------------------------------------------
+# 1. SSH Brute Force (Hydra) — limited attempts, fast wordlist
+#    Capped at ~15 attempts so it finishes in seconds, not minutes.
+# ------------------------------------------------------------
+echo -e "\n[1/4] SSH Brute Force (Hydra, capped attempts)..."
+if command -v hydra &> /dev/null; then
+    timeout 30 hydra -l root -P /usr/share/wordlists/rockyou.txt \
+        -t 4 -f -w 2 -e nsr \
+        ssh://$TARGET_IP -s $SSH_PORT || true
 else
-    echo "password123" > /tmp/wordlist.txt
-    echo "admin123" >> /tmp/wordlist.txt
-    hydra -l fakeuser -P /tmp/wordlist.txt -t 4 -f "$TARGET" ssh 2>&1 | tee -a "$LOGFILE"
+    echo "  hydra not found — skipping"
 fi
-pause
 
-section "Brute Force - Repeated SSH Failed Logins (simple loop)"
-for i in {1..8}; do
-    ssh -o StrictHostKeyChecking=no -o ConnectTimeout=3 "baduser$i@$TARGET" exit 2>&1 | tee -a "$LOGFILE"
-done
-pause
+# ------------------------------------------------------------
+# 2. Quick SYN Flood burst (hping3) — short burst, not sustained
+#    -c limits packet count so it's a quick burst, not a long flood.
+# ------------------------------------------------------------
+echo -e "\n[2/4] Quick SYN Flood burst (hping3, 200 packets)..."
+if command -v hping3 &> /dev/null; then
+    timeout 15 sudo hping3 -S -p $SSH_PORT -c 200 --faster $TARGET_IP || true
+else
+    echo "  hping3 not found — skipping"
+fi
 
-# ---------- LEVEL 3: Web Application Attacks (MITRE T1190) ----------
-section "Web Recon - Nikto Vulnerability Scan"
-nikto -h "http://$TARGET" 2>&1 | tee -a "$LOGFILE"
-pause
+# ------------------------------------------------------------
+# 3. Nikto web scan — time-limited instead of full scan
+#    -maxtime caps the scan duration regardless of target size.
+# ------------------------------------------------------------
+echo -e "\n[3/4] Web Vulnerability Scan (Nikto, capped at 20s)..."
+if command -v nikto &> /dev/null; then
+    timeout 25 nikto -h http://$TARGET_IP:$WEB_PORT -maxtime 20s || true
+else
+    echo "  nikto not found — skipping"
+fi
 
-section "Web Attack - SQLMap Injection Test (dashboard/API endpoint)"
-echo "NOTE: adjust the URL below to an actual parameterized endpoint on your app"
-sqlmap -u "http://$TARGET:8000/reports/1" --batch --level=2 --risk=2 2>&1 | tee -a "$LOGFILE"
-pause
+# ------------------------------------------------------------
+# 4. Fast targeted port check (replaces full Nmap scan)
+#    Only scans the handful of ports you actually care about,
+#    instead of a full 1-65535 sweep — finishes in ~1-2 seconds.
+# ------------------------------------------------------------
+echo -e "\n[4/4] Fast targeted port check (top ports only, no full scan)..."
+if command -v nmap &> /dev/null; then
+    timeout 15 nmap -T4 -F --top-ports 20 $TARGET_IP || true
+else
+    echo "  nmap not found — skipping"
+fi
 
-# ---------- LEVEL 4: Denial of Service / Impact (MITRE T1499) - LOW INTENSITY ----------
-section "Impact - Light SYN Flood Test (hping3, short burst only)"
-timeout 10 hping3 -S --flood -p 80 "$TARGET" 2>&1 | tee -a "$LOGFILE"
-pause
-
-# ---------- LEVEL 5: Discovery on host (if you have shell access) ----------
-section "Discovery - Service Enumeration via curl"
-curl -sI "http://$TARGET" 2>&1 | tee -a "$LOGFILE"
-curl -sI "http://$TARGET:3000" 2>&1 | tee -a "$LOGFILE"
-curl -sI "http://$TARGET:8000" 2>&1 | tee -a "$LOGFILE"
-
-echo "" | tee -a "$LOGFILE"
-echo "=== Simulation complete: $(date) ===" | tee -a "$LOGFILE"
-echo "Check Wazuh alerts.json, forwarder logs, and dashboard for corresponding detections."
+echo -e "\n============================================================"
+echo "Fast attack simulation complete: $(date)"
+echo "Check the VigilanceAI dashboard / Wazuh Alert Queue for new alerts."
+echo "============================================================"

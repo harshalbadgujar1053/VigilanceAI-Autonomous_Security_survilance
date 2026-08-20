@@ -6,6 +6,12 @@ Project: Vigilance AI
 Generates a structured SOC incident report from the findings
 gathered by the other 4 tools. This is always the LAST tool
 the agent calls — it synthesizes everything into a final report.
+
+Classifier: Google Gemini API (gemini-3.5-flash-lite) — same model
+used for alert classification, for consistency and speed. No local
+Ollama fallback (removed from this environment); if Gemini is
+unavailable, a static structured report is returned instead so the
+analyst still gets something usable.
 """
 
 import sys
@@ -13,18 +19,24 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from langchain.tools import tool
-from langchain_ollama import OllamaLLM
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+GEMINI_TIMEOUT_SECONDS = 30
 
 
 # ─────────────────────────────────────────────
 # 1. REPORT PROMPT
+#    NOTE: {timestamp} is filled in at call time now (previously this
+#    was baked in at module import time via .replace(), which meant
+#    every report generated in a long-running process showed the same
+#    stale timestamp — fixed here).
 # ─────────────────────────────────────────────
-REPORT_PROMPT = PromptTemplate(
-    input_variables=["findings"],
-    template="""You are a senior SOC analyst writing a formal incident report.
+REPORT_PROMPT_TEMPLATE = """You are a senior SOC analyst writing a formal incident report.
 
 Based on the following investigation findings, write a complete,
 structured incident report:
@@ -70,12 +82,45 @@ RECOMMENDED ACTIONS:
 ANALYST NOTES:
 <Any additional context or observations>
 ================================================
-""".replace("{timestamp}", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-)
+Write real, specific content only — do not leave any angle-bracket
+placeholders in your output.
+"""
 
 
 # ─────────────────────────────────────────────
-# 2. THE TOOL
+# 2. GEMINI CALL
+# ─────────────────────────────────────────────
+def _generate_via_gemini(findings: str) -> str:
+    import google.generativeai as genai
+
+    if not GEMINI_API_KEY:
+        raise RuntimeError("GEMINI_API_KEY not set")
+
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel(GEMINI_MODEL)
+
+    prompt_text = REPORT_PROMPT_TEMPLATE.format(
+        findings=findings,
+        timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    )
+
+    response = model.generate_content(
+        prompt_text,
+        generation_config=genai.types.GenerationConfig(
+            temperature=0,
+            max_output_tokens=1200
+        ),
+        request_options={"timeout": GEMINI_TIMEOUT_SECONDS}
+    )
+
+    text = response.text.strip()
+    if not text:
+        raise RuntimeError("Gemini returned empty response")
+    return text
+
+
+# ─────────────────────────────────────────────
+# 3. THE TOOL
 # ─────────────────────────────────────────────
 @tool
 def generate_report(findings: str) -> str:
@@ -103,23 +148,18 @@ def generate_report(findings: str) -> str:
         A complete, structured incident report ready for SOC analyst review.
     """
     try:
-        llm = OllamaLLM(
-            model="mistral",
-            temperature=0,
-            base_url="http://localhost:11434"
-        )
-        chain = REPORT_PROMPT | llm | StrOutputParser()
-        report = chain.invoke({"findings": findings})
-        return report
+        return _generate_via_gemini(findings)
 
     except Exception as e:
-        # Fallback: structured report without LLM
+        # Fallback: structured report without LLM (Gemini unreachable,
+        # rate-limited, or misconfigured). No local Ollama fallback —
+        # removed from this environment.
         return f"""================================================
 VIGILANCE AI — INCIDENT REPORT
 Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 ================================================
 
-NOTE: LLM unavailable — basic report generated.
+NOTE: LLM unavailable ({e}) — basic report generated.
 
 FINDINGS SUMMARY:
 {findings}
@@ -130,11 +170,11 @@ Investigate immediately and escalate to senior analyst.
 
 
 # ─────────────────────────────────────────────
-# 3. TEST
+# 4. TEST
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
     print("Testing generate_report tool...")
-    print("(This calls Mistral — wait 30-90s)\n")
+    print("(This calls Gemini — should take a few seconds)\n")
 
     test_findings = """
     Alert ID: 1717000001

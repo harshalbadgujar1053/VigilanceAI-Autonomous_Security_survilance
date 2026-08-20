@@ -1,6 +1,6 @@
 import { Alert, Classification, IncidentReport } from '../types';
 
-export const BASE_URL = 'http://15.207.102.82:8000';
+export const BASE_URL = 'http://192.168.80.129:8000';
 
 export const SAMPLE_ALERTS: Record<string, Alert> = {
   "alert-001": {
@@ -458,24 +458,18 @@ export const fetchSiemAlerts = async (): Promise<Alert[]> => {
         // No sample-data fallback: an empty backend means an empty
         // dashboard, not fabricated data.
         return data.alerts.map((a: any) => ({
-          id: a.id,
-          timestamp: a.timestamp,
-          rule: {
-            id: a.rule_id,
-            level: a.rule_level,
-            description: a.description,
-            groups: a.raw_data?.rule?.groups || []
-          },
-          agent: {
-            id: a.raw_data?.agent?.id || '',
-            name: a.agent_name,
-            ip: a.agent_ip
-          },
-          data: a.raw_data?.data || {},
-          location: a.raw_data?.location || '',
-          severity: a.severity,
-          _source: 'live'
-        }));
+  	  id: a.id,
+	  timestamp: a.timestamp,
+	  rule: { id: a.rule_id, level: a.rule_level, description: a.description, groups: a.raw_data?.rule?.groups || [] },
+	  agent: { id: a.raw_data?.agent?.id || '', name: a.agent_name, ip: a.agent_ip },
+	  data: a.raw_data?.data || {},
+	  location: a.raw_data?.location || '',
+	  severity: a.severity,
+	  technique: a.technique,
+	  reasoning: a.reasoning,
+	  recommended_actions: a.recommended_actions,
+	  _source: 'live'
+	}))
       }
     }
     console.warn('Backend /alerts returned no usable data.');
