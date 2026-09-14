@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Alert } from './types';
 import { checkBackendHealth, fetchSiemAlerts, fetchHealth } from './api/vigilanceApi';
-import Pagination from './components/Pagination';
 import AlertCard from './components/AlertCard';
 import SOCCharts from './components/SOCCharts';
 import ReportsHistory from './components/ReportsHistory';
@@ -75,10 +74,9 @@ export default function App({ onLogout }: AppProps) {
 
   // Filter & Sort State
   const [filter, setFilter] = useState<'ALL' | 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
-  const [verdictFilter, setVerdictFilter] = useState<'ALL' | 'TRUE POSITIVE' | 'FALSE POSITIVE' | 'NEEDS INVESTIGATION'>('ALL');
   const [search, setSearch] = useState('');
   const [analyticsSearch, setAnalyticsSearch] = useState('');
-  const [sort, setSort] = useState<'time_desc' | 'time_asc' | 'level_desc' | 'level_asc' | 'id_asc'>('time_desc');
+  const [sort, setSort] = useState<'level_desc' | 'level_asc' | 'id_asc'>('level_desc');
 
   // Load backend status & static alerts
   const syncDashboard = async () => {
@@ -134,12 +132,6 @@ export default function App({ onLogout }: AppProps) {
         if (cat !== filter) return false;
       }
 
-      // 1b. Filter by verdict
-      if (verdictFilter !== 'ALL') {
-        const v = (a as any).verdict ? String((a as any).verdict).toUpperCase() : 'NEEDS INVESTIGATION';
-        if (v !== verdictFilter) return false;
-      }
-
       // 2. Filter by search query
       if (search.trim() !== '') {
         const query = search.toLowerCase();
@@ -154,7 +146,7 @@ export default function App({ onLogout }: AppProps) {
 
       return true;
     })
-        .sort((a, b) => {
+    .sort((a, b) => {
       // 3. Sort options
       if (sort === 'level_desc') {
         return b.rule.level - a.rule.level;
@@ -162,27 +154,10 @@ export default function App({ onLogout }: AppProps) {
         return a.rule.level - b.rule.level;
       } else if (sort === 'id_asc') {
         return a.id.localeCompare(b.id);
-      } else if (sort === 'time_asc') {
-        return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
       }
-      // Default: latest first (time_desc), also covers any unrecognized sort value
-      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+      return 0;
     });
-  
-  const PAGE_SIZE = 20;
-  const [currentPage, setCurrentPage] = useState(1);
 
-  // Reset to page 1 whenever filters, search, or sort change, so the
-  // user doesn't get stranded on a now-empty page 4 after narrowing results.
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filter, verdictFilter, search, sort]);
-
-  const paginatedAlerts = processedAlerts.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
-  );
-  
   const handleLogoutClick = () => {
     localStorage.removeItem('vigilance_auth');
     onLogout();
@@ -204,6 +179,7 @@ export default function App({ onLogout }: AppProps) {
               </div>
               <div className="nav-brand-text">
                 <h1>Vigilance AI</h1>
+                <p>Autonomous Security Surveillance</p>
               </div>
             </div>
 
@@ -341,35 +317,28 @@ export default function App({ onLogout }: AppProps) {
                     {/* Sort dropdown */}
                     <div className="sort-box-wrapper">
                       <SlidersHorizontal size={14} className="sort-icon" />
-                      <select
+                      <select 
                         id="sort-select"
                         value={sort} 
                         onChange={(e: any) => setSort(e.target.value)}
                         className="sort-select-field"
                       >
-                        <option value="time_desc">Time: Newest First</option>
-                        <option value="time_asc">Time: Oldest First</option>
                         <option value="level_desc">Level: Max to Min</option>
                         <option value="level_asc">Level: Min to Max</option>
                         <option value="id_asc">Alert ID: Alphabetical</option>
                       </select>
                     </div>
 
-                    {/* VERDICT-FILTER-PILLS-MARKER-V2 */}
+                    {/* Filter pill selectors */}
                     <div className="filter-pills-row">
-                      {([
-                        { label: 'ALL', value: 'ALL', cls: '' },
-                        { label: 'TRUE POSITIVE', value: 'TRUE POSITIVE', cls: 'critical' },
-                        { label: 'FALSE POSITIVE', value: 'FALSE POSITIVE', cls: 'low' },
-                        { label: 'NEEDS INVESTIGATION', value: 'NEEDS INVESTIGATION', cls: 'medium' }
-                      ] as const).map((opt) => (
+                      {(['ALL', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'] as const).map((lvl) => (
                         <button
-                          id={`btn-filter-verdict-${opt.value.toLowerCase().replace(/\s+/g, '-')}`}
-                          key={opt.value}
-                          onClick={() => setVerdictFilter(opt.value)}
-                          className={`filter-pill-btn ${opt.cls} ${verdictFilter === opt.value ? 'active' : ''}`}
+                          id={`btn-filter-${lvl.toLowerCase()}`}
+                          key={lvl}
+                          onClick={() => setFilter(lvl)}
+                          className={`filter-pill-btn ${lvl.toLowerCase()} ${filter === lvl ? 'active' : ''}`}
                         >
-                          {opt.label}
+                          {lvl}
                         </button>
                       ))}
                     </div>
@@ -403,24 +372,16 @@ export default function App({ onLogout }: AppProps) {
                     <h4>No Matching Alerts Found</h4>
                     <p>Try modifying your text search filters or categories.</p>
                   </div>
-                 ) : (
-                  <>
-                    <div id="alerts-list-container" className="alerts-list-wrapper">
-                      {paginatedAlerts.map((alert, index) => (
-                        <AlertCard 
-                          key={alert.id} 
-                          alert={alert} 
-                          index={index}
-                        />
-                      ))}
-                    </div>
-                    <Pagination
-                      currentPage={currentPage}
-                      totalItems={processedAlerts.length}
-                      pageSize={PAGE_SIZE}
-                      onPageChange={setCurrentPage}
-                    />
-                  </>
+                ) : (
+                  <div id="alerts-list-container" className="alerts-list-wrapper">
+                    {processedAlerts.map((alert, index) => (
+                      <AlertCard 
+                        key={alert.id} 
+                        alert={alert} 
+                        index={index}
+                      />
+                    ))}
+                  </div>
                 )}
               </motion.div>
          )}

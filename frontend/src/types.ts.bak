@@ -33,8 +33,6 @@ export interface Classification {
   technique: string;
   reasoning: string[];
   recommendedActions?: string[];
-  verdict?: 'TRUE POSITIVE' | 'FALSE POSITIVE' | 'NEEDS INVESTIGATION';
-  confidence?: 'HIGH' | 'MEDIUM' | 'LOW';
   rawText?: string;
 }
 

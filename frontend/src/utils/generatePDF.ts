@@ -33,6 +33,13 @@ export const generateIncidentPDF = ({ alert, classification, report }: PDFParams
   };
   const currentSevColor = sevColors[classification.severity] || [100, 116, 139];
 
+  const verdictColors: Record<string, { bg: number[]; fg: number[] }> = {
+    'TRUE POSITIVE': { bg: [254, 226, 226], fg: [153, 27, 27] },
+    'FALSE POSITIVE': { bg: [220, 252, 231], fg: [22, 101, 52] },
+    'NEEDS INVESTIGATION': { bg: [254, 249, 195], fg: [133, 77, 14] }
+  };
+  const currentVerdictColor = verdictColors[classification.verdict] || verdictColors['NEEDS INVESTIGATION'];
+
   // ----------------------------------------------------
   // PAGE 1: HEADER & META SECTION
   // ----------------------------------------------------
@@ -84,13 +91,45 @@ export const generateIncidentPDF = ({ alert, classification, report }: PDFParams
   doc.setTextColor(100, 116, 139); // steel gray
   doc.text('AUTONOMOUS SECURITY SURVEILLANCE & AI TRIAGE', 34, 24);
 
-  // Severity Badge on Cover Header (Top Right)
-  doc.setFillColor(currentSevColor[0], currentSevColor[1], currentSevColor[2]);
-  doc.rect(pageWidth - margin - 30, 16, 30, 7, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(8);
+    // Severity Badge on Cover Header (Top Right) — rounded pill
   doc.setFont('Helvetica', 'bold');
-  doc.text(classification.severity, pageWidth - margin - 15, 20.8, { align: 'center' });
+  doc.setFontSize(8);
+  const sevBadgeWidth = Math.max(28, doc.getTextWidth(classification.severity) + 10);
+  const sevBadgeX = pageWidth - margin - sevBadgeWidth;
+  const sevBadgeY = 15;
+  const sevBadgeHeight = 6.5;
+
+  doc.setFillColor(currentSevColor[0], currentSevColor[1], currentSevColor[2]);
+  doc.roundedRect(sevBadgeX, sevBadgeY, sevBadgeWidth, sevBadgeHeight, 1.5, 1.5, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text(classification.severity, sevBadgeX + sevBadgeWidth / 2, sevBadgeY + 4.4, { align: 'center' });
+
+  // Verdict Badge — stacked below severity
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(6.5);
+  const verdictText = classification.verdict || 'NEEDS INVESTIGATION';
+  const verdictBadgeWidth = Math.max(28, doc.getTextWidth(verdictText) + 8);
+  const verdictBadgeX = pageWidth - margin - verdictBadgeWidth;
+  const verdictBadgeY = sevBadgeY + sevBadgeHeight + 2;
+  const verdictBadgeHeight = 5.5;
+
+  doc.setFillColor(currentVerdictColor.bg[0], currentVerdictColor.bg[1], currentVerdictColor.bg[2]);
+  doc.roundedRect(verdictBadgeX, verdictBadgeY, verdictBadgeWidth, verdictBadgeHeight, 1.2, 1.2, 'F');
+  doc.setTextColor(currentVerdictColor.fg[0], currentVerdictColor.fg[1], currentVerdictColor.fg[2]);
+  doc.text(verdictText, verdictBadgeX + verdictBadgeWidth / 2, verdictBadgeY + 3.7, { align: 'center' });
+
+  // Confidence — muted label under the verdict pill
+  if (classification.confidence) {
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(6.5);
+    doc.setTextColor(greyColor[0], greyColor[1], greyColor[2]);
+    doc.text(
+      `Confidence: ${classification.confidence}`,
+      pageWidth - margin,
+      verdictBadgeY + verdictBadgeHeight + 3.5,
+      { align: 'right' }
+    );
+  }
 
   // Title (drawn below the logo and title - dynamic based on alert.rule.description)
   doc.setFont('Helvetica', 'bold');
@@ -99,7 +138,7 @@ export const generateIncidentPDF = ({ alert, classification, report }: PDFParams
   
   const titleText = `Case Creation of ${alert.rule.description}`;
   const titleLines = doc.splitTextToSize(titleText, pageWidth - (margin * 2));
-  let titleY = 36;
+  let titleY = 40;
   titleLines.forEach((line: string) => {
     doc.text(line, margin, titleY);
     titleY += 4.5;
@@ -509,6 +548,18 @@ export const generateIncidentPDF = ({ alert, classification, report }: PDFParams
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '_')
     .replace(/^_+|_+$/g, '');
+    // Footer with page numbers on every page
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(148, 163, 184);
+    doc.text(`Vigilance AI — Confidential`, margin, pageHeight - 10);
+    doc.text(`Page ${i} of ${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
+    doc.text(`Incident ID: ${alert.id}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+  }
+
   doc.save(`case_creation_${sanitizedRuleName || alert.id}.pdf`);
 };
 

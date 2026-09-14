@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { IncidentReport } from '../types';
 import { fetchSavedReports, fetchReportById } from '../api/vigilanceApi';
+import Pagination from './Pagination';
 import SeverityBadge from './SeverityBadge';
 import { 
   RefreshCw, 
@@ -27,6 +28,8 @@ export default function ReportsHistory() {
   const [loadingReport, setLoadingReport] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [copied, setCopied] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 20;
 
   const loadReports = async () => {
     setLoading(true);
@@ -102,6 +105,15 @@ export default function ReportsHistory() {
       (rep.preview && rep.preview.toLowerCase().includes(q))
     );
   }, [reports, searchQuery]);
+  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
+  const paginatedReports = filteredReports.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
 
   return (
     <div id="reports-tab-content" className="reports-history-wrapper">
@@ -180,32 +192,26 @@ export default function ReportsHistory() {
             <table className="reports-table">
               <thead>
                 <tr>
-                  <th>Report ID</th>
+                  <th>Alert Description</th>
                   <th>Alert ID</th>
-                  <th>Host Node</th>
                   <th>Severity</th>
-                  <th>Summary Preview</th>
                   <th>Created At</th>
                   <th style={{ textAlign: 'right' }}>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredReports.map((rep) => (
+                {paginatedReports.map((rep) => (
                   <tr key={rep.id} className="report-row-hover">
-                    <td className="text-bold text-mono">
-                      #{String(rep.id).slice(-6).toUpperCase()}
+                    <td>
+                      <div className="text-preview" style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>
+                        {(rep as any).description || rep.title || rep.preview || 'Untitled alert'}
+                      </div>
                     </td>
-                    <td className="text-mono">
-                      {rep.alert_id.substring(0, 8)}...
+                    <td className="text-mono" style={{ fontSize: '13px' }}>
+                      {rep.alert_id}
                     </td>
-                    <td>{rep.agent_name}</td>
                     <td>
                       <SeverityBadge severity={rep.severity} />
-                    </td>
-                    <td>
-                      <div className="text-preview">
-                        {rep.title || rep.preview}
-                      </div>
                     </td>
                     <td className="text-muted">
                       {formatDate(rep.created_at)}
@@ -213,10 +219,10 @@ export default function ReportsHistory() {
                     <td style={{ textAlign: 'right' }}>
                       <button 
                         onClick={() => handleOpenReport(rep.id)}
-                        className="btn btn-ghost btn-xs"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                        className="btn btn-ghost btn-sm"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '13px' }}
                       >
-                        <Eye size={12} />
+                        <Eye size={15} />
                         View Full
                       </button>
                     </td>
@@ -224,14 +230,20 @@ export default function ReportsHistory() {
                 ))}
                 {filteredReports.length === 0 && (
                   <tr>
-                    <td colSpan={7} style={{ textAlign: 'center', padding: '24px', color: 'var(--color-text-secondary)' }}>
+                    <td colSpan={5} style={{ textAlign: 'center', padding: '24px', color: 'var(--color-text-secondary)' }}>
                       No matching incident records found.
                     </td>
                   </tr>
                 )}
               </tbody>
-            </table>
+           </table>
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalItems={filteredReports.length}
+            pageSize={PAGE_SIZE}
+            onPageChange={setCurrentPage}
+          />
         </div>
       )}
 

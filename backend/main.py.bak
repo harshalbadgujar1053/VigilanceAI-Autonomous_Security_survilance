@@ -191,10 +191,6 @@ def _classify_and_store(alert_id: str, alert: dict):
                 sev = s
                 break
 
-        verdict_m = __import__("re").search(r"\[VERDICT\]\s*([^\n]+)", classification_text, __import__("re").IGNORECASE)
-        confidence_m = __import__("re").search(r"\[CONFIDENCE\]\s*(\w+)", classification_text, __import__("re").IGNORECASE)
-        verdict = verdict_m.group(1).strip().upper() if verdict_m else "NEEDS INVESTIGATION"
-        confidence = confidence_m.group(1).strip().upper() if confidence_m else "LOW"
         mitre_technique = ""
         for line in classification_text.split("\n"):
             if line.strip().upper().startswith("[TECHNIQUE]"):
@@ -203,37 +199,20 @@ def _classify_and_store(alert_id: str, alert: dict):
 
         import re as _re
         m = _re.search(r"\[REASONING\]\s*([\s\S]+?)(?=\[RECOMMENDED|$)", classification_text, _re.IGNORECASE)
-        reasoning_raw = m.group(1).strip() if m else ""
-        # PATCHED: split into individual bullet lines and pipe-join, so the
-        # frontend's alert.reasoning.split('|') produces separate <li>
-        # items instead of one run-on paragraph.
-        reasoning_lines = []
-        for line in reasoning_raw.splitlines():
-            cleaned = _re.sub(r"^\s*-\s*", "", line).strip()
-            if cleaned:
-                reasoning_lines.append(cleaned)
-        reasoning_formatted = " | ".join(reasoning_lines) if reasoning_lines else reasoning_raw
+        reasoning_text = m.group(1).strip() if m else ""
 
-        recommended_actions_raw = ""
+        recommended_actions = ""
         if "[RECOMMENDED ACTIONS]" in classification_text.upper():
             idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
-            recommended_actions_raw = classification_text[idx + len("[RECOMMENDED ACTIONS]"):].strip()
-        recommended_actions_lines = []
-        for line in recommended_actions_raw.splitlines():
-            cleaned = _re.sub(r"^\s*[-\d.]+\s*", "", line).strip()
-            if cleaned:
-                recommended_actions_lines.append(cleaned)
-        recommended_actions = " | ".join(recommended_actions_lines) if recommended_actions_lines else recommended_actions_raw
+            recommended_actions = classification_text[idx + len("[RECOMMENDED ACTIONS]"):].strip()
 
         record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
         cls_record = ClassificationRecord(
             alert_id=alert_id,
             severity=sev,
-            reasoning=reasoning_formatted,
+            reasoning=classification_text,
             mitre_tactics=mitre_technique,
-            recommended_actions=recommended_actions,
-            verdict=verdict,
-            confidence=confidence
+            recommended_actions=recommended_actions
         )
         db.add(cls_record)
         if record_to_update:
@@ -305,18 +284,12 @@ def save_report(req: SaveReportRequest, db: Session = Depends(get_db)):
 @app.get("/reports")
 def get_reports(db: Session = Depends(get_db)):
     reports = db.query(ReportRecord).order_by(ReportRecord.created_at.desc()).all()
-    alert_ids = [r.alert_id for r in reports]
-    alerts_by_id = {}
-    if alert_ids:
-        for a in db.query(AlertRecord).filter(AlertRecord.id.in_(alert_ids)).all():
-            alerts_by_id[a.id] = a
     return {"success": True, "count": len(reports), "reports": [
         {
             "id": r.id,
             "alert_id": r.alert_id,
             "severity": r.severity,
             "agent_name": r.agent_name,
-            "description": alerts_by_id[r.alert_id].description if r.alert_id in alerts_by_id else "",
             "report_preview": r.report_text[:200] + "..." if len(r.report_text) > 200 else r.report_text,
             "created_at": str(r.created_at)
         } for r in reports
@@ -398,6 +371,81 @@ def get_stats(db: Session = Depends(get_db)):
         "total_reports": total_reports,
         "severity_counts": severity_counts
     }}
+
+
+@app.post("/alerts/ingest")
+async def ingest_alert(alert: dict, db: Session = Depends(get_db)):
+    """Ingest an alert and auto-classify it via Gemini."""
+    alert_id = alert.get("id", alert.get("alert_id",
+        f"auto-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"))
+    logger.info(f"Ingesting alert: {alert_id}")
+
+    # Save alert to DB
+    existing = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+    if not existing:
+        source = alert.get("agent", alert.get("source", {}))
+        record = AlertRecord(
+            id=alert_id,
+            timestamp=alert.get("timestamp", datetime.now(timezone.utc).isoformat()),
+            rule_id=str(alert.get("rule", {}).get("id", "")),
+            rule_level=alert.get("rule", {}).get("level", 0),
+            description=alert.get("rule", {}).get("description", ""),
+            agent_name=source.get("name", source.get("agent_name", "")),
+            agent_ip=source.get("ip", source.get("agent_ip", "")),
+            severity="PENDING",
+            raw_data=alert
+        )
+        db.add(record)
+        db.commit()
+        logger.info(f"Alert {alert_id} saved to DB")
+
+    # Auto-classify
+    try:
+        rag_result = await run_in_threadpool(classify_alert_with_rag, alert)
+        classification_text = rag_result.get("classification", "") if isinstance(rag_result, dict) else str(rag_result)
+
+        # Parse severity from classification text
+        sev = "UNKNOWN"
+        for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+            if s in classification_text.upper():
+                sev = s
+                break
+
+        # Parse MITRE technique from the [TECHNIQUE] line
+        mitre_technique = ""
+        for line in classification_text.split("\n"):
+            if line.strip().upper().startswith("[TECHNIQUE]"):
+                mitre_technique = line.split("]", 1)[-1].strip()
+                break
+
+        # Parse [RECOMMENDED ACTIONS] block (everything after the tag)
+        recommended_actions = ""
+        if "[RECOMMENDED ACTIONS]" in classification_text.upper():
+            idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
+            after = classification_text[idx + len("[RECOMMENDED ACTIONS]"):]
+            recommended_actions = after.strip()
+
+        # Update alert severity
+        record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+        if record_to_update:
+            record_to_update.severity = sev
+            db.commit()
+        # Save classification
+        cls_record = ClassificationRecord(
+            alert_id=alert_id,
+            severity=sev,
+            reasoning=classification_text,
+            mitre_tactics=mitre_technique,
+            recommended_actions=recommended_actions
+        )
+        db.add(cls_record)
+        db.commit()
+        logger.info(f"Alert {alert_id} classified as {sev}")
+        return {"success": True, "alert_id": alert_id, "severity": sev, "classification": classification_text}
+    except Exception as e:
+        logger.error(f"Classification failed for {alert_id}: {e}")
+        return {"success": True, "alert_id": alert_id, "severity": "PENDING",
+                "classification": None, "error": str(e)}
 
 
 @app.get("/logs")

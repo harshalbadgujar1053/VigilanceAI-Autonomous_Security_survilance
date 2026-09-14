@@ -32,8 +32,6 @@ class ClassificationRecord(Base):
     reasoning      = Column(Text)
     mitre_tactics  = Column(Text)
     recommended_actions = Column(Text)
-    verdict        = Column(String, nullable=True)
-    confidence     = Column(String, nullable=True)
     classified_at  = Column(DateTime, default=datetime.utcnow)
 
 class ReportRecord(Base):

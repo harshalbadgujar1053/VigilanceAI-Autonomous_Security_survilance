@@ -1,5 +1,4 @@
 import React from 'react';
-import Pagination from './Pagination';
 import { Alert } from '../types';
 import { 
   ResponsiveContainer, 
@@ -57,21 +56,7 @@ const ROTATING_COLORS = [
 
 export default function SOCCharts({ alerts }: SOCChartsProps) {
   // track which log row is expanded
-      const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const PAGE_SIZE = 20;
-
-  const sortedAlerts = [...alerts].sort(
-    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-  );
-  const paginatedAlerts = sortedAlerts.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
-  );
-
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [alerts]);
+  const [expandedId, setExpandedId] = React.useState<string | null>(null);
 
   if (!alerts || alerts.length === 0) {
     return (
@@ -408,19 +393,18 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
         </div>
         
         <div style={{ overflowX: 'auto', marginTop: '16px' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', textAlign: 'left' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #E2E8F0', paddingBottom: '8px' }}>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B' }}>Severity</th>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B' }}>Wazuh ID</th>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B' }}>Trigger Rule / Description</th>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B' }}>Host Agent</th>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B' }}>Log File Location</th>
-                <th style={{ padding: '14px 14px', fontWeight: '600', color: '#64748B', textAlign: 'right' }}>Timestamp</th>
+                <th style={{ padding: '10px 12px', fontWeight: '600', color: '#64748B' }}>Severity</th>
+                <th style={{ padding: '10px 12px', fontWeight: '600', color: '#64748B' }}>Trigger Rule / Description</th>
+                <th style={{ padding: '10px 12px', fontWeight: '600', color: '#64748B' }}>Host Agent</th>
+                <th style={{ padding: '10px 12px', fontWeight: '600', color: '#64748B' }}>Log File Location</th>
+                <th style={{ padding: '10px 12px', fontWeight: '600', color: '#64748B', textAlign: 'right' }}>Timestamp</th>
               </tr>
             </thead>
             <tbody>
-               {paginatedAlerts.map((alert) => {
+              {[...alerts].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).map((alert) => {
                 let severityLabel = "Low";
                 let badgeStyle = { backgroundColor: '#DEF7EC', color: '#03543F' }; // Low Green
                 if (alert.rule.level >= 12) {
@@ -448,24 +432,21 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
                         backgroundColor: isExpanded ? '#F8FAFC' : 'transparent'
                       }}
                     >
-                      <td style={{ padding: '14px', whiteSpace: 'nowrap' }}>
+                      <td style={{ padding: '12px', whiteSpace: 'nowrap' }}>
                         <span style={{ 
                           display: 'inline-flex', 
                           alignItems: 'center', 
-                          padding: '4px 9px', 
+                          padding: '3px 8px', 
                           borderRadius: '9999px', 
                           fontWeight: '600', 
-                          fontSize: '11px',
+                          fontSize: '10px',
                           textTransform: 'uppercase',
                           ...badgeStyle 
                         }}>
                           {severityLabel} ({alert.rule.level})
                         </span>
                       </td>
-                      <td style={{ padding: '14px', whiteSpace: 'nowrap', fontFamily: 'monospace', color: '#334155', fontWeight: 600 }}>
-                        {alert.rule.id}
-                      </td>
-                      <td style={{ padding: '14px' }}>
+                      <td style={{ padding: '12px' }}>
                         <div style={{ fontWeight: '600', color: '#1E293B', marginBottom: '4px' }}>{alert.rule.description}</div>
                         <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
                           {alert.rule.groups.map(group => (
@@ -483,21 +464,20 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
                           ))}
                         </div>
                       </td>
-                      <td style={{ padding: '14px', whiteSpace: 'nowrap' }}>
+                      <td style={{ padding: '12px', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: '500', color: '#334155' }}>{alert.agent.name}</div>
-                        <div style={{ fontSize: '12px', color: '#94A3B8', fontFamily: 'monospace' }}>{alert.agent.ip}</div>
+                        <div style={{ fontSize: '10px', color: '#94A3B8', fontFamily: 'monospace' }}>{alert.agent.ip}</div>
                       </td>
-                      <td style={{ padding: '14px', color: '#475569', fontFamily: 'monospace', fontSize: '13px' }}>
+                      <td style={{ padding: '12px', color: '#475569', fontFamily: 'monospace', fontSize: '11px' }}>
                         {alert.location}
                       </td>
-                      <td style={{ padding: '14px', textAlign: 'right', color: '#64748B', whiteSpace: 'nowrap' }}>
+                      <td style={{ padding: '12px', textAlign: 'right', color: '#64748B', whiteSpace: 'nowrap' }}>
                         {new Date(alert.timestamp).toLocaleString(undefined, {
                           month: 'short',
                           day: 'numeric',
                           hour: '2-digit',
                           minute: '2-digit',
-                          second: '2-digit',
-                          hour12: false
+                          second: '2-digit'
                         })}
                       </td>
                     </tr>
@@ -505,7 +485,7 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
                     {/* Expandable detail panel row */}
                     {isExpanded && (
                       <tr>
-                        <td colSpan={6} style={{ padding: 0 }}>
+                        <td colSpan={5} style={{ padding: 0 }}>
                           <div className="row-detail-panel">
                             <div>
                               <strong>Rule ID:</strong> {alert.rule.id}
@@ -523,7 +503,7 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
                               <strong>Log Path:</strong> {alert.location}
                               <br />
                               <strong>Timestamp:</strong>{' '}
-                              {new Date(alert.timestamp).toLocaleString(undefined, { hour12: false })}
+                              {new Date(alert.timestamp).toLocaleString()}
                             </div>
                           </div>
                         </td>
@@ -532,14 +512,8 @@ export default function SOCCharts({ alerts }: SOCChartsProps) {
                   </React.Fragment>
                 );
               })}
-                        </tbody>
+            </tbody>
           </table>
-          <Pagination
-            currentPage={currentPage}
-            totalItems={sortedAlerts.length}
-            pageSize={PAGE_SIZE}
-            onPageChange={setCurrentPage}
-          />
         </div>
       </div>
     </div>

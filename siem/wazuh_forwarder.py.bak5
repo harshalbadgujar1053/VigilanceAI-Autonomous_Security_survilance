@@ -9,7 +9,7 @@ into the NormalizedAlert schema.
 
 This closes the real-time loop:
   Wazuh detects attack → alerts.json → this script → FastAPI /classify
-  → Gemini RAG-enhanced classification → incident report → React dashboard
+  → LangChain ReAct agent → incident report → React dashboard
 
 Run:
     python3 siem/wazuh_forwarder.py --run
@@ -53,7 +53,7 @@ WAZUH_ALERTS_FILE       = "/var/ossec/logs/alerts/alerts.json"
 
 POLL_INTERVAL   = 5    # seconds between file checks
 MIN_ALERT_LEVEL = 5    # only forward at this level or above
-GEMINI_TIMEOUT  = 60   # seconds — generous headroom over Gemini's own internal timeout/retries
+MISTRAL_TIMEOUT = 300  # seconds — Mistral on CPU can take up to 3 min
 
 SKIP_RULE_IDS = {"533", "531", "510"}
 
@@ -165,93 +165,15 @@ def should_forward(raw: dict) -> bool:
 
 # ─────────────────────────────────────────────────────────
 # FASTAPI FORWARDING  — runs in a background thread
-# so the poll loop never blocks waiting for the classifier
+# so the poll loop never blocks waiting for Mistral
 # ─────────────────────────────────────────────────────────
 _pending_lock  = threading.Lock()
 _pending_count = 0
 
-def _parse_classification_text(classification_full: str) -> dict:
-    """
-    Parses the tagged Gemini output ([VERDICT], [CONFIDENCE], [SEVERITY],
-    [TECHNIQUE], [REASONING], [RECOMMENDED ACTIONS]) into the same field
-    shape saveClassificationToDB sends from AlertCard.tsx, so alerts
-    ingested automatically by the forwarder end up with the exact same
-    schema as alerts classified manually via the dashboard's "Classify"
-    button. Without this, /classifications/save rows written by the
-    forwarder were missing verdict/confidence/recommended_actions
-    entirely, and reasoning held the full raw block instead of clean
-    pipe-joined bullets.
-    """
-    upper = classification_full.upper()
-
-    severity = "UNKNOWN"
-    for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
-        if s in upper:
-            severity = s
-            break
-
-    mitre_technique = ""
-    verdict = "NEEDS INVESTIGATION"
-    confidence = "LOW"
-    reasoning_lines = []
-    recommended_action_lines = []
-
-    lines = classification_full.split("\n")
-    current_section = None
-    for raw_line in lines:
-        line = raw_line.strip()
-        stripped_upper = line.upper()
-
-        if stripped_upper.startswith("[VERDICT]"):
-            verdict = line.split("]", 1)[-1].strip().upper()
-            current_section = None
-            continue
-        if stripped_upper.startswith("[CONFIDENCE]"):
-            confidence = line.split("]", 1)[-1].strip().upper()
-            current_section = None
-            continue
-        if stripped_upper.startswith("[TECHNIQUE]"):
-            mitre_technique = line.split("]", 1)[-1].strip()
-            current_section = None
-            continue
-        if stripped_upper.startswith("[REASONING]"):
-            current_section = "reasoning"
-            continue
-        if stripped_upper.startswith("[RECOMMENDED ACTIONS]"):
-            current_section = "actions"
-            continue
-        if stripped_upper.startswith("[SEVERITY]"):
-            current_section = None
-            continue
-
-        if not line:
-            continue
-
-        cleaned = line.lstrip("-•").strip()
-        if not cleaned:
-            continue
-
-        if current_section == "reasoning":
-            reasoning_lines.append(cleaned)
-        elif current_section == "actions":
-            recommended_action_lines.append(cleaned)
-
-    return {
-        "severity": severity,
-        "mitre_technique": mitre_technique,
-        "verdict": verdict,
-        "confidence": confidence,
-        # Pipe-joined to match the schema AlertCard.tsx/backend already expect
-        # (split on '|' when rendered — see reasoning.split('|') in AlertCard.tsx)
-        "reasoning": " | ".join(reasoning_lines) if reasoning_lines else classification_full.strip(),
-        "recommended_actions": " | ".join(recommended_action_lines)
-    }
-
-
 def _post_alert_thread(normalized: dict):
     """
-    Called in a daemon thread. POSTs one alert to FastAPI /classify
-    and logs the Gemini response when it arrives.
+    Called in a daemon thread. POSTs one alert to FastAPI/classify
+    and logs the Mistral response when it arrives (up to 3 min later).
     """
     global _pending_count
     alert_id = normalized["alert_id"]
@@ -270,7 +192,7 @@ def _post_alert_thread(normalized: dict):
                 FASTAPI_CLASSIFY_ENDPOINT,
                 data=payload,
                 headers={"Content-Type": "application/json"},
-                timeout=GEMINI_TIMEOUT
+                timeout=MISTRAL_TIMEOUT
             )
             if resp.status_code == 200:
                 data = resp.json()
@@ -279,22 +201,25 @@ def _post_alert_thread(normalized: dict):
                 log.info(f"  ✅ CLASSIFIED [{level:2d}] {desc}")
                 log.info(f"     → {classification}")
 
-                parsed = _parse_classification_text(classification_full)
+                # Parse severity and MITRE technique out of the classification text
+                sev = "UNKNOWN"
+                for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+                    if s in classification_full.upper():
+                        sev = s
+                        break
+                mitre_technique = ""
+                for line in classification_full.split("\n"):
+                    if line.strip().upper().startswith("[TECHNIQUE]"):
+                        mitre_technique = line.split("]", 1)[-1].strip()
+                        break
 
-                # Persist the full classification (severity, technique,
-                # verdict, confidence, reasoning, recommended actions) so
-                # the dashboard shows the same complete data whether an
-                # alert was auto-classified by the forwarder or manually
-                # classified via the "Classify" button.
+                # Persist the classification so the dashboard shows real MITRE data
                 try:
                     save_payload = json.dumps({
                         "alert_id": alert_id,
-                        "severity": parsed["severity"],
-                        "reasoning": parsed["reasoning"],
-                        "mitre_tactics": parsed["mitre_technique"],
-                        "recommended_actions": parsed["recommended_actions"],
-                        "verdict": parsed["verdict"],
-                        "confidence": parsed["confidence"]
+                        "severity": sev,
+                        "reasoning": classification_full,
+                        "mitre_tactics": mitre_technique
                     }).encode("utf-8")
                     save_resp = requests.post(
                         FASTAPI_CLASSIFICATIONS_SAVE_ENDPOINT,
@@ -317,14 +242,11 @@ def _post_alert_thread(normalized: dict):
                 headers={"Content-Type": "application/json"},
                 method="POST"
             )
-            with urllib.request.urlopen(req, timeout=GEMINI_TIMEOUT) as r:
+            with urllib.request.urlopen(req, timeout=MISTRAL_TIMEOUT) as r:
                 data = json.loads(r.read().decode())
                 classification = data.get("classification", str(data))[:200]
                 log.info(f"  ✅ CLASSIFIED [{level:2d}] {desc}")
                 log.info(f"     → {classification}")
-                # Note: urllib fallback path does not currently persist the
-                # classification. If your environment lacks `requests`,
-                # extend this branch with the same save_payload logic above.
 
     except Exception as e:
         log.warning(f"  ✗ POST failed for {alert_id}: {e}")
@@ -333,10 +255,10 @@ def _post_alert_thread(normalized: dict):
             _pending_count -= 1
 
 
-# Caps how many classify requests can be in-flight at once.
+# Caps how many classify requests can be in-flight to Ollama at once.
 # Without this, every alert in a burst (e.g. a Hydra run) fires its own
-# thread immediately, and dozens of concurrent Gemini calls queue up —
-# risking rate-limit storms and starving out any other process (like
+# thread immediately, and dozens of concurrent 30-180s Mistral calls queue
+# up on a single Ollama worker — starving out any other process (like
 # test_integration.py) trying to hit /classify at the same time.
 _classify_semaphore = threading.Semaphore(1)
 
@@ -350,6 +272,56 @@ def forward_async(normalized: dict):
     with _pending_lock:
         _pending_count += 1
     t = threading.Thread(target=_post_alert_thread_limited, args=(normalized,), daemon=True)
+    t.start()
+
+
+def _severity_from_level(level: int) -> str:
+    if level >= 12:
+        return "CRITICAL"
+    if level >= 8:
+        return "HIGH"
+    if level >= 4:
+        return "MEDIUM"
+    return "LOW"
+
+
+def _save_alert_thread(raw: dict):
+    """
+    Persists the raw Wazuh alert (already shaped like the frontend's Alert
+    type: id/timestamp/rule.{id,level,description,groups}/agent.{id,name,ip})
+    to Postgres via /alerts/save. This is what makes alerts show up as
+    "live" on the dashboard — the frontend polls GET /alerts.
+    """
+    payload = dict(raw)
+    payload["severity"] = _severity_from_level(int(raw.get("rule", {}).get("level", 0)))
+    body = json.dumps(payload).encode("utf-8")
+    try:
+        if REQUESTS_AVAILABLE:
+            import requests
+            resp = requests.post(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+            if resp.status_code != 200:
+                log.warning(f"  ⚠ /alerts/save returned HTTP {resp.status_code}: {resp.text[:100]}")
+        else:
+            req = urllib.request.Request(
+                FASTAPI_ALERTS_SAVE_ENDPOINT,
+                data=body,
+                headers={"Content-Type": "application/json"},
+                method="POST"
+            )
+            with urllib.request.urlopen(req, timeout=10):
+                pass
+    except Exception as e:
+        log.warning(f"  ✗ /alerts/save failed for {raw.get('id')}: {e}")
+
+
+def save_alert_async(raw: dict):
+    """Launch a background thread to persist the raw alert — never blocks the poll loop."""
+    t = threading.Thread(target=_save_alert_thread, args=(raw,), daemon=True)
     t.start()
 
 
@@ -471,7 +443,7 @@ def run_forwarder():
     log.info(f"  FastAPI endpoint: {FASTAPI_CLASSIFY_ENDPOINT}")
     log.info(f"  Min alert level : {MIN_ALERT_LEVEL}")
     log.info(f"  Poll interval   : {POLL_INTERVAL}s")
-    log.info(f"  Gemini timeout  : {GEMINI_TIMEOUT}s (non-blocking)")
+    log.info(f"  Mistral timeout : {MISTRAL_TIMEOUT}s (non-blocking)")
     log.info("=" * 60)
 
     with open(PID_FILE, "w") as f:
@@ -499,14 +471,14 @@ def run_forwarder():
                     if should_forward(raw):
                         save_alert_async(raw)       # ← non-blocking: DB row for live dashboard
                         normalized = normalize_alert(raw)
-                        forward_async(normalized)   # ← non-blocking: Gemini classification
+                        forward_async(normalized)   # ← non-blocking: Mistral classification
                         forwarded += 1
                     else:
                         skipped += 1
                 current_line = new_count
                 if new_alerts:
                     log.info(f"  Stats: {forwarded} queued | {skipped} skipped "
-                             f"| {_pending_count} awaiting classification response")
+                             f"| {_pending_count} awaiting Mistral response")
             time.sleep(POLL_INTERVAL)
         except Exception as e:
             log.error(f"Forwarder loop error: {e}")
@@ -558,7 +530,7 @@ def run_test():
         print("  ✓ FastAPI reachable at localhost:8000")
         if to_forward:
             print(f"\n[Test 4] Forwarding first alert asynchronously...")
-            print(f"  → Sending to /classify (Gemini RAG-enhanced classification)...")
+            print(f"  → Sending to /classify (Mistral may take 60-180s on CPU)...")
             # Synchronous for test mode so we can show the result
             payload = json.dumps(to_forward[0]).encode("utf-8")
             try:
@@ -568,7 +540,7 @@ def run_test():
                         FASTAPI_CLASSIFY_ENDPOINT,
                         data=payload,
                         headers={"Content-Type": "application/json"},
-                        timeout=GEMINI_TIMEOUT
+                        timeout=MISTRAL_TIMEOUT
                     )
                     if resp.status_code == 200:
                         data = resp.json()
@@ -583,7 +555,7 @@ def run_test():
                         headers={"Content-Type": "application/json"},
                         method="POST"
                     )
-                    with urllib.request.urlopen(req, timeout=GEMINI_TIMEOUT) as r:
+                    with urllib.request.urlopen(req, timeout=MISTRAL_TIMEOUT) as r:
                         data = json.loads(r.read().decode())
                         print(f"  ✓ Classification: {data.get('classification','')[:300]}")
             except Exception as e:

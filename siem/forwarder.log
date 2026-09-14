@@ -45624,3 +45624,1062 @@
 2026-08-21 00:47:45,836 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
 2026-08-21 00:47:45,836 [INFO] 
 2026-08-21 00:49:53,243 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-21 01:47:21,526 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-21 01:48:22,810 [INFO]   Stats: 0 queued | 7 skipped | 0 awaiting Mistral response
+2026-08-21 01:48:58,540 [INFO]   Stats: 0 queued | 9 skipped | 0 awaiting Mistral response
+2026-08-21 01:49:49,642 [INFO]   Stats: 0 queued | 10 skipped | 0 awaiting Mistral response
+2026-08-21 01:49:54,907 [INFO]   Stats: 0 queued | 14 skipped | 0 awaiting Mistral response
+2026-08-21 20:27:26,093 [INFO] ============================================================
+2026-08-21 20:27:26,094 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-21 20:27:26,095 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-21 20:27:26,095 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-21 20:27:26,095 [INFO]   Min alert level : 5
+2026-08-21 20:27:26,095 [INFO]   Poll interval   : 5s
+2026-08-21 20:27:26,095 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-21 20:27:26,095 [INFO] ============================================================
+2026-08-21 20:27:26,110 [INFO] ✓ FastAPI backend is reachable
+2026-08-21 20:27:26,406 [INFO] ✓ Bookmarked alerts.json at line 29
+2026-08-21 20:27:26,406 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-21 20:27:26,406 [INFO] 
+2026-08-21 20:31:47,424 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-21 20:34:15,310 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-21 20:34:20,492 [INFO]   Stats: 0 queued | 7 skipped | 0 awaiting Mistral response
+2026-08-22 12:30:03,250 [INFO] ============================================================
+2026-08-22 12:30:03,250 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-22 12:30:03,251 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-22 12:30:03,251 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-22 12:30:03,251 [INFO]   Min alert level : 5
+2026-08-22 12:30:03,251 [INFO]   Poll interval   : 5s
+2026-08-22 12:30:03,251 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-22 12:30:03,251 [INFO] ============================================================
+2026-08-22 12:30:03,297 [INFO] ✓ FastAPI backend is reachable
+2026-08-22 12:30:03,929 [INFO] ✓ Bookmarked alerts.json at line 28
+2026-08-22 12:30:03,930 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-22 12:30:03,930 [INFO] 
+2026-08-22 12:30:35,098 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-22 12:36:35,244 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-25 10:07:09,587 [INFO] ============================================================
+2026-08-25 10:07:09,588 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-25 10:07:09,588 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-25 10:07:09,588 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-25 10:07:09,588 [INFO]   Min alert level : 5
+2026-08-25 10:07:09,588 [INFO]   Poll interval   : 5s
+2026-08-25 10:07:09,588 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-25 10:07:09,588 [INFO] ============================================================
+2026-08-25 10:07:09,609 [INFO] ✓ FastAPI backend is reachable
+2026-08-25 10:07:09,939 [INFO] ✓ Bookmarked alerts.json at line 30
+2026-08-25 10:07:09,940 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-25 10:07:09,940 [INFO] 
+2026-08-25 10:12:50,501 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-25 10:48:31,617 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-25 10:54:30,546 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting Mistral response
+2026-08-25 12:24:56,128 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-25 12:30:52,779 [INFO]   Stats: 0 queued | 5 skipped | 0 awaiting Mistral response
+2026-08-27 09:48:29,819 [INFO] ============================================================
+2026-08-27 09:48:29,820 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-27 09:48:29,820 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-27 09:48:29,820 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-27 09:48:29,820 [INFO]   Min alert level : 5
+2026-08-27 09:48:29,821 [INFO]   Poll interval   : 5s
+2026-08-27 09:48:29,821 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-27 09:48:29,821 [INFO] ============================================================
+2026-08-27 09:48:29,841 [INFO] ✓ FastAPI backend is reachable
+2026-08-27 09:48:30,305 [INFO] ✓ Bookmarked alerts.json at line 25
+2026-08-27 09:48:30,306 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-27 09:48:30,307 [INFO] 
+2026-08-27 09:52:57,638 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-27 09:58:54,231 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-08-27 10:05:29,554 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting Mistral response
+2026-08-27 10:09:19,399 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting Mistral response
+2026-08-27 10:11:26,839 [INFO]   Stats: 0 queued | 5 skipped | 0 awaiting Mistral response
+2026-08-27 10:25:45,798 [INFO]   Stats: 0 queued | 6 skipped | 0 awaiting Mistral response
+2026-08-27 10:31:43,249 [INFO]   Stats: 0 queued | 7 skipped | 0 awaiting Mistral response
+2026-08-27 10:49:45,089 [INFO]   Stats: 0 queued | 8 skipped | 0 awaiting Mistral response
+2026-08-27 10:55:42,473 [INFO]   Stats: 0 queued | 9 skipped | 0 awaiting Mistral response
+2026-08-27 11:34:18,022 [INFO]   Stats: 0 queued | 11 skipped | 0 awaiting Mistral response
+2026-08-27 11:34:23,203 [INFO]   Stats: 0 queued | 12 skipped | 0 awaiting Mistral response
+2026-08-27 11:34:28,383 [INFO]   Stats: 0 queued | 15 skipped | 0 awaiting Mistral response
+2026-08-27 11:36:20,830 [INFO]   Stats: 0 queued | 17 skipped | 0 awaiting Mistral response
+2026-08-27 11:37:01,635 [INFO]   Stats: 0 queued | 18 skipped | 0 awaiting Mistral response
+2026-08-27 12:21:25,006 [INFO]   Stats: 0 queued | 19 skipped | 0 awaiting Mistral response
+2026-08-27 12:27:26,698 [INFO]   Stats: 0 queued | 20 skipped | 0 awaiting Mistral response
+2026-08-27 12:43:18,965 [INFO]   Stats: 0 queued | 21 skipped | 0 awaiting Mistral response
+2026-08-27 13:11:50,071 [INFO]   Stats: 0 queued | 22 skipped | 0 awaiting Mistral response
+2026-08-28 09:48:32,434 [INFO] ============================================================
+2026-08-28 09:48:32,435 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-28 09:48:32,436 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-28 09:48:32,436 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-28 09:48:32,436 [INFO]   Min alert level : 5
+2026-08-28 09:48:32,436 [INFO]   Poll interval   : 5s
+2026-08-28 09:48:32,436 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-28 09:48:32,436 [INFO] ============================================================
+2026-08-28 09:48:32,459 [INFO] ✓ FastAPI backend is reachable
+2026-08-28 09:48:32,780 [INFO] ✓ Bookmarked alerts.json at line 24
+2026-08-28 09:48:32,781 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-28 09:48:32,782 [INFO] 
+2026-08-28 09:51:39,026 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+                                                                                           2026-08-28 16:59:29,702 [INFO] ============================================================
+2026-08-28 16:59:29,703 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-28 16:59:29,703 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-28 16:59:29,703 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-28 16:59:29,703 [INFO]   Min alert level : 5
+2026-08-28 16:59:29,703 [INFO]   Poll interval   : 5s
+2026-08-28 16:59:29,703 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-28 16:59:29,703 [INFO] ============================================================
+2026-08-28 16:59:29,721 [INFO] ✓ FastAPI backend is reachable
+2026-08-28 16:59:29,894 [INFO] ✓ Bookmarked alerts.json at line 50
+2026-08-28 16:59:29,894 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-28 16:59:29,895 [INFO] 
+2026-08-28 17:02:17,422 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-29 00:21:32,902 [INFO] ============================================================
+2026-08-29 00:21:32,902 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-29 00:21:32,902 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-29 00:21:32,903 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-29 00:21:32,903 [INFO]   Min alert level : 5
+2026-08-29 00:21:32,903 [INFO]   Poll interval   : 5s
+2026-08-29 00:21:32,903 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-29 00:21:32,903 [INFO] ============================================================
+2026-08-29 00:21:32,921 [INFO] ✓ FastAPI backend is reachable
+2026-08-29 00:21:33,177 [INFO] ✓ Bookmarked alerts.json at line 174
+2026-08-29 00:21:33,177 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-29 00:21:33,177 [INFO] 
+2026-08-30 18:19:09,601 [INFO] ============================================================
+2026-08-30 18:19:09,602 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-08-30 18:19:09,602 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-08-30 18:19:09,602 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-08-30 18:19:09,602 [INFO]   Min alert level : 5
+2026-08-30 18:19:09,602 [INFO]   Poll interval   : 5s
+2026-08-30 18:19:09,602 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-08-30 18:19:09,602 [INFO] ============================================================
+2026-08-30 18:19:09,615 [INFO] ✓ FastAPI backend is reachable
+2026-08-30 18:19:10,014 [INFO] ✓ Bookmarked alerts.json at line 4
+2026-08-30 18:19:10,015 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-08-30 18:19:10,015 [INFO] 
+2026-08-30 18:51:58,737 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-08-30 18:52:04,194 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.4383)
+2026-08-30 18:52:04,245 [INFO]   Stats: 13 queued | 25 skipped | 13 awaiting Mistral response
+2026-08-30 18:52:10,016 [INFO]   Stats: 14 queued | 25 skipped | 14 awaiting Mistral response
+2026-08-30 18:52:15,550 [INFO]   Stats: 15 queued | 25 skipped | 15 awaiting Mistral response
+2026-08-30 18:52:21,056 [INFO]   Stats: 17 queued | 30 skipped | 17 awaiting Mistral response
+2026-08-30 18:52:29,744 [WARNING]   ✗ POST failed for 1788096120.4383: slice(None, 200, None)
+2026-08-30 18:52:29,747 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.6022)
+2026-08-30 18:52:31,067 [WARNING]   ✗ /alerts/save failed for 1788096137.60198: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-30 18:52:31,067 [WARNING]   ✗ /alerts/save failed for 1788096135.57714: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-08-30 18:52:32,259 [INFO]   Stats: 17 queued | 33 skipped | 16 awaiting Mistral response
+2026-08-30 18:52:45,358 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-08-30 18:52:45,358 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.7532)
+2026-08-30 18:53:00,952 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-08-30 18:53:00,952 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.9041)
+2026-08-30 18:53:16,554 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-08-30 18:53:16,560 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.10606)
+2026-08-30 18:53:33,753 [WARNING]   ✗ POST failed for 1788096120.10606: slice(None, 200, None)
+2026-08-30 18:53:33,754 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.12233)
+2026-08-30 18:53:35,205 [WARNING]   ✗ POST failed for 1788096120.12233: slice(None, 200, None)
+2026-08-30 18:53:35,205 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.13861)
+2026-08-30 18:53:36,849 [WARNING]   ✗ POST failed for 1788096120.13861: slice(None, 200, None)
+2026-08-30 18:53:36,849 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.15567)
+2026-08-30 18:53:38,604 [WARNING]   ✗ POST failed for 1788096120.15567: slice(None, 200, None)
+2026-08-30 18:53:38,605 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.17397)
+2026-08-30 18:53:40,346 [WARNING]   ✗ POST failed for 1788096120.17397: slice(None, 200, None)
+2026-08-30 18:53:40,346 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: SSH Hardening (alert 1788096120.19160)
+2026-08-30 18:53:41,998 [WARNING]   ✗ POST failed for 1788096120.19160: slice(None, 200, None)
+2026-08-30 18:53:41,999 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure lockou (alert 1788096120.38549)
+2026-08-30 18:53:43,959 [WARNING]   ✗ POST failed for 1788096120.38549: slice(None, 200, None)
+2026-08-30 18:53:43,960 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure passwo (alert 1788096121.45360)
+2026-08-30 18:53:45,915 [WARNING]   ✗ POST failed for 1788096121.45360: slice(None, 200, None)
+2026-08-30 18:53:45,915 [INFO]   ↑ QUEUED  [ 7] System audit for Unix based systems: Ensure auditd (alert 1788096121.51442)
+2026-08-30 18:53:47,672 [WARNING]   ✗ POST failed for 1788096121.51442: slice(None, 200, None)
+2026-08-30 18:53:47,673 [INFO]   ↑ QUEUED  [ 9] SCA summary: System audit for Unix based systems:  (alert 1788096128.55948)
+2026-08-30 18:53:49,416 [WARNING]   ✗ POST failed for 1788096128.55948: slice(None, 200, None)
+2026-08-30 18:53:49,417 [INFO]   ↑ QUEUED  [11] Possible kernel level rootkit (alert 1788096134.57051)
+2026-08-30 18:53:51,174 [WARNING]   ✗ POST failed for 1788096134.57051: slice(None, 200, None)
+2026-08-30 18:53:51,174 [INFO]   ↑ QUEUED  [11] Possible kernel level rootkit (alert 1788096135.57714)
+2026-08-30 18:53:52,928 [WARNING]   ✗ POST failed for 1788096135.57714: slice(None, 200, None)
+2026-08-30 18:53:52,929 [INFO]   ↑ QUEUED  [ 9] SCA summary: System audit for Unix based systems:  (alert 1788096137.60198)
+2026-08-30 18:53:54,685 [WARNING]   ✗ POST failed for 1788096137.60198: slice(None, 200, None)
+2026-08-30 19:27:05,651 [INFO]   Stats: 17 queued | 34 skipped | 0 awaiting Mistral response
+2026-08-30 19:33:08,642 [INFO]   Stats: 17 queued | 35 skipped | 0 awaiting Mistral response
+2026-08-30 20:27:57,753 [INFO]   Stats: 17 queued | 36 skipped | 0 awaiting Mistral response
+2026-08-30 20:33:57,470 [INFO]   Stats: 17 queued | 37 skipped | 0 awaiting Mistral response
+2026-08-30 22:47:59,592 [INFO]   Stats: 17 queued | 38 skipped | 0 awaiting Mistral response
+2026-08-30 22:53:57,220 [INFO]   Stats: 17 queued | 39 skipped | 0 awaiting Mistral response
+2026-08-31 00:54:05,943 [INFO]   Stats: 17 queued | 40 skipped | 0 awaiting Mistral response
+2026-08-31 01:00:09,181 [INFO]   Stats: 17 queued | 41 skipped | 0 awaiting Mistral response
+2026-09-01 10:22:49,988 [INFO] ============================================================
+2026-09-01 10:22:49,990 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-09-01 10:22:49,990 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-09-01 10:22:49,990 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-09-01 10:22:49,990 [INFO]   Min alert level : 5
+2026-09-01 10:22:49,990 [INFO]   Poll interval   : 5s
+2026-09-01 10:22:49,990 [INFO]   Mistral timeout : 300s (non-blocking)
+2026-09-01 10:22:49,990 [INFO] ============================================================
+2026-09-01 10:22:50,019 [INFO] ✓ FastAPI backend is reachable
+2026-09-01 10:22:50,431 [INFO] ✓ Bookmarked alerts.json at line 24
+2026-09-01 10:22:50,431 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-09-01 10:22:50,431 [INFO] 
+2026-09-01 10:26:09,295 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting Mistral response
+2026-09-01 10:38:07,471 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting Mistral response
+2026-09-01 10:44:12,686 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting Mistral response
+2026-09-01 11:08:55,801 [INFO]   Stats: 0 queued | 6 skipped | 0 awaiting Mistral response
+2026-09-01 11:09:21,259 [INFO]   Stats: 0 queued | 9 skipped | 0 awaiting Mistral response
+2026-09-01 11:47:43,237 [INFO] Shutdown signal received — stopping forwarder...
+2026-09-01 11:47:43,770 [INFO] Stopping — waiting for 0 in-flight requests...
+2026-09-01 11:47:43,777 [INFO] Forwarder stopped. Queued: 0 | Skipped: 9
+2026-09-01 11:47:51,008 [INFO] ============================================================
+2026-09-01 11:47:51,009 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-09-01 11:47:51,009 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-09-01 11:47:51,009 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-09-01 11:47:51,010 [INFO]   Min alert level : 5
+2026-09-01 11:47:51,010 [INFO]   Poll interval   : 5s
+2026-09-01 11:47:51,010 [INFO]   Gemini timeout  : 60s (non-blocking)
+2026-09-01 11:47:51,011 [INFO] ============================================================
+2026-09-01 11:47:51,778 [INFO] ✓ FastAPI backend is reachable
+2026-09-01 11:47:52,232 [INFO] ✓ Bookmarked alerts.json at line 33
+2026-09-01 11:47:52,232 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-09-01 11:47:52,232 [INFO] 
+2026-09-01 11:58:26,655 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting classification response
+2026-09-01 11:58:35,312 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting classification response
+2026-09-01 12:10:07,270 [INFO]   Stats: 0 queued | 4 skipped | 0 awaiting classification response
+2026-09-01 21:02:26,355 [INFO]   Stats: 0 queued | 5 skipped | 0 awaiting classification response
+2026-09-09 13:15:26,162 [INFO] ============================================================
+2026-09-09 13:15:26,165 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-09-09 13:15:26,165 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-09-09 13:15:26,166 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-09-09 13:15:26,166 [INFO]   Min alert level : 5
+2026-09-09 13:15:26,166 [INFO]   Poll interval   : 5s
+2026-09-09 13:15:26,166 [INFO]   Gemini timeout  : 60s (non-blocking)
+2026-09-09 13:15:26,166 [INFO] ============================================================
+2026-09-09 13:15:26,226 [INFO] ✓ FastAPI backend is reachable
+2026-09-09 13:15:26,938 [INFO] ✓ Bookmarked alerts.json at line 56
+2026-09-09 13:15:26,938 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-09-09 13:15:26,938 [INFO] 
+2026-09-09 13:17:10,123 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting classification response
+2026-09-09 14:22:22,654 [INFO]   Stats: 0 queued | 2 skipped | 0 awaiting classification response
+2026-09-09 14:22:27,923 [INFO]   Stats: 0 queued | 3 skipped | 0 awaiting classification response
+2026-09-09 22:43:01,251 [INFO] ============================================================
+2026-09-09 22:43:01,252 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-09-09 22:43:01,252 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-09-09 22:43:01,252 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-09-09 22:43:01,252 [INFO]   Min alert level : 5
+2026-09-09 22:43:01,252 [INFO]   Poll interval   : 5s
+2026-09-09 22:43:01,252 [INFO]   Gemini timeout  : 60s (non-blocking)
+2026-09-09 22:43:01,252 [INFO] ============================================================
+2026-09-09 22:43:01,277 [INFO] ✓ FastAPI backend is reachable
+2026-09-09 22:43:01,709 [INFO] ✓ Bookmarked alerts.json at line 86
+2026-09-09 22:43:01,710 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-09-09 22:43:01,710 [INFO] 
+2026-09-09 22:46:41,357 [INFO]   Stats: 0 queued | 1 skipped | 0 awaiting classification response
+2026-09-10 15:34:55,882 [INFO] ============================================================
+2026-09-10 15:34:55,884 [INFO]   VigilanceAI — Wazuh Alert Forwarder
+2026-09-10 15:34:55,885 [INFO]   Wazuh container : single-node-wazuh.manager-1
+2026-09-10 15:34:55,885 [INFO]   FastAPI endpoint: http://localhost:8000/classify
+2026-09-10 15:34:55,886 [INFO]   Min alert level : 5
+2026-09-10 15:34:55,886 [INFO]   Poll interval   : 5s
+2026-09-10 15:34:55,886 [INFO]   Gemini timeout  : 60s (non-blocking)
+2026-09-10 15:34:55,887 [INFO] ============================================================
+2026-09-10 15:34:55,909 [INFO] ✓ FastAPI backend is reachable
+2026-09-10 15:34:56,249 [INFO] ✓ Bookmarked alerts.json at line 28
+2026-09-10 15:34:56,249 [INFO]   Watching for new alerts... (classifications arrive asynchronously)
+2026-09-10 15:34:56,249 [INFO] 
+2026-09-10 15:37:21,235 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789034838.13745)
+2026-09-10 15:37:21,240 [INFO]   Stats: 3 queued | 0 skipped | 3 awaiting classification response
+2026-09-10 15:37:31,845 [INFO]   Stats: 5 queued | 0 skipped | 5 awaiting classification response
+2026-09-10 15:37:41,237 [WARNING]   ✗ POST failed for 1789034838.13745: slice(None, 200, None)
+2026-09-10 15:37:41,238 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789034838.14177)
+2026-09-10 15:37:44,888 [WARNING]   ✗ POST failed for 1789034838.14177: slice(None, 200, None)
+2026-09-10 15:37:44,888 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789034840.14732)
+2026-09-10 15:37:47,940 [WARNING]   ✗ POST failed for 1789034840.14732: slice(None, 200, None)
+2026-09-10 15:37:47,944 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789034846.15232)
+2026-09-10 15:37:50,482 [WARNING]   ✗ POST failed for 1789034846.15232: slice(None, 200, None)
+2026-09-10 15:37:50,483 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789034846.15664)
+2026-09-10 15:37:52,305 [WARNING]   ✗ POST failed for 1789034846.15664: slice(None, 200, None)
+2026-09-10 15:39:19,531 [INFO]   Stats: 5 queued | 1 skipped | 0 awaiting classification response
+2026-09-10 15:40:16,244 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.17657)
+2026-09-10 15:40:16,458 [INFO]   Stats: 53 queued | 1 skipped | 48 awaiting classification response
+2026-09-10 15:40:19,327 [WARNING]   ✗ POST failed for 1789035012.17657: slice(None, 200, None)
+2026-09-10 15:40:19,328 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.18089)
+2026-09-10 15:40:21,913 [INFO]   Stats: 100 queued | 1 skipped | 94 awaiting classification response
+2026-09-10 15:40:26,359 [WARNING]   ✗ /alerts/save failed for 1789035012.26705: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,360 [WARNING]   ✗ /alerts/save failed for 1789035012.30221: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,360 [WARNING]   ✗ /alerts/save failed for 1789035012.24320: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,361 [WARNING]   ✗ /alerts/save failed for 1789035012.29234: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,361 [WARNING]   ✗ /alerts/save failed for 1789035012.29789: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,361 [WARNING]   ✗ /alerts/save failed for 1789035012.28802: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,361 [WARNING]   ✗ /alerts/save failed for 1789035012.27260: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,362 [WARNING]   ✗ /alerts/save failed for 1789035012.28247: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,362 [WARNING]   ✗ /alerts/save failed for 1789035012.27815: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,365 [WARNING]   ✗ /alerts/save failed for 1789035012.30653: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,365 [WARNING]   ✗ /alerts/save failed for 1789035012.31640: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,366 [WARNING]   ✗ /alerts/save failed for 1789035012.31208: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,374 [WARNING]   ✗ /alerts/save failed for 1789035012.32195: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,381 [WARNING]   ✗ /alerts/save failed for 1789035012.32627: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,382 [WARNING]   ✗ /alerts/save failed for 1789035012.33182: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,385 [WARNING]   ✗ /alerts/save failed for 1789035014.35512: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,394 [WARNING]   ✗ /alerts/save failed for 1789035014.36012: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,394 [WARNING]   ✗ /alerts/save failed for 1789035014.36444: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,402 [WARNING]   ✗ /alerts/save failed for 1789035014.36944: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,411 [WARNING]   ✗ /alerts/save failed for 1789035014.35012: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,420 [WARNING]   ✗ /alerts/save failed for 1789035014.37376: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,420 [WARNING]   ✗ /alerts/save failed for 1789035014.37876: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,433 [WARNING]   ✗ /alerts/save failed for 1789035014.38808: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,434 [WARNING]   ✗ /alerts/save failed for 1789035014.38308: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,444 [WARNING]   ✗ /alerts/save failed for 1789035014.39808: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,445 [WARNING]   ✗ /alerts/save failed for 1789035014.39308: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,448 [WARNING]   ✗ /alerts/save failed for 1789035014.41219: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,448 [WARNING]   ✗ /alerts/save failed for 1789035014.42151: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,461 [WARNING]   ✗ /alerts/save failed for 1789035014.42651: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,461 [WARNING]   ✗ /alerts/save failed for 1789035014.41719: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,469 [WARNING]   ✗ /alerts/save failed for 1789035014.43651: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,472 [WARNING]   ✗ /alerts/save failed for 1789035014.43151: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:26,470 [WARNING]   ✗ /alerts/save failed for 1789035014.44151: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:27,583 [INFO]   Stats: 155 queued | 1 skipped | 149 awaiting classification response
+2026-09-10 15:40:31,838 [WARNING]   ✗ /alerts/save failed for 1789035016.45651: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,838 [WARNING]   ✗ /alerts/save failed for 1789035016.44651: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,841 [WARNING]   ✗ /alerts/save failed for 1789035016.45151: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,845 [WARNING]   ✗ /alerts/save failed for 1789035016.47015: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,845 [WARNING]   ✗ /alerts/save failed for 1789035016.47947: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,846 [WARNING]   ✗ /alerts/save failed for 1789035016.46515: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,846 [WARNING]   ✗ /alerts/save failed for 1789035018.48879: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,846 [WARNING]   ✗ /alerts/save failed for 1789035016.46083: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,848 [WARNING]   ✗ /alerts/save failed for 1789035016.47447: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,849 [WARNING]   ✗ /alerts/save failed for 1789035018.48447: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,853 [WARNING]   ✗ /alerts/save failed for 1789035018.49311: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,857 [WARNING]   ✗ /alerts/save failed for 1789035018.49743: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,857 [WARNING]   ✗ /alerts/save failed for 1789035018.50175: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,861 [WARNING]   ✗ /alerts/save failed for 1789035018.51471: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,865 [WARNING]   ✗ /alerts/save failed for 1789035018.51903: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,865 [WARNING]   ✗ /alerts/save failed for 1789035018.50607: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,865 [WARNING]   ✗ /alerts/save failed for 1789035018.51039: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,865 [WARNING]   ✗ /alerts/save failed for 1789035018.52335: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,868 [WARNING]   ✗ /alerts/save failed for 1789035018.53199: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,870 [WARNING]   ✗ /alerts/save failed for 1789035018.52767: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,873 [WARNING]   ✗ /alerts/save failed for 1789035018.53699: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,875 [WARNING]   ✗ /alerts/save failed for 1789035018.54631: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,877 [WARNING]   ✗ /alerts/save failed for 1789035018.54131: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,877 [WARNING]   ✗ /alerts/save failed for 1789035020.55563: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,879 [WARNING]   ✗ /alerts/save failed for 1789035020.55131: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,885 [WARNING]   ✗ /alerts/save failed for 1789035020.55995: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,909 [WARNING]   ✗ /alerts/save failed for 1789035020.56927: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,910 [WARNING]   ✗ /alerts/save failed for 1789035020.56427: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,910 [WARNING]   ✗ /alerts/save failed for 1789035020.57427: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,910 [WARNING]   ✗ /alerts/save failed for 1789035020.62223: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,910 [WARNING]   ✗ /alerts/save failed for 1789035020.63155: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.60223: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.59791: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.61723: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.61223: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.57927: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.59291: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.58427: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,911 [WARNING]   ✗ /alerts/save failed for 1789035020.58859: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,912 [WARNING]   ✗ /alerts/save failed for 1789035020.60723: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,912 [WARNING]   ✗ /alerts/save failed for 1789035020.63587: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,912 [WARNING]   ✗ /alerts/save failed for 1789035020.64087: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,913 [WARNING]   ✗ /alerts/save failed for 1789035020.62723: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,914 [WARNING]   ✗ /alerts/save failed for 1789035020.64519: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,917 [WARNING]   ✗ /alerts/save failed for 1789035020.65019: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,918 [WARNING]   ✗ /alerts/save failed for 1789035020.65451: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:31,918 [WARNING]   ✗ /alerts/save failed for 1789035020.65951: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:33,037 [INFO]   Stats: 243 queued | 1 skipped | 237 awaiting classification response
+2026-09-10 15:40:37,313 [WARNING]   ✗ /alerts/save failed for 1789035022.66451: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,325 [WARNING]   ✗ /alerts/save failed for 1789035022.66951: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,326 [WARNING]   ✗ /alerts/save failed for 1789035022.67451: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,326 [WARNING]   ✗ /alerts/save failed for 1789035022.68883: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,327 [WARNING]   ✗ /alerts/save failed for 1789035022.68451: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,327 [WARNING]   ✗ /alerts/save failed for 1789035022.67951: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,334 [WARNING]   ✗ /alerts/save failed for 1789035022.69815: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,334 [WARNING]   ✗ /alerts/save failed for 1789035022.69315: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,334 [WARNING]   ✗ /alerts/save failed for 1789035022.70315: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,335 [WARNING]   ✗ /alerts/save failed for 1789035022.70747: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,335 [WARNING]   ✗ /alerts/save failed for 1789035022.71247: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,336 [WARNING]   ✗ /alerts/save failed for 1789035022.72543: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,337 [WARNING]   ✗ /alerts/save failed for 1789035022.72111: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,337 [WARNING]   ✗ /alerts/save failed for 1789035022.71679: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,339 [WARNING]   ✗ /alerts/save failed for 1789035022.73043: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,349 [WARNING]   ✗ /alerts/save failed for 1789035022.73907: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,349 [WARNING]   ✗ /alerts/save failed for 1789035022.73475: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,352 [WARNING]   ✗ /alerts/save failed for 1789035024.74339: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,356 [WARNING]   ✗ /alerts/save failed for 1789035024.74771: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,361 [WARNING]   ✗ /alerts/save failed for 1789035024.75203: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,365 [WARNING]   ✗ /alerts/save failed for 1789035024.75635: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,369 [WARNING]   ✗ /alerts/save failed for 1789035024.76135: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,369 [WARNING]   ✗ /alerts/save failed for 1789035024.77067: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,369 [WARNING]   ✗ /alerts/save failed for 1789035024.77567: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,371 [WARNING]   ✗ /alerts/save failed for 1789035024.76567: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,372 [WARNING]   ✗ /alerts/save failed for 1789035024.78499: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,373 [WARNING]   ✗ /alerts/save failed for 1789035024.79363: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,373 [WARNING]   ✗ /alerts/save failed for 1789035024.78931: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,376 [WARNING]   ✗ /alerts/save failed for 1789035024.78067: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,388 [WARNING]   ✗ /alerts/save failed for 1789035024.79863: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,449 [WARNING]   ✗ /alerts/save failed for 1789035024.80363: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,453 [WARNING]   ✗ /alerts/save failed for 1789035024.81363: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,460 [WARNING]   ✗ /alerts/save failed for 1789035024.81795: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,473 [WARNING]   ✗ /alerts/save failed for 1789035024.80863: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,475 [WARNING]   ✗ /alerts/save failed for 1789035026.83727: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,475 [WARNING]   ✗ /alerts/save failed for 1789035026.82227: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,476 [WARNING]   ✗ /alerts/save failed for 1789035026.82727: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,476 [WARNING]   ✗ /alerts/save failed for 1789035026.83227: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,492 [WARNING]   ✗ /alerts/save failed for 1789035026.84227: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,499 [WARNING]   ✗ /alerts/save failed for 1789035026.85159: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,499 [WARNING]   ✗ /alerts/save failed for 1789035026.84727: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,501 [WARNING]   ✗ /alerts/save failed for 1789035026.85659: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,517 [WARNING]   ✗ /alerts/save failed for 1789035026.86091: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,517 [WARNING]   ✗ /alerts/save failed for 1789035026.86523: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,529 [WARNING]   ✗ /alerts/save failed for 1789035026.86955: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,545 [WARNING]   ✗ /alerts/save failed for 1789035026.87387: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,548 [WARNING]   ✗ /alerts/save failed for 1789035026.88251: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,554 [WARNING]   ✗ /alerts/save failed for 1789035026.87819: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,555 [WARNING]   ✗ /alerts/save failed for 1789035026.88683: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,555 [WARNING]   ✗ /alerts/save failed for 1789035026.89115: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,559 [WARNING]   ✗ /alerts/save failed for 1789035026.89547: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,563 [WARNING]   ✗ /alerts/save failed for 1789035026.89979: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,571 [WARNING]   ✗ /alerts/save failed for 1789035026.90479: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,593 [WARNING]   ✗ /alerts/save failed for 1789035026.90979: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:37,603 [WARNING]   ✗ /alerts/save failed for 1789035026.91411: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:38,389 [INFO]   Stats: 285 queued | 1 skipped | 279 awaiting classification response
+2026-09-10 15:40:42,797 [WARNING]   ✗ /alerts/save failed for 1789035026.89979: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,805 [WARNING]   ✗ /alerts/save failed for 1789035028.91911: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,808 [WARNING]   ✗ /alerts/save failed for 1789035026.90979: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,808 [WARNING]   ✗ /alerts/save failed for 1789035026.90479: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,812 [WARNING]   ✗ /alerts/save failed for 1789035026.91411: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,813 [WARNING]   ✗ /alerts/save failed for 1789035028.92843: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,815 [WARNING]   ✗ /alerts/save failed for 1789035028.92343: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,818 [WARNING]   ✗ /alerts/save failed for 1789035028.93343: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,819 [WARNING]   ✗ /alerts/save failed for 1789035028.93749: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,829 [WARNING]   ✗ /alerts/save failed for 1789035028.94265: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,830 [WARNING]   ✗ /alerts/save failed for 1789035028.94827: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,837 [WARNING]   ✗ /alerts/save failed for 1789035028.95827: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,841 [WARNING]   ✗ /alerts/save failed for 1789035028.96327: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,842 [WARNING]   ✗ /alerts/save failed for 1789035028.95327: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,842 [WARNING]   ✗ /alerts/save failed for 1789035028.96759: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,845 [WARNING]   ✗ /alerts/save failed for 1789035028.97259: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,853 [WARNING]   ✗ /alerts/save failed for 1789035028.98259: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,855 [WARNING]   ✗ /alerts/save failed for 1789035028.97759: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,881 [WARNING]   ✗ /alerts/save failed for 1789035028.99691: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,881 [WARNING]   ✗ /alerts/save failed for 1789035028.99259: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,881 [WARNING]   ✗ /alerts/save failed for 1789035028.98759: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,882 [WARNING]   ✗ /alerts/save failed for 1789035028.100123: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,888 [WARNING]   ✗ /alerts/save failed for 1789035028.101112: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,889 [WARNING]   ✗ /alerts/save failed for 1789035028.101613: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,889 [WARNING]   ✗ /alerts/save failed for 1789035028.100556: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,891 [WARNING]   ✗ /alerts/save failed for 1789035028.103048: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,892 [WARNING]   ✗ /alerts/save failed for 1789035028.103481: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,892 [WARNING]   ✗ /alerts/save failed for 1789035028.102114: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,893 [WARNING]   ✗ /alerts/save failed for 1789035028.102615: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,895 [WARNING]   ✗ /alerts/save failed for 1789035028.103914: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,895 [WARNING]   ✗ /alerts/save failed for 1789035028.104321: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,896 [WARNING]   ✗ /alerts/save failed for 1789035028.104838: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,898 [WARNING]   ✗ /alerts/save failed for 1789035028.105401: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,898 [WARNING]   ✗ /alerts/save failed for 1789035028.105834: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,900 [WARNING]   ✗ /alerts/save failed for 1789035028.106267: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,901 [WARNING]   ✗ /alerts/save failed for 1789035028.107566: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,904 [WARNING]   ✗ /alerts/save failed for 1789035028.106700: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,904 [WARNING]   ✗ /alerts/save failed for 1789035028.107133: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,904 [WARNING]   ✗ /alerts/save failed for 1789035030.108122: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,907 [WARNING]   ✗ /alerts/save failed for 1789035030.108555: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,907 [WARNING]   ✗ /alerts/save failed for 1789035030.108962: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,923 [WARNING]   ✗ /alerts/save failed for 1789035030.109479: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,923 [WARNING]   ✗ /alerts/save failed for 1789035030.110042: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,924 [WARNING]   ✗ /alerts/save failed for 1789035030.110543: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,936 [WARNING]   ✗ /alerts/save failed for 1789035030.111545: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,937 [WARNING]   ✗ /alerts/save failed for 1789035030.111978: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,941 [WARNING]   ✗ /alerts/save failed for 1789035030.111044: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,942 [WARNING]   ✗ /alerts/save failed for 1789035030.112534: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,945 [WARNING]   ✗ /alerts/save failed for 1789035030.113468: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,945 [WARNING]   ✗ /alerts/save failed for 1789035030.113035: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,951 [WARNING]   ✗ /alerts/save failed for 1789035030.113875: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,952 [WARNING]   ✗ /alerts/save failed for 1789035030.114392: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,961 [WARNING]   ✗ /alerts/save failed for 1789035030.116731: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,965 [WARNING]   ✗ /alerts/save failed for 1789035030.117232: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,969 [WARNING]   ✗ /alerts/save failed for 1789035030.117733: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,981 [WARNING]   ✗ /alerts/save failed for 1789035030.118234: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,983 [WARNING]   ✗ /alerts/save failed for 1789035030.118641: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,983 [WARNING]   ✗ /alerts/save failed for 1789035030.119158: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,983 [WARNING]   ✗ /alerts/save failed for 1789035030.119721: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,988 [WARNING]   ✗ /alerts/save failed for 1789035030.120723: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,989 [WARNING]   ✗ /alerts/save failed for 1789035030.120222: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,989 [WARNING]   ✗ /alerts/save failed for 1789035030.123713: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,989 [WARNING]   ✗ /alerts/save failed for 1789035030.121224: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:42,989 [WARNING]   ✗ /alerts/save failed for 1789035030.121725: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,000 [WARNING]   ✗ /alerts/save failed for 1789035030.122633: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,001 [WARNING]   ✗ /alerts/save failed for 1789035030.123150: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,009 [WARNING]   ✗ /alerts/save failed for 1789035030.122226: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,010 [WARNING]   ✗ /alerts/save failed for 1789035030.124214: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,017 [WARNING]   ✗ /alerts/save failed for 1789035030.125138: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,017 [WARNING]   ✗ /alerts/save failed for 1789035030.125701: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,017 [WARNING]   ✗ /alerts/save failed for 1789035030.124621: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,018 [WARNING]   ✗ /alerts/save failed for 1789035030.126974: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,020 [WARNING]   ✗ /alerts/save failed for 1789035030.126134: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,021 [WARNING]   ✗ /alerts/save failed for 1789035030.126567: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,023 [WARNING]   ✗ /alerts/save failed for 1789035030.127491: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,030 [WARNING]   ✗ /alerts/save failed for 1789035032.130738: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,031 [WARNING]   ✗ /alerts/save failed for 1789035032.131255: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,033 [WARNING]   ✗ /alerts/save failed for 1789035032.132225: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,033 [WARNING]   ✗ /alerts/save failed for 1789035032.131818: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,037 [WARNING]   ✗ /alerts/save failed for 1789035032.132742: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,037 [WARNING]   ✗ /alerts/save failed for 1789035032.133305: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,041 [WARNING]   ✗ /alerts/save failed for 1789035032.134604: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,041 [WARNING]   ✗ /alerts/save failed for 1789035032.135011: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,045 [WARNING]   ✗ /alerts/save failed for 1789035032.133738: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,045 [WARNING]   ✗ /alerts/save failed for 1789035032.134171: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,045 [WARNING]   ✗ /alerts/save failed for 1789035032.135528: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,048 [WARNING]   ✗ /alerts/save failed for 1789035032.129830: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,050 [WARNING]   ✗ /alerts/save failed for 1789035032.130331: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:43,758 [INFO]   Stats: 297 queued | 1 skipped | 291 awaiting classification response
+2026-09-10 15:40:48,257 [WARNING]   ✗ /alerts/save failed for 1789035032.129830: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,262 [WARNING]   ✗ /alerts/save failed for 1789035032.130331: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,269 [WARNING]   ✗ /alerts/save failed for 1789035032.131255: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,269 [WARNING]   ✗ /alerts/save failed for 1789035032.131818: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,269 [WARNING]   ✗ /alerts/save failed for 1789035032.130738: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,272 [WARNING]   ✗ /alerts/save failed for 1789035032.132225: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,273 [WARNING]   ✗ /alerts/save failed for 1789035032.133305: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,273 [WARNING]   ✗ /alerts/save failed for 1789035032.132742: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,277 [WARNING]   ✗ /alerts/save failed for 1789035032.133738: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,283 [WARNING]   ✗ /alerts/save failed for 1789035032.134171: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,292 [WARNING]   ✗ /alerts/save failed for 1789035032.134604: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,294 [WARNING]   ✗ /alerts/save failed for 1789035032.135011: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,301 [WARNING]   ✗ /alerts/save failed for 1789035032.135528: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,301 [WARNING]   ✗ /alerts/save failed for 1789035032.136091: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,307 [WARNING]   ✗ /alerts/save failed for 1789035032.136592: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,310 [WARNING]   ✗ /alerts/save failed for 1789035032.137093: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,311 [WARNING]   ✗ /alerts/save failed for 1789035032.137933: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,311 [WARNING]   ✗ /alerts/save failed for 1789035032.137526: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,321 [WARNING]   ✗ /alerts/save failed for 1789035032.141791: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,324 [WARNING]   ✗ /alerts/save failed for 1789035032.140789: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,324 [WARNING]   ✗ /alerts/save failed for 1789035032.138450: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,324 [WARNING]   ✗ /alerts/save failed for 1789035032.141290: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,329 [WARNING]   ✗ /alerts/save failed for 1789035034.142793: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,331 [WARNING]   ✗ /alerts/save failed for 1789035034.143226: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,333 [WARNING]   ✗ /alerts/save failed for 1789035034.143727: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,333 [WARNING]   ✗ /alerts/save failed for 1789035032.142292: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,341 [WARNING]   ✗ /alerts/save failed for 1789035034.144134: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,345 [WARNING]   ✗ /alerts/save failed for 1789035034.145104: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,345 [WARNING]   ✗ /alerts/save failed for 1789035034.145621: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,349 [WARNING]   ✗ /alerts/save failed for 1789035034.146138: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,353 [WARNING]   ✗ /alerts/save failed for 1789035034.146701: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,356 [WARNING]   ✗ /alerts/save failed for 1789035034.144697: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,359 [WARNING]   ✗ /alerts/save failed for 1789035034.147108: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,365 [WARNING]   ✗ /alerts/save failed for 1789035034.147541: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,369 [WARNING]   ✗ /alerts/save failed for 1789035034.148058: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,370 [WARNING]   ✗ /alerts/save failed for 1789035034.148559: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,394 [WARNING]   ✗ /alerts/save failed for 1789035036.150990: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,394 [WARNING]   ✗ /alerts/save failed for 1789035036.149122: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,395 [WARNING]   ✗ /alerts/save failed for 1789035036.150056: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,396 [WARNING]   ✗ /alerts/save failed for 1789035036.149555: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,396 [WARNING]   ✗ /alerts/save failed for 1789035036.150489: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,398 [WARNING]   ✗ /alerts/save failed for 1789035036.151491: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:48,987 [INFO]   Stats: 310 queued | 1 skipped | 304 awaiting classification response
+2026-09-10 15:40:49,326 [WARNING]   ✗ POST failed for 1789035012.18089: slice(None, 200, None)
+2026-09-10 15:40:49,329 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.18644)
+2026-09-10 15:40:53,737 [WARNING]   ✗ /alerts/save failed for 1789035038.151924: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,742 [WARNING]   ✗ /alerts/save failed for 1789035040.152858: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,742 [WARNING]   ✗ /alerts/save failed for 1789035040.153291: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,743 [WARNING]   ✗ /alerts/save failed for 1789035038.152425: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,744 [WARNING]   ✗ /alerts/save failed for 1789035040.153792: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,753 [WARNING]   ✗ /alerts/save failed for 1789035040.155227: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,753 [WARNING]   ✗ /alerts/save failed for 1789035040.154726: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,753 [WARNING]   ✗ /alerts/save failed for 1789035042.155660: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,754 [WARNING]   ✗ /alerts/save failed for 1789035040.154293: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,762 [WARNING]   ✗ /alerts/save failed for 1789035042.156093: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,769 [WARNING]   ✗ /alerts/save failed for 1789035042.157095: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:53,769 [WARNING]   ✗ /alerts/save failed for 1789035042.156594: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,953 [WARNING]   ✗ /alerts/save failed for 1789035044.158462: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,962 [WARNING]   ✗ /alerts/save failed for 1789035044.157961: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,963 [WARNING]   ✗ /alerts/save failed for 1789035044.157528: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,966 [WARNING]   ✗ /alerts/save failed for 1789035044.158869: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,969 [WARNING]   ✗ /alerts/save failed for 1789035044.159386: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,972 [WARNING]   ✗ /alerts/save failed for 1789035044.161725: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,981 [WARNING]   ✗ /alerts/save failed for 1789035046.162226: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,981 [WARNING]   ✗ /alerts/save failed for 1789035046.162633: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,982 [WARNING]   ✗ /alerts/save failed for 1789035046.163134: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,984 [WARNING]   ✗ /alerts/save failed for 1789035046.163697: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,991 [WARNING]   ✗ /alerts/save failed for 1789035046.164214: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:58,994 [WARNING]   ✗ /alerts/save failed for 1789035046.164731: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:40:59,001 [WARNING]   ✗ /alerts/save failed for 1789035046.165138: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=10)
+2026-09-10 15:41:49,390 [WARNING]   ✗ POST failed for 1789035012.18644: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=60)
+2026-09-10 15:41:49,393 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.19076)
+2026-09-10 15:42:49,477 [WARNING]   ✗ POST failed for 1789035012.19076: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=60)
+2026-09-10 15:42:49,486 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.19508)
+2026-09-10 15:43:49,549 [WARNING]   ✗ POST failed for 1789035012.19508: HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=60)
+2026-09-10 15:43:49,550 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.20063)
+2026-09-10 15:44:11,357 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:44:11,360 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.20618)
+2026-09-10 15:44:28,975 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:44:28,981 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.21050)
+2026-09-10 15:44:48,021 [WARNING]   ✗ POST failed for 1789035012.21050: slice(None, 200, None)
+2026-09-10 15:44:48,031 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.21605)
+2026-09-10 15:44:50,619 [WARNING]   ✗ POST failed for 1789035012.21605: slice(None, 200, None)
+2026-09-10 15:44:50,621 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.22037)
+2026-09-10 15:44:55,033 [WARNING]   ✗ POST failed for 1789035012.22037: slice(None, 200, None)
+2026-09-10 15:44:55,036 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.22469)
+2026-09-10 15:44:58,451 [WARNING]   ✗ POST failed for 1789035012.22469: slice(None, 200, None)
+2026-09-10 15:44:58,452 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.22901)
+2026-09-10 15:45:00,857 [WARNING]   ✗ POST failed for 1789035012.22901: slice(None, 200, None)
+2026-09-10 15:45:00,859 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.23456)
+2026-09-10 15:45:03,385 [WARNING]   ✗ POST failed for 1789035012.23456: slice(None, 200, None)
+2026-09-10 15:45:03,389 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.23888)
+2026-09-10 15:45:05,671 [WARNING]   ✗ POST failed for 1789035012.23888: slice(None, 200, None)
+2026-09-10 15:45:05,680 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.24320)
+2026-09-10 15:45:07,753 [WARNING]   ✗ POST failed for 1789035012.24320: slice(None, 200, None)
+2026-09-10 15:45:07,754 [INFO]   ↑ QUEUED  [10] PAM: Multiple failed logins in a small period of t (alert 1789035012.24875)
+2026-09-10 15:45:10,380 [WARNING]   ✗ POST failed for 1789035012.24875: slice(None, 200, None)
+2026-09-10 15:45:10,385 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.26705)
+2026-09-10 15:45:12,826 [WARNING]   ✗ POST failed for 1789035012.26705: slice(None, 200, None)
+2026-09-10 15:45:12,826 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.27260)
+2026-09-10 15:45:15,008 [WARNING]   ✗ POST failed for 1789035012.27260: slice(None, 200, None)
+2026-09-10 15:45:15,009 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.27815)
+2026-09-10 15:45:17,248 [WARNING]   ✗ POST failed for 1789035012.27815: slice(None, 200, None)
+2026-09-10 15:45:17,251 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.28247)
+2026-09-10 15:45:19,970 [WARNING]   ✗ POST failed for 1789035012.28247: slice(None, 200, None)
+2026-09-10 15:45:19,971 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.28802)
+2026-09-10 15:45:22,983 [WARNING]   ✗ POST failed for 1789035012.28802: slice(None, 200, None)
+2026-09-10 15:45:22,984 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.29234)
+2026-09-10 15:45:25,438 [WARNING]   ✗ POST failed for 1789035012.29234: slice(None, 200, None)
+2026-09-10 15:45:25,438 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.29789)
+2026-09-10 15:45:27,932 [WARNING]   ✗ POST failed for 1789035012.29789: slice(None, 200, None)
+2026-09-10 15:45:27,936 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.30221)
+2026-09-10 15:45:45,931 [WARNING]   ✗ POST failed for 1789035012.30221: slice(None, 200, None)
+2026-09-10 15:45:45,940 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.30653)
+2026-09-10 15:45:49,221 [WARNING]   ✗ POST failed for 1789035012.30653: slice(None, 200, None)
+2026-09-10 15:45:49,222 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.31208)
+2026-09-10 15:45:51,094 [WARNING]   ✗ POST failed for 1789035012.31208: slice(None, 200, None)
+2026-09-10 15:45:51,096 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.31640)
+2026-09-10 15:45:53,511 [WARNING]   ✗ POST failed for 1789035012.31640: slice(None, 200, None)
+2026-09-10 15:45:53,511 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035012.32195)
+2026-09-10 15:45:56,285 [WARNING]   ✗ POST failed for 1789035012.32195: slice(None, 200, None)
+2026-09-10 15:45:56,288 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035012.32627)
+2026-09-10 15:45:58,849 [WARNING]   ✗ POST failed for 1789035012.32627: slice(None, 200, None)
+2026-09-10 15:45:58,851 [INFO]   ↑ QUEUED  [10] PAM: Multiple failed logins in a small period of t (alert 1789035012.33182)
+2026-09-10 15:46:01,513 [WARNING]   ✗ POST failed for 1789035012.33182: slice(None, 200, None)
+2026-09-10 15:46:01,514 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.35012)
+2026-09-10 15:46:03,577 [WARNING]   ✗ POST failed for 1789035014.35012: slice(None, 200, None)
+2026-09-10 15:46:03,578 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.35512)
+2026-09-10 15:46:06,528 [WARNING]   ✗ POST failed for 1789035014.35512: slice(None, 200, None)
+2026-09-10 15:46:06,528 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035014.36012)
+2026-09-10 15:46:09,709 [WARNING]   ✗ POST failed for 1789035014.36012: slice(None, 200, None)
+2026-09-10 15:46:09,717 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.36444)
+2026-09-10 15:46:11,749 [WARNING]   ✗ POST failed for 1789035014.36444: slice(None, 200, None)
+2026-09-10 15:46:11,752 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035014.36944)
+2026-09-10 15:46:14,314 [WARNING]   ✗ POST failed for 1789035014.36944: slice(None, 200, None)
+2026-09-10 15:46:14,316 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.37376)
+2026-09-10 15:46:16,473 [WARNING]   ✗ POST failed for 1789035014.37376: slice(None, 200, None)
+2026-09-10 15:46:16,474 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035014.37876)
+2026-09-10 15:46:18,914 [WARNING]   ✗ POST failed for 1789035014.37876: slice(None, 200, None)
+2026-09-10 15:46:18,916 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.38308)
+2026-09-10 15:46:21,368 [WARNING]   ✗ POST failed for 1789035014.38308: slice(None, 200, None)
+2026-09-10 15:46:21,369 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.38808)
+2026-09-10 15:46:23,168 [WARNING]   ✗ POST failed for 1789035014.38808: slice(None, 200, None)
+2026-09-10 15:46:23,169 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.39308)
+2026-09-10 15:46:41,407 [WARNING]   ✗ POST failed for 1789035014.39308: slice(None, 200, None)
+2026-09-10 15:46:41,412 [INFO]   ↑ QUEUED  [10] sshd: brute force trying to get access to the syst (alert 1789035014.39808)
+2026-09-10 15:46:43,497 [WARNING]   ✗ POST failed for 1789035014.39808: slice(None, 200, None)
+2026-09-10 15:46:43,499 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.41219)
+2026-09-10 15:46:45,399 [WARNING]   ✗ POST failed for 1789035014.41219: slice(None, 200, None)
+2026-09-10 15:46:45,400 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035014.41719)
+2026-09-10 15:46:47,575 [WARNING]   ✗ POST failed for 1789035014.41719: slice(None, 200, None)
+2026-09-10 15:46:47,577 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.42151)
+2026-09-10 15:46:50,042 [WARNING]   ✗ POST failed for 1789035014.42151: slice(None, 200, None)
+2026-09-10 15:46:50,043 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.42651)
+2026-09-10 15:46:52,092 [WARNING]   ✗ POST failed for 1789035014.42651: slice(None, 200, None)
+2026-09-10 15:46:52,094 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.43151)
+2026-09-10 15:46:54,349 [WARNING]   ✗ POST failed for 1789035014.43151: slice(None, 200, None)
+2026-09-10 15:46:54,353 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.43651)
+2026-09-10 15:46:56,794 [WARNING]   ✗ POST failed for 1789035014.43651: slice(None, 200, None)
+2026-09-10 15:46:56,794 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035014.44151)
+2026-09-10 15:46:59,451 [WARNING]   ✗ POST failed for 1789035014.44151: slice(None, 200, None)
+2026-09-10 15:46:59,456 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035016.44651)
+2026-09-10 15:47:01,727 [WARNING]   ✗ POST failed for 1789035016.44651: slice(None, 200, None)
+2026-09-10 15:47:01,728 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035016.45151)
+2026-09-10 15:47:04,380 [WARNING]   ✗ POST failed for 1789035016.45151: slice(None, 200, None)
+2026-09-10 15:47:04,380 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035016.45651)
+2026-09-10 15:47:06,741 [WARNING]   ✗ POST failed for 1789035016.45651: slice(None, 200, None)
+2026-09-10 15:47:06,742 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035016.46083)
+2026-09-10 15:47:09,145 [WARNING]   ✗ POST failed for 1789035016.46083: slice(None, 200, None)
+2026-09-10 15:47:09,146 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035016.46515)
+2026-09-10 15:47:11,553 [WARNING]   ✗ POST failed for 1789035016.46515: slice(None, 200, None)
+2026-09-10 15:47:11,556 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035016.47015)
+2026-09-10 15:47:13,930 [WARNING]   ✗ POST failed for 1789035016.47015: slice(None, 200, None)
+2026-09-10 15:47:13,931 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035016.47447)
+2026-09-10 15:47:16,577 [WARNING]   ✗ POST failed for 1789035016.47447: slice(None, 200, None)
+2026-09-10 15:47:16,577 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035016.47947)
+2026-09-10 15:47:33,960 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:47:33,965 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.48447)
+2026-09-10 15:47:42,085 [WARNING]   ✗ POST failed for 1789035018.48447: slice(None, 200, None)
+2026-09-10 15:47:42,091 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.48879)
+2026-09-10 15:47:44,512 [WARNING]   ✗ POST failed for 1789035018.48879: slice(None, 200, None)
+2026-09-10 15:47:44,515 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.49311)
+2026-09-10 15:47:46,865 [WARNING]   ✗ POST failed for 1789035018.49311: slice(None, 200, None)
+2026-09-10 15:47:46,866 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.49743)
+2026-09-10 15:47:49,234 [WARNING]   ✗ POST failed for 1789035018.49743: slice(None, 200, None)
+2026-09-10 15:47:49,235 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.50175)
+2026-09-10 15:47:51,523 [WARNING]   ✗ POST failed for 1789035018.50175: slice(None, 200, None)
+2026-09-10 15:47:51,525 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.50607)
+2026-09-10 15:47:53,625 [WARNING]   ✗ POST failed for 1789035018.50607: slice(None, 200, None)
+2026-09-10 15:47:53,626 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.51039)
+2026-09-10 15:47:56,388 [WARNING]   ✗ POST failed for 1789035018.51039: slice(None, 200, None)
+2026-09-10 15:47:56,396 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.51471)
+2026-09-10 15:47:58,443 [WARNING]   ✗ POST failed for 1789035018.51471: slice(None, 200, None)
+2026-09-10 15:47:58,450 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.51903)
+2026-09-10 15:48:00,709 [WARNING]   ✗ POST failed for 1789035018.51903: slice(None, 200, None)
+2026-09-10 15:48:00,709 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.52335)
+2026-09-10 15:48:02,742 [WARNING]   ✗ POST failed for 1789035018.52335: slice(None, 200, None)
+2026-09-10 15:48:02,745 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.52767)
+2026-09-10 15:48:04,810 [WARNING]   ✗ POST failed for 1789035018.52767: slice(None, 200, None)
+2026-09-10 15:48:04,815 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035018.53199)
+2026-09-10 15:48:07,034 [WARNING]   ✗ POST failed for 1789035018.53199: slice(None, 200, None)
+2026-09-10 15:48:07,036 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035018.53699)
+2026-09-10 15:48:08,799 [WARNING]   ✗ POST failed for 1789035018.53699: slice(None, 200, None)
+2026-09-10 15:48:08,800 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035018.54131)
+2026-09-10 15:48:11,142 [WARNING]   ✗ POST failed for 1789035018.54131: slice(None, 200, None)
+2026-09-10 15:48:11,148 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035018.54631)
+2026-09-10 15:48:13,196 [WARNING]   ✗ POST failed for 1789035018.54631: slice(None, 200, None)
+2026-09-10 15:48:13,197 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.55131)
+2026-09-10 15:48:15,347 [WARNING]   ✗ POST failed for 1789035020.55131: slice(None, 200, None)
+2026-09-10 15:48:15,353 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.55563)
+2026-09-10 15:48:32,446 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:48:32,449 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.55995)
+2026-09-10 15:48:51,086 [WARNING]   ✗ POST failed for 1789035020.55995: slice(None, 200, None)
+2026-09-10 15:48:51,089 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.56427)
+2026-09-10 15:48:53,542 [WARNING]   ✗ POST failed for 1789035020.56427: slice(None, 200, None)
+2026-09-10 15:48:53,544 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.56927)
+2026-09-10 15:48:56,528 [WARNING]   ✗ POST failed for 1789035020.56927: slice(None, 200, None)
+2026-09-10 15:48:56,529 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.57427)
+2026-09-10 15:48:58,459 [WARNING]   ✗ POST failed for 1789035020.57427: slice(None, 200, None)
+2026-09-10 15:48:58,460 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.57927)
+2026-09-10 15:49:00,263 [WARNING]   ✗ POST failed for 1789035020.57927: slice(None, 200, None)
+2026-09-10 15:49:00,263 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.58427)
+2026-09-10 15:49:02,547 [WARNING]   ✗ POST failed for 1789035020.58427: slice(None, 200, None)
+2026-09-10 15:49:02,549 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.58859)
+2026-09-10 15:49:05,140 [WARNING]   ✗ POST failed for 1789035020.58859: slice(None, 200, None)
+2026-09-10 15:49:05,141 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.59291)
+2026-09-10 15:49:07,560 [WARNING]   ✗ POST failed for 1789035020.59291: slice(None, 200, None)
+2026-09-10 15:49:07,561 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.59791)
+2026-09-10 15:49:09,826 [WARNING]   ✗ POST failed for 1789035020.59791: slice(None, 200, None)
+2026-09-10 15:49:09,831 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.60223)
+2026-09-10 15:49:12,391 [WARNING]   ✗ POST failed for 1789035020.60223: slice(None, 200, None)
+2026-09-10 15:49:12,393 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.60723)
+2026-09-10 15:49:14,443 [WARNING]   ✗ POST failed for 1789035020.60723: slice(None, 200, None)
+2026-09-10 15:49:14,444 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.61223)
+2026-09-10 15:49:17,498 [WARNING]   ✗ POST failed for 1789035020.61223: slice(None, 200, None)
+2026-09-10 15:49:17,498 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.61723)
+2026-09-10 15:49:19,750 [WARNING]   ✗ POST failed for 1789035020.61723: slice(None, 200, None)
+2026-09-10 15:49:19,750 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.62223)
+2026-09-10 15:49:22,104 [WARNING]   ✗ POST failed for 1789035020.62223: slice(None, 200, None)
+2026-09-10 15:49:22,105 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.62723)
+2026-09-10 15:49:25,187 [WARNING]   ✗ POST failed for 1789035020.62723: slice(None, 200, None)
+2026-09-10 15:49:25,188 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.63155)
+2026-09-10 15:49:27,426 [WARNING]   ✗ POST failed for 1789035020.63155: slice(None, 200, None)
+2026-09-10 15:49:27,429 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.63587)
+2026-09-10 15:49:46,205 [WARNING]   ✗ POST failed for 1789035020.63587: slice(None, 200, None)
+2026-09-10 15:49:46,207 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.64087)
+2026-09-10 15:49:48,832 [WARNING]   ✗ POST failed for 1789035020.64087: slice(None, 200, None)
+2026-09-10 15:49:48,836 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.64519)
+2026-09-10 15:49:50,823 [WARNING]   ✗ POST failed for 1789035020.64519: slice(None, 200, None)
+2026-09-10 15:49:50,824 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035020.65019)
+2026-09-10 15:49:55,869 [WARNING]   ✗ POST failed for 1789035020.65019: slice(None, 200, None)
+2026-09-10 15:49:55,870 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.65451)
+2026-09-10 15:49:59,961 [WARNING]   ✗ POST failed for 1789035020.65451: slice(None, 200, None)
+2026-09-10 15:49:59,962 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035020.65951)
+2026-09-10 15:50:04,156 [WARNING]   ✗ POST failed for 1789035020.65951: slice(None, 200, None)
+2026-09-10 15:50:04,157 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.66451)
+2026-09-10 15:50:08,006 [WARNING]   ✗ POST failed for 1789035022.66451: slice(None, 200, None)
+2026-09-10 15:50:08,007 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.66951)
+2026-09-10 15:50:11,472 [WARNING]   ✗ POST failed for 1789035022.66951: slice(None, 200, None)
+2026-09-10 15:50:11,473 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.67451)
+2026-09-10 15:50:14,117 [WARNING]   ✗ POST failed for 1789035022.67451: slice(None, 200, None)
+2026-09-10 15:50:14,120 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.67951)
+2026-09-10 15:50:16,899 [WARNING]   ✗ POST failed for 1789035022.67951: slice(None, 200, None)
+2026-09-10 15:50:16,903 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.68451)
+2026-09-10 15:50:19,739 [WARNING]   ✗ POST failed for 1789035022.68451: slice(None, 200, None)
+2026-09-10 15:50:19,741 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.68883)
+2026-09-10 15:50:22,217 [WARNING]   ✗ POST failed for 1789035022.68883: slice(None, 200, None)
+2026-09-10 15:50:22,218 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.69315)
+2026-09-10 15:50:24,570 [WARNING]   ✗ POST failed for 1789035022.69315: slice(None, 200, None)
+2026-09-10 15:50:24,570 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.69815)
+2026-09-10 15:50:26,744 [WARNING]   ✗ POST failed for 1789035022.69815: slice(None, 200, None)
+2026-09-10 15:50:26,746 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.70315)
+2026-09-10 15:50:28,978 [WARNING]   ✗ POST failed for 1789035022.70315: slice(None, 200, None)
+2026-09-10 15:50:28,988 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.70747)
+2026-09-10 15:50:31,121 [WARNING]   ✗ POST failed for 1789035022.70747: slice(None, 200, None)
+2026-09-10 15:50:31,121 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.71247)
+2026-09-10 15:50:49,987 [WARNING]   ✗ POST failed for 1789035022.71247: slice(None, 200, None)
+2026-09-10 15:50:49,989 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.71679)
+2026-09-10 15:50:52,233 [WARNING]   ✗ POST failed for 1789035022.71679: slice(None, 200, None)
+2026-09-10 15:50:52,237 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.72111)
+2026-09-10 15:50:54,383 [WARNING]   ✗ POST failed for 1789035022.72111: slice(None, 200, None)
+2026-09-10 15:50:54,388 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035022.72543)
+2026-09-10 15:50:56,644 [WARNING]   ✗ POST failed for 1789035022.72543: slice(None, 200, None)
+2026-09-10 15:50:56,644 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.73043)
+2026-09-10 15:50:58,586 [WARNING]   ✗ POST failed for 1789035022.73043: slice(None, 200, None)
+2026-09-10 15:50:58,587 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.73475)
+2026-09-10 15:51:00,650 [WARNING]   ✗ POST failed for 1789035022.73475: slice(None, 200, None)
+2026-09-10 15:51:00,653 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035022.73907)
+2026-09-10 15:51:02,985 [WARNING]   ✗ POST failed for 1789035022.73907: slice(None, 200, None)
+2026-09-10 15:51:02,985 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.74339)
+2026-09-10 15:51:05,255 [WARNING]   ✗ POST failed for 1789035024.74339: slice(None, 200, None)
+2026-09-10 15:51:05,256 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.74771)
+2026-09-10 15:51:07,345 [WARNING]   ✗ POST failed for 1789035024.74771: slice(None, 200, None)
+2026-09-10 15:51:07,345 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.75203)
+2026-09-10 15:51:09,740 [WARNING]   ✗ POST failed for 1789035024.75203: slice(None, 200, None)
+2026-09-10 15:51:09,740 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.75635)
+2026-09-10 15:51:11,565 [WARNING]   ✗ POST failed for 1789035024.75635: slice(None, 200, None)
+2026-09-10 15:51:11,566 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.76135)
+2026-09-10 15:51:13,681 [WARNING]   ✗ POST failed for 1789035024.76135: slice(None, 200, None)
+2026-09-10 15:51:13,682 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.76567)
+2026-09-10 15:51:15,989 [WARNING]   ✗ POST failed for 1789035024.76567: slice(None, 200, None)
+2026-09-10 15:51:15,994 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.77067)
+2026-09-10 15:51:18,759 [WARNING]   ✗ POST failed for 1789035024.77067: slice(None, 200, None)
+2026-09-10 15:51:18,764 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.77567)
+2026-09-10 15:51:21,254 [WARNING]   ✗ POST failed for 1789035024.77567: slice(None, 200, None)
+2026-09-10 15:51:21,256 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.78067)
+2026-09-10 15:51:23,256 [WARNING]   ✗ POST failed for 1789035024.78067: slice(None, 200, None)
+2026-09-10 15:51:23,258 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.78499)
+2026-09-10 15:51:40,221 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:51:40,222 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.78931)
+2026-09-10 15:51:42,258 [WARNING]   ✗ POST failed for 1789035024.78931: slice(None, 200, None)
+2026-09-10 15:51:42,260 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.79363)
+2026-09-10 15:51:44,369 [WARNING]   ✗ POST failed for 1789035024.79363: slice(None, 200, None)
+2026-09-10 15:51:44,370 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.79863)
+2026-09-10 15:51:46,813 [WARNING]   ✗ POST failed for 1789035024.79863: slice(None, 200, None)
+2026-09-10 15:51:46,814 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.80363)
+2026-09-10 15:51:48,859 [WARNING]   ✗ POST failed for 1789035024.80363: slice(None, 200, None)
+2026-09-10 15:51:48,860 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035024.80863)
+2026-09-10 15:51:51,115 [WARNING]   ✗ POST failed for 1789035024.80863: slice(None, 200, None)
+2026-09-10 15:51:51,115 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.81363)
+2026-09-10 15:51:53,586 [WARNING]   ✗ POST failed for 1789035024.81363: slice(None, 200, None)
+2026-09-10 15:51:53,587 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035024.81795)
+2026-09-10 15:51:55,417 [WARNING]   ✗ POST failed for 1789035024.81795: slice(None, 200, None)
+2026-09-10 15:51:55,417 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.82227)
+2026-09-10 15:51:57,679 [WARNING]   ✗ POST failed for 1789035026.82227: slice(None, 200, None)
+2026-09-10 15:51:57,680 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.82727)
+2026-09-10 15:51:59,945 [WARNING]   ✗ POST failed for 1789035026.82727: slice(None, 200, None)
+2026-09-10 15:51:59,946 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.83227)
+2026-09-10 15:52:02,397 [WARNING]   ✗ POST failed for 1789035026.83227: slice(None, 200, None)
+2026-09-10 15:52:02,398 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.83727)
+2026-09-10 15:52:04,766 [WARNING]   ✗ POST failed for 1789035026.83727: slice(None, 200, None)
+2026-09-10 15:52:04,767 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.84227)
+2026-09-10 15:52:07,130 [WARNING]   ✗ POST failed for 1789035026.84227: slice(None, 200, None)
+2026-09-10 15:52:07,131 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.84727)
+2026-09-10 15:52:09,358 [WARNING]   ✗ POST failed for 1789035026.84727: slice(None, 200, None)
+2026-09-10 15:52:09,360 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.85159)
+2026-09-10 15:52:12,115 [WARNING]   ✗ POST failed for 1789035026.85159: slice(None, 200, None)
+2026-09-10 15:52:12,116 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.85659)
+2026-09-10 15:52:14,498 [WARNING]   ✗ POST failed for 1789035026.85659: slice(None, 200, None)
+2026-09-10 15:52:14,500 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.86091)
+2026-09-10 15:52:17,519 [WARNING]   ✗ POST failed for 1789035026.86091: slice(None, 200, None)
+2026-09-10 15:52:17,520 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.86523)
+2026-09-10 15:52:37,712 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:52:37,715 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.86955)
+2026-09-10 15:52:45,235 [WARNING]   ✗ POST failed for 1789035026.86955: slice(None, 200, None)
+2026-09-10 15:52:45,237 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.87387)
+2026-09-10 15:52:49,298 [WARNING]   ✗ POST failed for 1789035026.87387: slice(None, 200, None)
+2026-09-10 15:52:49,299 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.87819)
+2026-09-10 15:52:52,062 [WARNING]   ✗ POST failed for 1789035026.87819: slice(None, 200, None)
+2026-09-10 15:52:52,063 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.88251)
+2026-09-10 15:52:54,011 [WARNING]   ✗ POST failed for 1789035026.88251: slice(None, 200, None)
+2026-09-10 15:52:54,012 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.88683)
+2026-09-10 15:52:56,474 [WARNING]   ✗ POST failed for 1789035026.88683: slice(None, 200, None)
+2026-09-10 15:52:56,475 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.89115)
+2026-09-10 15:52:58,527 [WARNING]   ✗ POST failed for 1789035026.89115: slice(None, 200, None)
+2026-09-10 15:52:58,529 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.89547)
+2026-09-10 15:53:00,904 [WARNING]   ✗ POST failed for 1789035026.89547: slice(None, 200, None)
+2026-09-10 15:53:00,905 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.89979)
+2026-09-10 15:53:05,181 [WARNING]   ✗ POST failed for 1789035026.89979: slice(None, 200, None)
+2026-09-10 15:53:05,183 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.90479)
+2026-09-10 15:53:09,829 [WARNING]   ✗ POST failed for 1789035026.90479: slice(None, 200, None)
+2026-09-10 15:53:09,829 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.90979)
+2026-09-10 15:53:12,444 [WARNING]   ✗ POST failed for 1789035026.90979: slice(None, 200, None)
+2026-09-10 15:53:12,445 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.91411)
+2026-09-10 15:53:14,473 [WARNING]   ✗ POST failed for 1789035026.91411: slice(None, 200, None)
+2026-09-10 15:53:14,474 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.89979)
+2026-09-10 15:53:16,441 [WARNING]   ✗ POST failed for 1789035026.89979: slice(None, 200, None)
+2026-09-10 15:53:16,442 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.90479)
+2026-09-10 15:53:19,107 [WARNING]   ✗ POST failed for 1789035026.90479: slice(None, 200, None)
+2026-09-10 15:53:19,108 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035026.90979)
+2026-09-10 15:53:21,779 [WARNING]   ✗ POST failed for 1789035026.90979: slice(None, 200, None)
+2026-09-10 15:53:21,780 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035026.91411)
+2026-09-10 15:53:24,436 [WARNING]   ✗ POST failed for 1789035026.91411: slice(None, 200, None)
+2026-09-10 15:53:24,437 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.91911)
+2026-09-10 15:53:26,782 [WARNING]   ✗ POST failed for 1789035028.91911: slice(None, 200, None)
+2026-09-10 15:53:26,783 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.92343)
+2026-09-10 15:53:46,124 [WARNING]   ✗ POST failed for 1789035028.92343: slice(None, 200, None)
+2026-09-10 15:53:46,126 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.92843)
+2026-09-10 15:53:48,183 [WARNING]   ✗ POST failed for 1789035028.92843: slice(None, 200, None)
+2026-09-10 15:53:48,184 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035028.93343)
+2026-09-10 15:53:50,323 [WARNING]   ✗ POST failed for 1789035028.93343: slice(None, 200, None)
+2026-09-10 15:53:50,325 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035028.93749)
+2026-09-10 15:53:52,387 [WARNING]   ✗ POST failed for 1789035028.93749: slice(None, 200, None)
+2026-09-10 15:53:52,388 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035028.94265)
+2026-09-10 15:53:54,353 [WARNING]   ✗ POST failed for 1789035028.94265: slice(None, 200, None)
+2026-09-10 15:53:54,354 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.94827)
+2026-09-10 15:53:56,376 [WARNING]   ✗ POST failed for 1789035028.94827: slice(None, 200, None)
+2026-09-10 15:53:56,376 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.95327)
+2026-09-10 15:53:59,163 [WARNING]   ✗ POST failed for 1789035028.95327: slice(None, 200, None)
+2026-09-10 15:53:59,165 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.95827)
+2026-09-10 15:54:01,903 [WARNING]   ✗ POST failed for 1789035028.95827: slice(None, 200, None)
+2026-09-10 15:54:01,904 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.96327)
+2026-09-10 15:54:04,046 [WARNING]   ✗ POST failed for 1789035028.96327: slice(None, 200, None)
+2026-09-10 15:54:04,048 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.96759)
+2026-09-10 15:54:06,101 [WARNING]   ✗ POST failed for 1789035028.96759: slice(None, 200, None)
+2026-09-10 15:54:06,102 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.97259)
+2026-09-10 15:54:07,868 [WARNING]   ✗ POST failed for 1789035028.97259: slice(None, 200, None)
+2026-09-10 15:54:07,869 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.97759)
+2026-09-10 15:54:10,516 [WARNING]   ✗ POST failed for 1789035028.97759: slice(None, 200, None)
+2026-09-10 15:54:10,518 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.98259)
+2026-09-10 15:54:12,654 [WARNING]   ✗ POST failed for 1789035028.98259: slice(None, 200, None)
+2026-09-10 15:54:12,655 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.98759)
+2026-09-10 15:54:15,112 [WARNING]   ✗ POST failed for 1789035028.98759: slice(None, 200, None)
+2026-09-10 15:54:15,113 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.99259)
+2026-09-10 15:54:17,358 [WARNING]   ✗ POST failed for 1789035028.99259: slice(None, 200, None)
+2026-09-10 15:54:17,358 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.99691)
+2026-09-10 15:54:19,509 [WARNING]   ✗ POST failed for 1789035028.99691: slice(None, 200, None)
+2026-09-10 15:54:19,509 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.100123)
+2026-09-10 15:54:36,420 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:54:36,420 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035028.100556)
+2026-09-10 15:54:43,870 [WARNING]   ✗ POST failed for 1789035028.100556: slice(None, 200, None)
+2026-09-10 15:54:43,872 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.101112)
+2026-09-10 15:54:45,670 [WARNING]   ✗ POST failed for 1789035028.101112: slice(None, 200, None)
+2026-09-10 15:54:45,671 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.101613)
+2026-09-10 15:54:47,714 [WARNING]   ✗ POST failed for 1789035028.101613: slice(None, 200, None)
+2026-09-10 15:54:47,715 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035028.102114)
+2026-09-10 15:54:49,721 [WARNING]   ✗ POST failed for 1789035028.102114: slice(None, 200, None)
+2026-09-10 15:54:49,721 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.102615)
+2026-09-10 15:54:51,938 [WARNING]   ✗ POST failed for 1789035028.102615: slice(None, 200, None)
+2026-09-10 15:54:51,939 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.103048)
+2026-09-10 15:54:54,646 [WARNING]   ✗ POST failed for 1789035028.103048: slice(None, 200, None)
+2026-09-10 15:54:54,649 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.103481)
+2026-09-10 15:54:57,812 [WARNING]   ✗ POST failed for 1789035028.103481: slice(None, 200, None)
+2026-09-10 15:54:57,814 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035028.103914)
+2026-09-10 15:55:00,382 [WARNING]   ✗ POST failed for 1789035028.103914: slice(None, 200, None)
+2026-09-10 15:55:00,384 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035028.104321)
+2026-09-10 15:55:02,966 [WARNING]   ✗ POST failed for 1789035028.104321: slice(None, 200, None)
+2026-09-10 15:55:02,967 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035028.104838)
+2026-09-10 15:55:05,117 [WARNING]   ✗ POST failed for 1789035028.104838: slice(None, 200, None)
+2026-09-10 15:55:05,118 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.105401)
+2026-09-10 15:55:07,040 [WARNING]   ✗ POST failed for 1789035028.105401: slice(None, 200, None)
+2026-09-10 15:55:07,041 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.105834)
+2026-09-10 15:55:09,143 [WARNING]   ✗ POST failed for 1789035028.105834: slice(None, 200, None)
+2026-09-10 15:55:09,144 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.106267)
+2026-09-10 15:55:10,929 [WARNING]   ✗ POST failed for 1789035028.106267: slice(None, 200, None)
+2026-09-10 15:55:10,930 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.106700)
+2026-09-10 15:55:12,891 [WARNING]   ✗ POST failed for 1789035028.106700: slice(None, 200, None)
+2026-09-10 15:55:12,892 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035028.107133)
+2026-09-10 15:55:15,116 [WARNING]   ✗ POST failed for 1789035028.107133: slice(None, 200, None)
+2026-09-10 15:55:15,118 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035028.107566)
+2026-09-10 15:55:17,096 [WARNING]   ✗ POST failed for 1789035028.107566: slice(None, 200, None)
+2026-09-10 15:55:17,097 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035030.108122)
+2026-09-10 15:55:34,386 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:55:34,388 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.108555)
+2026-09-10 15:55:42,166 [WARNING]   ✗ POST failed for 1789035030.108555: slice(None, 200, None)
+2026-09-10 15:55:42,167 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.108962)
+2026-09-10 15:55:44,613 [WARNING]   ✗ POST failed for 1789035030.108962: slice(None, 200, None)
+2026-09-10 15:55:44,614 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035030.109479)
+2026-09-10 15:55:46,763 [WARNING]   ✗ POST failed for 1789035030.109479: slice(None, 200, None)
+2026-09-10 15:55:46,764 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.110042)
+2026-09-10 15:55:48,678 [WARNING]   ✗ POST failed for 1789035030.110042: slice(None, 200, None)
+2026-09-10 15:55:48,679 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.110543)
+2026-09-10 15:55:50,718 [WARNING]   ✗ POST failed for 1789035030.110543: slice(None, 200, None)
+2026-09-10 15:55:50,720 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.111044)
+2026-09-10 15:55:53,607 [WARNING]   ✗ POST failed for 1789035030.111044: slice(None, 200, None)
+2026-09-10 15:55:53,608 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035030.111545)
+2026-09-10 15:55:55,845 [WARNING]   ✗ POST failed for 1789035030.111545: slice(None, 200, None)
+2026-09-10 15:55:55,846 [INFO]   ↑ QUEUED  [ 5] PAM: User login failed. (alert 1789035030.111978)
+2026-09-10 15:55:58,068 [WARNING]   ✗ POST failed for 1789035030.111978: slice(None, 200, None)
+2026-09-10 15:55:58,070 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.112534)
+2026-09-10 15:56:00,610 [WARNING]   ✗ POST failed for 1789035030.112534: slice(None, 200, None)
+2026-09-10 15:56:00,611 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035030.113035)
+2026-09-10 15:56:02,433 [WARNING]   ✗ POST failed for 1789035030.113035: slice(None, 200, None)
+2026-09-10 15:56:02,434 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.113468)
+2026-09-10 15:56:04,423 [WARNING]   ✗ POST failed for 1789035030.113468: slice(None, 200, None)
+2026-09-10 15:56:04,424 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.113875)
+2026-09-10 15:56:06,501 [WARNING]   ✗ POST failed for 1789035030.113875: slice(None, 200, None)
+2026-09-10 15:56:06,503 [INFO]   ↑ QUEUED  [10] Multiple authentication failures. (alert 1789035030.114392)
+2026-09-10 15:56:09,865 [WARNING]   ✗ POST failed for 1789035030.114392: slice(None, 200, None)
+2026-09-10 15:56:09,866 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.116731)
+2026-09-10 15:56:13,580 [WARNING]   ✗ POST failed for 1789035030.116731: slice(None, 200, None)
+2026-09-10 15:56:13,581 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.117232)
+2026-09-10 15:56:16,359 [WARNING]   ✗ POST failed for 1789035030.117232: slice(None, 200, None)
+2026-09-10 15:56:16,360 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.117733)
+2026-09-10 15:56:19,855 [WARNING]   ✗ POST failed for 1789035030.117733: slice(None, 200, None)
+2026-09-10 15:56:19,856 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.118234)
+2026-09-10 15:56:38,659 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:56:38,660 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.118641)
+2026-09-10 15:56:46,996 [WARNING]   ✗ POST failed for 1789035030.118641: slice(None, 200, None)
+2026-09-10 15:56:46,997 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035030.119158)
+2026-09-10 15:56:51,106 [WARNING]   ✗ POST failed for 1789035030.119158: slice(None, 200, None)
+2026-09-10 15:56:51,107 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.119721)
+2026-09-10 15:56:55,087 [WARNING]   ✗ POST failed for 1789035030.119721: slice(None, 200, None)
+2026-09-10 15:56:55,088 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.120222)
+2026-09-10 15:56:57,987 [WARNING]   ✗ POST failed for 1789035030.120222: slice(None, 200, None)
+2026-09-10 15:56:57,988 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.120723)
+2026-09-10 15:57:02,259 [WARNING]   ✗ POST failed for 1789035030.120723: slice(None, 200, None)
+2026-09-10 15:57:02,261 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.121224)
+2026-09-10 15:57:04,816 [WARNING]   ✗ POST failed for 1789035030.121224: slice(None, 200, None)
+2026-09-10 15:57:04,817 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.121725)
+2026-09-10 15:57:06,805 [WARNING]   ✗ POST failed for 1789035030.121725: slice(None, 200, None)
+2026-09-10 15:57:06,805 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.122226)
+2026-09-10 15:57:08,803 [WARNING]   ✗ POST failed for 1789035030.122226: slice(None, 200, None)
+2026-09-10 15:57:08,804 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.122633)
+2026-09-10 15:57:10,437 [WARNING]   ✗ POST failed for 1789035030.122633: slice(None, 200, None)
+2026-09-10 15:57:10,439 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035030.123150)
+2026-09-10 15:57:12,497 [WARNING]   ✗ POST failed for 1789035030.123150: slice(None, 200, None)
+2026-09-10 15:57:12,498 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035030.123713)
+2026-09-10 15:57:14,324 [WARNING]   ✗ POST failed for 1789035030.123713: slice(None, 200, None)
+2026-09-10 15:57:14,326 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.124214)
+2026-09-10 15:57:16,592 [WARNING]   ✗ POST failed for 1789035030.124214: slice(None, 200, None)
+2026-09-10 15:57:16,593 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.124621)
+2026-09-10 15:57:18,431 [WARNING]   ✗ POST failed for 1789035030.124621: slice(None, 200, None)
+2026-09-10 15:57:18,432 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035030.125138)
+2026-09-10 15:57:20,687 [WARNING]   ✗ POST failed for 1789035030.125138: slice(None, 200, None)
+2026-09-10 15:57:20,689 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035030.125701)
+2026-09-10 15:57:22,723 [WARNING]   ✗ POST failed for 1789035030.125701: slice(None, 200, None)
+2026-09-10 15:57:22,724 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035030.126134)
+2026-09-10 15:57:25,305 [WARNING]   ✗ POST failed for 1789035030.126134: slice(None, 200, None)
+2026-09-10 15:57:25,306 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035030.126567)
+2026-09-10 15:57:43,205 [WARNING]   ✗ POST failed for 1789035030.126567: slice(None, 200, None)
+2026-09-10 15:57:43,206 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035030.126974)
+2026-09-10 15:57:45,166 [WARNING]   ✗ POST failed for 1789035030.126974: slice(None, 200, None)
+2026-09-10 15:57:45,167 [INFO]   ↑ QUEUED  [10] Multiple authentication failures. (alert 1789035030.127491)
+2026-09-10 15:57:47,314 [WARNING]   ✗ POST failed for 1789035030.127491: slice(None, 200, None)
+2026-09-10 15:57:47,316 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035032.129830)
+2026-09-10 15:57:49,292 [WARNING]   ✗ POST failed for 1789035032.129830: slice(None, 200, None)
+2026-09-10 15:57:49,293 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035032.130331)
+2026-09-10 15:57:51,422 [WARNING]   ✗ POST failed for 1789035032.130331: slice(None, 200, None)
+2026-09-10 15:57:51,422 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035032.130738)
+2026-09-10 15:57:53,446 [WARNING]   ✗ POST failed for 1789035032.130738: slice(None, 200, None)
+2026-09-10 15:57:53,447 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035032.131255)
+2026-09-10 15:57:55,402 [WARNING]   ✗ POST failed for 1789035032.131255: slice(None, 200, None)
+2026-09-10 15:57:55,404 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035032.131818)
+2026-09-10 15:57:57,459 [WARNING]   ✗ POST failed for 1789035032.131818: slice(None, 200, None)
+2026-09-10 15:57:57,459 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035032.132225)
+2026-09-10 15:57:59,504 [WARNING]   ✗ POST failed for 1789035032.132225: slice(None, 200, None)
+2026-09-10 15:57:59,505 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035032.132742)
+2026-09-10 15:58:02,055 [WARNING]   ✗ POST failed for 1789035032.132742: slice(None, 200, None)
+2026-09-10 15:58:02,056 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035032.133305)
+2026-09-10 15:58:04,098 [WARNING]   ✗ POST failed for 1789035032.133305: slice(None, 200, None)
+2026-09-10 15:58:04,099 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035032.133738)
+2026-09-10 15:58:06,173 [WARNING]   ✗ POST failed for 1789035032.133738: slice(None, 200, None)
+2026-09-10 15:58:06,174 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035032.134171)
+2026-09-10 15:58:08,194 [WARNING]   ✗ POST failed for 1789035032.134171: slice(None, 200, None)
+2026-09-10 15:58:08,194 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035032.134604)
+2026-09-10 15:58:10,138 [WARNING]   ✗ POST failed for 1789035032.134604: slice(None, 200, None)
+2026-09-10 15:58:10,140 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035032.135011)
+2026-09-10 15:58:12,288 [WARNING]   ✗ POST failed for 1789035032.135011: slice(None, 200, None)
+2026-09-10 15:58:12,289 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035032.135528)
+2026-09-10 15:58:14,194 [WARNING]   ✗ POST failed for 1789035032.135528: slice(None, 200, None)
+2026-09-10 15:58:14,195 [INFO]   ↑ QUEUED  [ 5] sshd: authentication failed. (alert 1789035032.129830)
+2026-09-10 15:58:31,133 [WARNING]   ⚠ FastAPI returned HTTP 500: {"detail":"429 You exceeded your current quota, please check your plan and billing details. For more
+2026-09-10 15:58:31,134 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035032.130331)
+2026-09-10 15:58:49,683 [WARNING]   ✗ POST failed for 1789035032.130331: slice(None, 200, None)
+2026-09-10 15:58:49,684 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035032.130738)
+2026-09-10 15:58:51,815 [WARNING]   ✗ POST failed for 1789035032.130738: slice(None, 200, None)
+2026-09-10 15:58:51,815 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035032.131255)
+2026-09-10 15:58:53,839 [WARNING]   ✗ POST failed for 1789035032.131255: slice(None, 200, None)
+2026-09-10 15:58:53,840 [INFO]   ↑ QUEUED  [ 8] Maximum authentication attempts exceeded. (alert 1789035032.131818)
+2026-09-10 15:58:56,236 [WARNING]   ✗ POST failed for 1789035032.131818: slice(None, 200, None)
+2026-09-10 15:58:56,238 [INFO]   ↑ QUEUED  [ 5] syslog: User authentication failure. (alert 1789035032.132225)
+2026-09-10 15:58:57,934 [WARNING]   ✗ POST failed for 1789035032.132225: slice(None, 200, None)
+2026-09-10 15:58:57,937 [INFO]   ↑ QUEUED  [10] syslog: User missed the password more than one tim (alert 1789035032.132742)
+2026-09-10 15:58:59,882 [WARNING]   ✗ POST failed for 1789035032.132742: slice(None, 200, None)
+2026-09-10 15:58:59,883 [INFO]   ↑ QUEUED  [ 5] unix_chkpwd: Password check failed. (alert 1789035032.133305)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

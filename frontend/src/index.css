@@ -11,28 +11,29 @@
   --color-secondary: #06B6D4;
 
   /* Severity - Critical (Red) */
-  --sev-critical: #EF4444;
-  --sev-critical-light: #FEF2F2;
+  --sev-critical: #DC2626;
+  --sev-critical-light: #FEE2E2;
   --sev-critical-border: #FECACA;
-  --sev-critical-text: #991B1B;
+  --sev-critical-text: #B91C1C;
 
   /* Severity - High (Orange) */
-  --sev-high: #F97316;
-  --sev-high-light: #FFF7ED;
+  --sev-high: #EA580C;
+  --sev-high-light: #FFEDD5;
   --sev-high-border: #FED7AA;
-  --sev-high-text: #9A3412;
+  --sev-high-text: #C2410C;
+
 
   /* Severity - Medium (Amber) */
-  --sev-medium: #F59E0B;
-  --sev-medium-light: #FFFBEB;
+  --sev-medium: #D97706;
+  --sev-medium-light: #FEF3C7;
   --sev-medium-border: #FDE68A;
-  --sev-medium-text: #92400E;
+  --sev-medium-text: #A16207;
 
   /* Severity - Low (Emerald) */
-  --sev-low: #10B981;
-  --sev-low-light: #ECFDF5;
-  --sev-low-border: #A7F3D0;
-  --sev-low-text: #065F46;
+  --sev-low: #16A34A;
+  --sev-low-light: #DCFCE7;
+  --sev-low-border: #BBF7D0;
+  --sev-low-text: #15803D;
 
   /* Base Grays & Layout */
   --color-background: #F8FAFC;

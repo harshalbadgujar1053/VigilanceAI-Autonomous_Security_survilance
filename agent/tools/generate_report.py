@@ -28,6 +28,9 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 GEMINI_TIMEOUT_SECONDS = 30
 
+VALID_VERDICTS = {"TRUE POSITIVE", "FALSE POSITIVE", "NEEDS INVESTIGATION"}
+VALID_CONFIDENCE = {"HIGH", "MEDIUM", "LOW"}
+
 
 # ─────────────────────────────────────────────
 # 1. REPORT PROMPT
@@ -35,6 +38,13 @@ GEMINI_TIMEOUT_SECONDS = 30
 #    was baked in at module import time via .replace(), which meant
 #    every report generated in a long-running process showed the same
 #    stale timestamp — fixed here).
+#
+#    NOTE: {verdict}/{confidence} are injected directly from the
+#    classifications table (same approach used for {top_technique} in
+#    classify_with_rag.py) rather than left for Gemini to infer. This
+#    avoids the same mismatch bug fixed for [TECHNIQUE]/[REASONING] —
+#    the report must never disagree with the badge already shown in
+#    AlertCard.tsx.
 # ─────────────────────────────────────────────
 REPORT_PROMPT_TEMPLATE = """You are a senior SOC analyst writing a formal incident report.
 
@@ -43,6 +53,15 @@ structured incident report:
 
 FINDINGS:
 {findings}
+
+The AI triage verdict and confidence below have ALREADY been determined
+by the classification pipeline and are final. You MUST reproduce these
+two values verbatim in the INCIDENT CLASSIFICATION section below, and
+your Executive Summary and Analyst Notes must be consistent with them
+(do not contradict, soften, or re-derive a different verdict):
+
+VERDICT: {verdict}
+CONFIDENCE: {confidence}
 
 Write the report in this EXACT format:
 
@@ -58,6 +77,8 @@ INCIDENT CLASSIFICATION:
 - Severity: <CRITICAL | HIGH | MEDIUM | LOW>
 - Category: <Attack type e.g. Brute Force, Rootkit, etc.>
 - Status: <Active Threat | Contained | Under Investigation>
+- AI Verdict: {verdict}
+- AI Confidence: {confidence}
 
 AFFECTED SYSTEMS:
 - <host name and IP>
@@ -80,7 +101,7 @@ RECOMMENDED ACTIONS:
 3. <Long term — do within 1 week>
 
 ANALYST NOTES:
-<Any additional context or observations>
+<Any additional context or observations, consistent with the verdict above>
 ================================================
 Write real, specific content only — do not leave any angle-bracket
 placeholders in your output.
@@ -90,7 +111,7 @@ placeholders in your output.
 # ─────────────────────────────────────────────
 # 2. GEMINI CALL
 # ─────────────────────────────────────────────
-def _generate_via_gemini(findings: str) -> str:
+def _generate_via_gemini(findings: str, verdict: str, confidence: str) -> str:
     import google.generativeai as genai
 
     if not GEMINI_API_KEY:
@@ -101,6 +122,8 @@ def _generate_via_gemini(findings: str) -> str:
 
     prompt_text = REPORT_PROMPT_TEMPLATE.format(
         findings=findings,
+        verdict=verdict,
+        confidence=confidence,
         timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     )
 
@@ -123,7 +146,7 @@ def _generate_via_gemini(findings: str) -> str:
 # 3. THE TOOL
 # ─────────────────────────────────────────────
 @tool
-def generate_report(findings: str) -> str:
+def generate_report(findings: str, verdict: str = "NEEDS INVESTIGATION", confidence: str = "MEDIUM") -> str:
     """
     Generate a structured SOC incident report from investigation findings.
     This tool should be called LAST, after all other tools have gathered
@@ -133,6 +156,7 @@ def generate_report(findings: str) -> str:
     - Identified the alert details (from query_siem)
     - Mapped to MITRE techniques (from map_to_mitre or lookup_threat_intel)
     - Checked CVE severity if applicable (from check_cve)
+    - Determined the AI verdict and confidence (from the classification step)
     - Gathered enough context to write a complete report
 
     Args:
@@ -143,23 +167,39 @@ def generate_report(findings: str) -> str:
                   Example: "Alert 1717000001: 847 failed SSH attempts
                   from 185.220.101.47 to web-server-prod. MITRE mapping:
                   T1110 Brute Force (High confidence). No CVE identified."
+        verdict: The AI triage verdict already produced for this alert.
+                 One of: TRUE POSITIVE, FALSE POSITIVE, NEEDS INVESTIGATION.
+        confidence: The AI triage confidence already produced for this
+                    alert. One of: HIGH, MEDIUM, LOW.
 
     Returns:
         A complete, structured incident report ready for SOC analyst review.
     """
+    verdict = (verdict or "").strip().upper()
+    confidence = (confidence or "").strip().upper()
+
+    if verdict not in VALID_VERDICTS:
+        verdict = "NEEDS INVESTIGATION"
+    if confidence not in VALID_CONFIDENCE:
+        confidence = "MEDIUM"
+
     try:
-        return _generate_via_gemini(findings)
+        return _generate_via_gemini(findings, verdict, confidence)
 
     except Exception as e:
         # Fallback: structured report without LLM (Gemini unreachable,
         # rate-limited, or misconfigured). No local Ollama fallback —
-        # removed from this environment.
+        # removed from this environment. Verdict/confidence are still
+        # included since they come from the pipeline, not the LLM call.
         return f"""================================================
 VIGILANCE AI — INCIDENT REPORT
 Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 ================================================
 
 NOTE: LLM unavailable ({e}) — basic report generated.
+
+AI VERDICT: {verdict}
+AI CONFIDENCE: {confidence}
 
 FINDINGS SUMMARY:
 {findings}
@@ -192,5 +232,9 @@ if __name__ == "__main__":
     No successful logins detected in the same timeframe.
     """
 
-    report = generate_report.invoke(test_findings)
+    report = generate_report.invoke({
+        "findings": test_findings,
+        "verdict": "TRUE POSITIVE",
+        "confidence": "HIGH"
+    })
     print(report)

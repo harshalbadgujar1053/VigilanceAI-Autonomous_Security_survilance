@@ -27,7 +27,6 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   const [result, setResult] = useState<Classification | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [expanded, setExpanded] = useState(false);
-  const [revealed, setRevealed] = useState(false);
   const [report, setReport] = useState<string>('');
   const [reportStatus, setReportStatus] = useState<'idle' | 'loading' | 'done'>('idle');
 
@@ -38,23 +37,9 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   // click needed, and Case Creation just needs to generate the report.
   useEffect(() => {
     if (alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && !result) {
-      const cleanReasoningLine = (line: string) => {
-        const trimmed = line.trim();
-        // Strip any leaked [TAG] labels (e.g. "[SEVERITY] HIGH", "[REASONING]")
-        if (/^\[[A-Z\s]+\]/.test(trimmed)) return null;
-        // Drop lines that are just previewing recommended actions
-        if (/^recommended action/i.test(trimmed)) return null;
-        return trimmed;
-      };
-
       const reasoningLines = alert.reasoning
-        ? alert.reasoning
-            .split('|')
-            .map(s => cleanReasoningLine(s))
-            .filter((s): s is string => Boolean(s))
-            .slice(0, 3) // hard cap: never show more than 3 bullets
+        ? alert.reasoning.split('|').map(s => s.trim()).filter(Boolean)
         : ['Alert classified during ingestion.'];
-
       const recommendedActionsLines = alert.recommended_actions
         ? alert.recommended_actions.split('|').map(s => s.trim()).filter(Boolean)
         : undefined;
@@ -63,9 +48,7 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
         severity: alert.severity as any,
         technique: alert.technique || (alert.rule.groups.length > 0 ? alert.rule.groups[0].toUpperCase() : 'T1543 - THREAT BEHAVIOR'),
         reasoning: reasoningLines,
-        recommendedActions: recommendedActionsLines,
-        verdict: (alert as any).verdict || 'NEEDS INVESTIGATION',
-        confidence: (alert as any).confidence || 'LOW'
+        recommendedActions: recommendedActionsLines
       });
       setStatus('done');
     }
@@ -120,16 +103,11 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       });
     }
 
-    const verdictMatch = text.match(/\[VERDICT\]\s*([^\n\[]+)/i);
-    const confidenceMatch = text.match(/\[CONFIDENCE\]\s*(\w+)/i);
-
     return {
       severity: (severityMatch ? severityMatch[1].toUpperCase() : (alert.rule.level >= 12 ? 'CRITICAL' : alert.rule.level >= 8 ? 'HIGH' : alert.rule.level >= 4 ? 'MEDIUM' : 'LOW')) as any,
       technique: techniqueMatch ? techniqueMatch[1].trim() : 'T1543 - Threat Behavior',
       reasoning: reasoningLines.length > 0 ? reasoningLines : ['Anomalous host event detected requiring automated SOC triage.'],
-      recommendedActions: recommendedActionsLines.length > 0 ? recommendedActionsLines : ['No specific recommended actions provided.'],
-      verdict: (verdictMatch ? verdictMatch[1].trim().toUpperCase() : 'NEEDS INVESTIGATION') as any,
-      confidence: (confidenceMatch ? confidenceMatch[1].trim().toUpperCase() : 'LOW') as any
+      recommendedActions: recommendedActionsLines.length > 0 ? recommendedActionsLines : ['No specific recommended actions provided.']
     };
   };
 
@@ -147,9 +125,7 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
   severity: parsed.severity,
   reasoning: parsed.reasoning.join(' | '),
   mitre_tactics: parsed.technique,
-  recommended_actions: (parsed.recommendedActions ?? []).join(' | '),
-  verdict: parsed.verdict,
-  confidence: parsed.confidence
+  recommended_actions: (parsed.recommendedActions ?? []).join(' | ')
 });
       } catch {
         // Non-fatal: dashboard already shows the result even if persistence fails
@@ -555,42 +531,33 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       {/* Dynamic 4px severity stripe is applied via CSS class borders */}
       
       <div className="alert-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
-        <div className="alert-header-left" style={{ flex: 1, cursor: 'pointer' }} onClick={() => setRevealed(v => !v)} title="Click to show/hide classification details">
+        <div className="alert-header-left" style={{ flex: 1 }}>
           <h3 className="alert-title">{alert.rule.description}</h3>
           
-          <div className="alert-meta-grid" style={{ marginTop: '10px', fontSize: '13px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
-            <span className="meta-tag" title="Hostname" style={{ background: '#F1F5F9', color: '#334155', border: '1px solid #E2E8F0', borderRadius: '6px', padding: '4px 10px', fontWeight: 600 }}>
+          <div className="alert-meta-grid" style={{ marginTop: '8px' }}>
+            <span className="meta-tag" title="Hostname">
               {alert.agent.name}
             </span>
-            <span className="meta-tag" title="IP Address" style={{ background: '#F1F5F9', color: '#334155', border: '1px solid #E2E8F0', borderRadius: '6px', padding: '4px 10px', fontWeight: 600, fontFamily: 'var(--font-mono, monospace)' }}>
+            <span className="meta-tag" title="IP Address">
               {alert.agent.ip}
             </span>
-            <span className="meta-tag" title="Rule ID" style={{ background: '#F1F5F9', color: '#334155', border: '1px solid #E2E8F0', borderRadius: '6px', padding: '4px 10px', fontWeight: 600, fontFamily: 'var(--font-mono, monospace)' }}>
-              Rule {alert.rule.id}
+            <span className="meta-tag text-mono" title="Rule ID">
+              {alert.rule.id}
             </span>
-            <span className="meta-tag" title="Alert ID" style={{ background: '#F1F5F9', color: '#334155', border: '1px solid #E2E8F0', borderRadius: '6px', padding: '4px 10px', fontWeight: 600, fontFamily: 'var(--font-mono, monospace)' }}>
+            <span className="meta-tag badge-id" title="Alert ID">
               ID: {alert.id}
             </span>
-            <span style={{ width: '1px', height: '16px', background: '#E2E8F0', margin: '0 2px' }} />
             {alert._source === 'live' && (
-              <span className="meta-tag" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.2)', borderRadius: '6px', fontWeight: 700, fontSize: '12px', padding: '4px 10px' }}>
+              <span className="meta-tag" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.2)', fontWeight: 700, fontSize: '10px' }}>
                 LIVE
               </span>
             )}
-            {alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && (() => {
-              const sevUpper = alert.severity.toUpperCase();
-              const sevColors =
-                sevUpper === 'CRITICAL' ? { bg: 'rgba(239, 68, 68, 0.1)', fg: '#DC2626', border: 'rgba(239, 68, 68, 0.25)' } :
-                sevUpper === 'HIGH' ? { bg: 'rgba(249, 115, 22, 0.1)', fg: '#EA580C', border: 'rgba(249, 115, 22, 0.25)' } :
-                sevUpper === 'MEDIUM' ? { bg: 'rgba(245, 158, 11, 0.12)', fg: '#B45309', border: 'rgba(245, 158, 11, 0.25)' } :
-                { bg: 'rgba(16, 185, 129, 0.1)', fg: '#059669', border: 'rgba(16, 185, 129, 0.25)' };
-              return (
-                <span className="meta-tag" style={{ background: sevColors.bg, color: sevColors.fg, border: `1px solid ${sevColors.border}`, borderRadius: '6px', fontWeight: 700, fontSize: '12px', padding: '4px 10px' }}>
-                  {alert.severity}
-                </span>
-              );
-            })()}
-            <span className={`severity-badge ${severityCategory}`} style={{ fontSize: '13px' }}>
+            {alert.severity && alert.severity !== 'UNKNOWN' && alert.severity !== 'PENDING' && (
+              <span className="meta-tag" style={{ background: 'rgba(56, 189, 248, 0.1)', color: '#0EA5E9', border: '1px solid rgba(56, 189, 248, 0.2)', fontWeight: 700, fontSize: '10px' }}>
+                {alert.severity}
+              </span>
+            )}
+            <span className={`severity-badge ${severityCategory}`}>
               <span className="sev-dot" />
               Level {level}/15
             </span>
@@ -627,31 +594,6 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
 
           {status === 'done' && (
             <div className="classified-success-actions" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {/* VERDICT-BADGE-RELOCATED-MARKER */}
-              {result?.verdict && (
-                <div className="verdict-badge-row" style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                  <span
-                    className={`verdict-badge ${result.verdict === 'TRUE POSITIVE' ? 'verdict-tp' : result.verdict === 'FALSE POSITIVE' ? 'verdict-fp' : 'verdict-investigate'}`}
-                    style={{
-                      padding: '3px 9px',
-                      borderRadius: '6px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.03em',
-                      background: result.verdict === 'TRUE POSITIVE' ? '#fee2e2' : result.verdict === 'FALSE POSITIVE' ? '#dcfce7' : '#fef9c3',
-                      color: result.verdict === 'TRUE POSITIVE' ? '#991b1b' : result.verdict === 'FALSE POSITIVE' ? '#166534' : '#854d0e'
-                    }}
-                  >
-                    {result.verdict}
-                  </span>
-                  {result.confidence && (
-                    <span style={{ fontSize: '12px', color: '#6b7280', fontWeight: 600 }}>
-                      {result.confidence}
-                    </span>
-                  )}
-                </div>
-              )}
               {reportStatus === 'idle' && (
                 <button 
                   id={`btn-report-${alert.id}`}
@@ -702,7 +644,7 @@ const AlertCard: React.FC<AlertCardProps> = ({ alert, index }) => {
       )}
 
       {/* AI Classification Succesful Display */}
-      {status === 'done' && result && revealed && (() => {
+      {status === 'done' && result && (() => {
         const upperSev = result.severity?.toUpperCase() || 'LOW';
         const isCritical = upperSev === 'CRITICAL';
         const isHigh = upperSev === 'HIGH';

@@ -129,17 +129,10 @@ def parse_llm_output(raw_text: str, fallback_level: int = 0) -> dict:
     if not reasoning:
         reasoning = ["Anomalous host event detected requiring automated SOC triage."]
 
-    verdict_match = __import__("re").search(r"\[VERDICT\]\s*([^\n]+)", raw_text, __import__("re").IGNORECASE)
-    confidence_match = __import__("re").search(r"\[CONFIDENCE\]\s*(\w+)", raw_text, __import__("re").IGNORECASE)
-    verdict = verdict_match.group(1).strip().upper() if verdict_match else "NEEDS INVESTIGATION"
-    confidence = confidence_match.group(1).strip().upper() if confidence_match else "LOW"
-
     return {
         "severity": severity,
         "technique": technique,
         "reasoning": reasoning,
-        "verdict": verdict,
-        "confidence": confidence,
         "rawText": raw_text
     }
 
