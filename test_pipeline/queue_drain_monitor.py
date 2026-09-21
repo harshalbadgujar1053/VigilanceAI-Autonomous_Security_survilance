@@ -5,7 +5,7 @@ rate (~15/min) afterward. Run this in a separate terminal WHILE locustfile.py
 is firing alerts.
 
 Usage:
-    export DATABASE_URL="postgresql://vigilance:vigilance123@localhost:5432/vigilancedb_test"
+    export DATABASE_URL="postgresql://vigilance:<password>@localhost:5432/vigilancedb_test"
     python3 queue_drain_monitor.py --interval 5 --duration 600
 """
 import argparse

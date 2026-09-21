@@ -4,10 +4,12 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import os
 
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL",
-    "postgresql://vigilance:vigilance123@localhost:5432/vigilancedb"
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError(
+        "DATABASE_URL is not set. Export it before starting, e.g. "
+        "export DATABASE_URL='postgresql://user:password@localhost:5432/dbname'"
+    )
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True, pool_recycle=1800)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
