@@ -34,3 +34,6 @@ __pycache__/
 .env
 *.bak*
 *.gz
+vigilance.log
+siem/forwarder.log
+siem/forwarder.pid
