@@ -1,0 +1,29 @@
+
+== Gemini outage (REJECT, 45s) ==
+  seeded 5 queue rows
+    [blocked 15s] done|1|0 | pending|3|0 | processing|1|0 | api_ok=True
+    [blocked 30s] done|1|0 | pending|3|0 | processing|1|0 | api_ok=True
+    [blocked 45s] done|1|0 | pending|3|0 | processing|1|0 | api_ok=True
+  [PASS] no false 'done' during outage (+0)
+  [PASS] API stays up during outage 
+  [FAIL] worker alive (attempts incremented) (attempts=0)
+  unblocked, waiting for drain
+      0s not-done=4
+     15s not-done=4
+     30s not-done=3
+     45s not-done=0
+  [PASS] backlog drains after restore 
+  [PASS] gemini: no queue rows lost (5/5)
+  [PASS] gemini: every alert classified (5/5)
+  [PASS] gemini: no double-classification (dupes=0)
+  [PASS] gemini: no stuck non-pending/non-done rows (stuck=0)
+
+== SUMMARY ==
+PASS no false 'done' during outage (+0)
+PASS API stays up during outage 
+FAIL worker alive (attempts incremented) (attempts=0)
+PASS backlog drains after restore 
+PASS gemini: no queue rows lost (5/5)
+PASS gemini: every alert classified (5/5)
+PASS gemini: no double-classification (dupes=0)
+PASS gemini: no stuck non-pending/non-done rows (stuck=0)

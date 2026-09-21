@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-18T13:18:57.206+0000",
+  "rule": {
+    "level": 7,
+    "description": "Host-based anomaly detection event (rootcheck).",
+    "id": "510",
+    "firedtimes": 14,
+    "mail": false,
+    "groups": [
+      "ossec",
+      "rootcheck"
+    ],
+    "pci_dss": [
+      "10.6.1"
+    ],
+    "gdpr": [
+      "IV_35.7.d"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789737537.35100",
+  "full_log": "File '/var/lib/docker/overlay2/0b210971ed64ee096f095e907c68e9f241560f608ff6f3fae641a028ec9d437a/merged/var/ossec/framework/python/share/man/man1/python3.9.1' is owned by root and has written permissions to anyone.",
+  "decoder": {
+    "name": "rootcheck"
+  },
+  "data": {
+    "title": "File is owned by root and has written permissions to anyone.",
+    "file": "/var/lib/docker/overlay2/0b210971ed64ee096f095e907c68e9f241560f608ff6f3fae641a028ec9d437a/merged/var/ossec/framework/python/share/man/man1/python3.9.1"
+  },
+  "location": "rootcheck"
+}

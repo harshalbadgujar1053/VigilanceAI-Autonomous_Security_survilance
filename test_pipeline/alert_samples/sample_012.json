@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-09-18T17:34:39.483+0000",
+  "rule": {
+    "level": 3,
+    "description": "Wazuh agent started.",
+    "id": "503",
+    "firedtimes": 1,
+    "mail": false,
+    "groups": [
+      "ossec"
+    ],
+    "pci_dss": [
+      "10.6.1",
+      "10.2.6"
+    ],
+    "gpg13": [
+      "10.1"
+    ],
+    "gdpr": [
+      "IV_35.7.d"
+    ],
+    "hipaa": [
+      "164.312.b"
+    ],
+    "nist_800_53": [
+      "AU.6",
+      "AU.14",
+      "AU.5"
+    ],
+    "tsc": [
+      "CC7.2",
+      "CC7.3",
+      "CC6.8"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789752879.74850",
+  "full_log": "ossec: Agent started: 'kali->any'.",
+  "decoder": {
+    "parent": "ossec",
+    "name": "ossec"
+  },
+  "data": {
+    "extra_data": "kali->any"
+  },
+  "location": "wazuh-agent"
+}

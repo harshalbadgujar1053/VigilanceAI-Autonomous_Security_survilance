@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-09-18T13:32:49.794+0000",
+  "rule": {
+    "level": 3,
+    "description": "Successful sudo to ROOT executed.",
+    "id": "5402",
+    "mitre": {
+      "id": [
+        "T1548.003"
+      ],
+      "tactic": [
+        "Privilege Escalation",
+        "Defense Evasion"
+      ],
+      "technique": [
+        "Sudo and Sudo Caching"
+      ]
+    },
+    "firedtimes": 1,
+    "mail": false,
+    "groups": [
+      "syslog",
+      "sudo"
+    ],
+    "pci_dss": [
+      "10.2.5",
+      "10.2.2"
+    ],
+    "gpg13": [
+      "7.6",
+      "7.8",
+      "7.13"
+    ],
+    "gdpr": [
+      "IV_32.2"
+    ],
+    "hipaa": [
+      "164.312.b"
+    ],
+    "nist_800_53": [
+      "AU.14",
+      "AC.7",
+      "AC.6"
+    ],
+    "tsc": [
+      "CC6.8",
+      "CC7.2",
+      "CC7.3"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789738369.39308",
+  "full_log": "2026-09-18T19:02:48.100710+05:30 kali sudo:     kali : TTY=pts/0 ; PWD=/home/kali/Downloads ; USER=root ; COMMAND=/usr/bin/apt update",
+  "predecoder": {
+    "program_name": "sudo",
+    "timestamp": "2026-09-18T19:02:48.100710+05:30"
+  },
+  "decoder": {
+    "parent": "sudo",
+    "name": "sudo",
+    "ftscomment": "First time user executed the sudo command"
+  },
+  "data": {
+    "srcuser": "kali",
+    "dstuser": "root",
+    "tty": "pts/0",
+    "pwd": "/home/kali/Downloads",
+    "command": "/usr/bin/apt update"
+  },
+  "location": "/var/log/auth.log"
+}

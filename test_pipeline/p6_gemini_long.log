@@ -1,0 +1,42 @@
+
+== Gemini outage (REJECT, 240s) ==
+  seeded 3 queue rows
+    [blocked 15s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 30s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 45s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 60s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 75s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 90s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 105s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 120s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 135s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 150s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 165s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 180s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 195s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 210s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 225s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+    [blocked 240s] done|1|0 | pending|1|0 | processing|1|0 | api_ok=True
+  [PASS] no false 'done' during outage (+0)
+  [PASS] API stays up during outage 
+  [FAIL] worker alive (attempts incremented) (attempts=0)
+  unblocked, waiting for drain
+      0s not-done=2
+     15s not-done=2
+     30s not-done=2
+     45s not-done=0
+  [PASS] backlog drains after restore 
+  [PASS] gemini: no queue rows lost (3/3)
+  [PASS] gemini: every alert classified (3/3)
+  [PASS] gemini: no double-classification (dupes=0)
+  [PASS] gemini: no stuck non-pending/non-done rows (stuck=0)
+
+== SUMMARY ==
+PASS no false 'done' during outage (+0)
+PASS API stays up during outage 
+FAIL worker alive (attempts incremented) (attempts=0)
+PASS backlog drains after restore 
+PASS gemini: no queue rows lost (3/3)
+PASS gemini: every alert classified (3/3)
+PASS gemini: no double-classification (dupes=0)
+PASS gemini: no stuck non-pending/non-done rows (stuck=0)

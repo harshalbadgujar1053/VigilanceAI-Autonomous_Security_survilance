@@ -1,0 +1,21 @@
+
+== Postgres kill ==
+  seeded 60 queue rows
+  [PASS] API recovers without uvicorn restart (0s)
+      0s not-done=41
+     15s not-done=26
+     30s not-done=11
+     45s not-done=0
+  [PASS] backlog drains after recovery 
+  [PASS] pg-kill: no queue rows lost (60/60)
+  [PASS] pg-kill: every alert classified (60/60)
+  [PASS] pg-kill: no double-classification (dupes=0)
+  [PASS] pg-kill: no stuck non-pending/non-done rows (stuck=0)
+
+== SUMMARY ==
+PASS API recovers without uvicorn restart (0s)
+PASS backlog drains after recovery 
+PASS pg-kill: no queue rows lost (60/60)
+PASS pg-kill: every alert classified (60/60)
+PASS pg-kill: no double-classification (dupes=0)
+PASS pg-kill: no stuck non-pending/non-done rows (stuck=0)

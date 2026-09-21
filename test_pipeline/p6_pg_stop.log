@@ -1,0 +1,47 @@
+
+== Postgres stop ==
+  seeded 30 queue rows
+    postgres stopped 30s
+    API during outage -> down/err (expected)
+  [PASS] API recovers without uvicorn restart (0s)
+      0s not-done=30
+     15s not-done=30
+     30s not-done=30
+     45s not-done=30
+     60s not-done=30
+     75s not-done=30
+     90s not-done=30
+    105s not-done=30
+    120s not-done=30
+    135s not-done=30
+    151s not-done=30
+    166s not-done=30
+    181s not-done=30
+    196s not-done=30
+    211s not-done=30
+    226s not-done=30
+    241s not-done=30
+    256s not-done=30
+    271s not-done=30
+    286s not-done=30
+    301s not-done=30
+    317s not-done=30
+    332s not-done=30
+    347s not-done=30
+    362s not-done=30
+    377s not-done=30
+    392s not-done=30
+    407s not-done=30
+  [FAIL] backlog drains after recovery 
+  [PASS] pg-stop: no queue rows lost (30/30)
+  [FAIL] pg-stop: every alert classified (0/30)
+  [PASS] pg-stop: no double-classification (dupes=0)
+  [FAIL] pg-stop: no stuck non-pending/non-done rows (stuck=32)
+
+== SUMMARY ==
+PASS API recovers without uvicorn restart (0s)
+FAIL backlog drains after recovery 
+PASS pg-stop: no queue rows lost (30/30)
+FAIL pg-stop: every alert classified (0/30)
+PASS pg-stop: no double-classification (dupes=0)
+FAIL pg-stop: no stuck non-pending/non-done rows (stuck=32)

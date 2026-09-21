@@ -1,0 +1,56 @@
+
+== Gemini outage (REJECT, 90s) ==
+  seeded 30 queue rows
+    [blocked 15s] pending|30|0 | api_ok=True
+    [blocked 30s] parked|30|0 | api_ok=True
+    [blocked 45s] parked|30|0 | api_ok=True
+    [blocked 60s] parked|30|0 | api_ok=True
+    [blocked 75s] parked|30|0 | api_ok=True
+    [blocked 90s] parked|30|0 | api_ok=True
+  [PASS] no false 'done' during outage (+0)
+  [PASS] API stays up during outage 
+  [FAIL] worker alive (attempts incremented) (attempts=0)
+  unblocked, waiting for drain
+      0s not-done=30
+     15s not-done=30
+     30s not-done=30
+     45s not-done=30
+     60s not-done=30
+     75s not-done=30
+     90s not-done=30
+    105s not-done=30
+    120s not-done=30
+    135s not-done=30
+    150s not-done=30
+    165s not-done=30
+    180s not-done=30
+    195s not-done=30
+    210s not-done=30
+    225s not-done=30
+    240s not-done=30
+    255s not-done=30
+    270s not-done=30
+    285s not-done=30
+    300s not-done=30
+    315s not-done=30
+    330s not-done=30
+    345s not-done=30
+    360s not-done=30
+    376s not-done=30
+    391s not-done=30
+    406s not-done=30
+  [FAIL] backlog drains after restore 
+  [PASS] gemini: no queue rows lost (30/30)
+  [FAIL] gemini: every alert classified (0/30)
+  [PASS] gemini: no double-classification (dupes=0)
+  [FAIL] gemini: no stuck non-pending/non-done rows (stuck=30)
+
+== SUMMARY ==
+PASS no false 'done' during outage (+0)
+PASS API stays up during outage 
+FAIL worker alive (attempts incremented) (attempts=0)
+FAIL backlog drains after restore 
+PASS gemini: no queue rows lost (30/30)
+FAIL gemini: every alert classified (0/30)
+PASS gemini: no double-classification (dupes=0)
+FAIL gemini: no stuck non-pending/non-done rows (stuck=30)

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-18T08:54:01.527+0000",
+  "rule": {
+    "level": 7,
+    "description": "Host-based anomaly detection event (rootcheck).",
+    "id": "510",
+    "firedtimes": 5,
+    "mail": false,
+    "groups": [
+      "ossec",
+      "rootcheck"
+    ],
+    "pci_dss": [
+      "10.6.1"
+    ],
+    "gdpr": [
+      "IV_35.7.d"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789721641.4550",
+  "full_log": "Trojaned version of file '/usr/bin/chfn' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[a-s,uvxz]' (Generic).",
+  "decoder": {
+    "name": "rootcheck"
+  },
+  "data": {
+    "title": "Trojaned version of file detected.",
+    "file": "/usr/bin/chfn"
+  },
+  "location": "rootcheck"
+}

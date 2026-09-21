@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-18T17:34:41.681+0000",
+  "rule": {
+    "level": 7,
+    "description": "Host-based anomaly detection event (rootcheck).",
+    "id": "510",
+    "firedtimes": 1,
+    "mail": false,
+    "groups": [
+      "ossec",
+      "rootcheck"
+    ],
+    "pci_dss": [
+      "10.6.1"
+    ],
+    "gdpr": [
+      "IV_35.7.d"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789752881.75167",
+  "full_log": "Trojaned version of file '/bin/passwd' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[b-s,uvxz]' (Generic).",
+  "decoder": {
+    "name": "rootcheck"
+  },
+  "data": {
+    "title": "Trojaned version of file detected.",
+    "file": "/bin/passwd"
+  },
+  "location": "rootcheck"
+}

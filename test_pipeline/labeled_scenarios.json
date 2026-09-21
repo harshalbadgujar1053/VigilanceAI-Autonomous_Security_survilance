@@ -1,0 +1,1255 @@
+[
+  {
+    "id": "scenario_000_successful_sudo_to_root_execut",
+    "alert": {
+      "timestamp": "2026-09-18T13:33:13.854+0000",
+      "rule": {
+        "level": 3,
+        "description": "Successful sudo to ROOT executed.",
+        "id": "5402",
+        "mitre": {
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Sudo and Sudo Caching"
+          ]
+        },
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789738393.40676",
+      "full_log": "2026-09-18T19:03:12.262568+05:30 kali sudo:     kali : TTY=pts/0 ; PWD=/home/kali/Downloads ; USER=root ; COMMAND=/usr/bin/apt install p7zip-full",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T19:03:12.262568+05:30"
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "data": {
+        "srcuser": "kali",
+        "dstuser": "root",
+        "tty": "pts/0",
+        "pwd": "/home/kali/Downloads",
+        "command": "/usr/bin/apt install p7zip-full"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Successful sudo to ROOT executed."
+  },
+  {
+    "id": "scenario_001_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T17:34:41.681+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752881.75556",
+      "full_log": "Trojaned version of file '/usr/bin/passwd' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[b-s,uvxz]' (Generic).",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "Trojaned version of file detected.",
+        "file": "/usr/bin/passwd"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_002_successful_sudo_to_root_execut",
+    "alert": {
+      "timestamp": "2026-09-18T14:57:20.378+0000",
+      "rule": {
+        "level": 3,
+        "description": "Successful sudo to ROOT executed.",
+        "id": "5402",
+        "mitre": {
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Sudo and Sudo Caching"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789743440.62513",
+      "full_log": "2026-09-18T20:27:19.123842+05:30 kali sudo:     kali : TTY=pts/1 ; PWD=/home/kali/Downloads ; USER=root ; COMMAND=/usr/bin/mv ghidra_12.1.3_PUBLIC_20260817.zip /opt/",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T20:27:19.123842+05:30"
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "data": {
+        "srcuser": "kali",
+        "dstuser": "root",
+        "tty": "pts/1",
+        "pwd": "/home/kali/Downloads",
+        "command": "/usr/bin/mv ghidra_12.1.3_PUBLIC_20260817.zip /opt/"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "Successful sudo to ROOT executed."
+  },
+  {
+    "id": "scenario_003_pam:_login_session_opened.",
+    "alert": {
+      "timestamp": "2026-09-18T17:35:25.682+0000",
+      "rule": {
+        "level": 3,
+        "description": "PAM: Login session opened.",
+        "id": "5501",
+        "mitre": {
+          "id": [
+            "T1078"
+          ],
+          "tactic": [
+            "Defense Evasion",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "technique": [
+            "Valid Accounts"
+          ]
+        },
+        "firedtimes": 3,
+        "mail": false,
+        "groups": [
+          "pam",
+          "syslog",
+          "authentication_success"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752925.86677",
+      "full_log": "2026-09-18T23:05:24.842539+05:30 kali su[5441]: pam_unix(su:session): session opened for user root(uid=0) by kali(uid=0)",
+      "predecoder": {
+        "program_name": "su",
+        "timestamp": "2026-09-18T23:05:24.842539+05:30"
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "data": {
+        "srcuser": "kali",
+        "dstuser": "root(uid=0)",
+        "uid": "0"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "PAM: Login session opened."
+  },
+  {
+    "id": "scenario_004_successful_sudo_to_root_execut",
+    "alert": {
+      "timestamp": "2026-09-18T18:16:38.123+0000",
+      "rule": {
+        "level": 3,
+        "description": "Successful sudo to ROOT executed.",
+        "id": "5402",
+        "mitre": {
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Sudo and Sudo Caching"
+          ]
+        },
+        "firedtimes": 4,
+        "mail": false,
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789755398.102410",
+      "full_log": "2026-09-18T23:46:38.062225+05:30 kali sudo:     root : TTY=pts/3 ; PWD=/home/kali/VigilanceAI-Autonomous_Security_survilance/test_pipeline ; USER=root ; COMMAND=/usr/bin/python3 export_alert_sample.py --source /var/lib/docker/volumes/single-node_wazuh_logs/_data/alerts/alerts.json --count 30",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T23:46:38.062225+05:30"
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "data": {
+        "srcuser": "root",
+        "dstuser": "root",
+        "tty": "pts/3",
+        "pwd": "/home/kali/VigilanceAI-Autonomous_Security_survilance/test_pipeline",
+        "command": "/usr/bin/python3 export_alert_sample.py --source /var/lib/docker/volumes/single-node_wazuh_logs/_data/alerts/alerts.json --count 30"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "Successful sudo to ROOT executed."
+  },
+  {
+    "id": "scenario_005_listened_ports_status_(netstat",
+    "alert": {
+      "timestamp": "2026-09-18T08:53:57.502+0000",
+      "rule": {
+        "level": 7,
+        "description": "Listened ports status (netstat) changed (new port opened or closed).",
+        "id": "533",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "ossec"
+        ],
+        "pci_dss": [
+          "10.2.7",
+          "10.6.1"
+        ],
+        "gpg13": [
+          "10.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AU.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789721637.1700",
+      "previous_output": "Previous output:\nossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2003/docker-proxy\ntcp6 :::443 :::* 2008/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 2096/docker-proxy\nudp6 :::514 :::* 2103/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 2108/docker-proxy\ntcp6 :::1514 :::* 2116/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2124/docker-proxy\ntcp6 :::1515 :::* 2136/docker-proxy\ntcp 127.0.0.1:5432 0.0.0.0:* 1153/postgres\ntcp6 ::1:5432 :::* 1153/postgres\ntcp 127.0.0.1:8091 0.0.0.0:* 9486/\ntcp 0.0.0.0:9200 0.0.0.0:* 1973/docker-proxy\ntcp6 :::9200 :::* 1979/docker-proxy\ntcp 127.0.0.1:36313 0.0.0.0:* 1065/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2152/docker-proxy\ntcp6 :::55000 :::* 2158/docker-proxy",
+      "full_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 127.0.0.1:5432 0.0.0.0:* 1140/postgres\ntcp6 ::1:5432 :::* 1140/postgres\ntcp 127.0.0.1:46733 0.0.0.0:* 1066/containerd",
+      "decoder": {
+        "name": "ossec"
+      },
+      "previous_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2003/docker-proxy\ntcp6 :::443 :::* 2008/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 2096/docker-proxy\nudp6 :::514 :::* 2103/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 2108/docker-proxy\ntcp6 :::1514 :::* 2116/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2124/docker-proxy\ntcp6 :::1515 :::* 2136/docker-proxy\ntcp 127.0.0.1:5432 0.0.0.0:* 1153/postgres\ntcp6 ::1:5432 :::* 1153/postgres\ntcp 127.0.0.1:8091 0.0.0.0:* 9486/\ntcp 0.0.0.0:9200 0.0.0.0:* 1973/docker-proxy\ntcp6 :::9200 :::* 1979/docker-proxy\ntcp 127.0.0.1:36313 0.0.0.0:* 1065/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2152/docker-proxy\ntcp6 :::55000 :::* 2158/docker-proxy",
+      "location": "netstat listening ports"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "Listened ports status (netstat) changed (new port opened or closed)."
+  },
+  {
+    "id": "scenario_006_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T08:54:01.527+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 5,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789721641.4550",
+      "full_log": "Trojaned version of file '/usr/bin/chfn' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[a-s,uvxz]' (Generic).",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "Trojaned version of file detected.",
+        "file": "/usr/bin/chfn"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_007_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T13:18:49.499+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 9,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789737529.32028",
+      "full_log": "File '/var/lib/docker/overlay2/2ff44f4edab29ddaccd3dfb1457a2ef68c8b2f462a0840e062d88f57ff52abd3/diff/var/ossec/framework/python/bin/python3.9-config' is owned by root and has written permissions to anyone.",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "File is owned by root and has written permissions to anyone.",
+        "file": "/var/lib/docker/overlay2/2ff44f4edab29ddaccd3dfb1457a2ef68c8b2f462a0840e062d88f57ff52abd3/diff/var/ossec/framework/python/bin/python3.9-config"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_008_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T17:35:15.945+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 13,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752915.84490",
+      "full_log": "File '/var/lib/docker/overlay2/0b210971ed64ee096f095e907c68e9f241560f608ff6f3fae641a028ec9d437a/merged/var/ossec/framework/python/bin/python3.9' is owned by root and has written permissions to anyone.",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "File is owned by root and has written permissions to anyone.",
+        "file": "/var/lib/docker/overlay2/0b210971ed64ee096f095e907c68e9f241560f608ff6f3fae641a028ec9d437a/merged/var/ossec/framework/python/bin/python3.9"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_009_successful_sudo_to_root_execut",
+    "alert": {
+      "timestamp": "2026-09-18T18:14:15.981+0000",
+      "rule": {
+        "level": 3,
+        "description": "Successful sudo to ROOT executed.",
+        "id": "5402",
+        "mitre": {
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Sudo and Sudo Caching"
+          ]
+        },
+        "firedtimes": 3,
+        "mail": false,
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789755255.100921",
+      "full_log": "2026-09-18T23:44:15.217812+05:30 kali sudo:     root : TTY=pts/3 ; PWD=/home/kali/VigilanceAI-Autonomous_Security_survilance/test_pipeline ; USER=root ; COMMAND=/usr/bin/find / -iname alerts.json",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T23:44:15.217812+05:30"
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "data": {
+        "srcuser": "root",
+        "dstuser": "root",
+        "tty": "pts/3",
+        "pwd": "/home/kali/VigilanceAI-Autonomous_Security_survilance/test_pipeline",
+        "command": "/usr/bin/find / -iname alerts.json"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Successful sudo to ROOT executed."
+  },
+  {
+    "id": "scenario_010_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T17:34:41.682+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 6,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752881.77116",
+      "full_log": "Trojaned version of file '/usr/bin/chfn' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[a-s,uvxz]' (Generic).",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "Trojaned version of file detected.",
+        "file": "/usr/bin/chfn"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_011_pam:_login_session_closed.",
+    "alert": {
+      "timestamp": "2026-09-18T09:11:34.441+0000",
+      "rule": {
+        "level": 3,
+        "description": "PAM: Login session closed.",
+        "id": "5502",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "pam",
+          "syslog"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789722694.19102",
+      "full_log": "2026-09-18T14:41:33.225514+05:30 kali sudo: pam_unix(sudo:session): session closed for user root",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T14:41:33.225514+05:30"
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "data": {
+        "dstuser": "root"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "PAM: Login session closed."
+  },
+  {
+    "id": "scenario_012_wazuh_agent_started.",
+    "alert": {
+      "timestamp": "2026-09-18T17:34:39.483+0000",
+      "rule": {
+        "level": 3,
+        "description": "Wazuh agent started.",
+        "id": "503",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "ossec"
+        ],
+        "pci_dss": [
+          "10.6.1",
+          "10.2.6"
+        ],
+        "gpg13": [
+          "10.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.6",
+          "AU.14",
+          "AU.5"
+        ],
+        "tsc": [
+          "CC7.2",
+          "CC7.3",
+          "CC6.8"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752879.74850",
+      "full_log": "ossec: Agent started: 'kali->any'.",
+      "decoder": {
+        "parent": "ossec",
+        "name": "ossec"
+      },
+      "data": {
+        "extra_data": "kali->any"
+      },
+      "location": "wazuh-agent"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "Wazuh agent started."
+  },
+  {
+    "id": "scenario_013_pam:_login_session_opened.",
+    "alert": {
+      "timestamp": "2026-09-18T15:00:54.714+0000",
+      "rule": {
+        "level": 3,
+        "description": "PAM: Login session opened.",
+        "id": "5501",
+        "mitre": {
+          "id": [
+            "T1078"
+          ],
+          "tactic": [
+            "Defense Evasion",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "technique": [
+            "Valid Accounts"
+          ]
+        },
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+          "pam",
+          "syslog",
+          "authentication_success"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789743654.72234",
+      "full_log": "2026-09-18T20:30:53.547136+05:30 kali sudo: pam_unix(sudo:session): session opened for user root(uid=0) by kali(uid=1000)",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T20:30:53.547136+05:30"
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "data": {
+        "srcuser": "kali",
+        "dstuser": "root(uid=0)",
+        "uid": "1000"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "PAM: Login session opened."
+  },
+  {
+    "id": "scenario_014_pam:_login_session_closed.",
+    "alert": {
+      "timestamp": "2026-09-18T17:34:43.598+0000",
+      "rule": {
+        "level": 3,
+        "description": "PAM: Login session closed.",
+        "id": "5502",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "pam",
+          "syslog"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752883.78273",
+      "full_log": "2026-09-18T23:04:23.251874+05:30 kali lightdm: pam_unix(lightdm-greeter:session): session closed for user lightdm",
+      "predecoder": {
+        "program_name": "lightdm",
+        "timestamp": "2026-09-18T23:04:23.251874+05:30"
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "data": {
+        "dstuser": "lightdm"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "PAM: Login session closed."
+  },
+  {
+    "id": "scenario_015_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T17:34:41.681+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789752881.75167",
+      "full_log": "Trojaned version of file '/bin/passwd' detected. Signature used: 'bash|file\\.h|proc\\.h|/dev/ttyo|/dev/[A-Z]|/dev/[b-s,uvxz]' (Generic).",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "Trojaned version of file detected.",
+        "file": "/bin/passwd"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_016_pam:_login_session_opened.",
+    "alert": {
+      "timestamp": "2026-09-18T13:18:30.541+0000",
+      "rule": {
+        "level": 3,
+        "description": "PAM: Login session opened.",
+        "id": "5501",
+        "mitre": {
+          "id": [
+            "T1078"
+          ],
+          "tactic": [
+            "Defense Evasion",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "technique": [
+            "Valid Accounts"
+          ]
+        },
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+          "pam",
+          "syslog",
+          "authentication_success"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.8",
+          "7.9"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789737510.27185",
+      "full_log": "2026-09-18T18:47:58.574462+05:30 kali (systemd): pam_unix(systemd-user:session): session opened for user lightdm(uid=117) by lightdm(uid=0)",
+      "predecoder": {
+        "program_name": "(systemd)",
+        "timestamp": "2026-09-18T18:47:58.574462+05:30"
+      },
+      "decoder": {
+        "parent": "pam",
+        "name": "pam"
+      },
+      "data": {
+        "srcuser": "lightdm",
+        "dstuser": "lightdm(uid=117)",
+        "uid": "0"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "FALSE POSITIVE",
+    "_hint_description": "PAM: Login session opened."
+  },
+  {
+    "id": "scenario_017_listened_ports_status_(netstat",
+    "alert": {
+      "timestamp": "2026-09-18T17:52:14.771+0000",
+      "rule": {
+        "level": 7,
+        "description": "Listened ports status (netstat) changed (new port opened or closed).",
+        "id": "533",
+        "firedtimes": 3,
+        "mail": false,
+        "groups": [
+          "ossec"
+        ],
+        "pci_dss": [
+          "10.2.7",
+          "10.6.1"
+        ],
+        "gpg13": [
+          "10.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AU.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789753934.90334",
+      "previous_output": "Previous output:\nossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2071/docker-proxy\ntcp6 :::443 :::* 2078/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 1974/docker-proxy\nudp6 :::514 :::* 1981/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 1987/docker-proxy\ntcp6 :::1514 :::* 1993/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2001/docker-proxy\ntcp6 :::1515 :::* 2007/docker-proxy\ntcp 0.0.0.0:3000 0.0.0.0:* 14571/node\ntcp 127.0.0.1:5432 0.0.0.0:* 1130/postgres\ntcp6 ::1:5432 :::* 1130/postgres\ntcp 0.0.0.0:8000 0.0.0.0:* 13824/python3\ntcp 0.0.0.0:9200 0.0.0.0:* 1887/docker-proxy\ntcp6 :::9200 :::* 1892/docker-proxy\ntcp 127.0.0.1:39831 0.0.0.0:* 1067/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2029/docker-proxy\ntcp6 :::55000 :::* 2036/docker-proxy",
+      "full_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2071/docker-proxy\ntcp6 :::443 :::* 2078/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 1974/docker-proxy\nudp6 :::514 :::* 1981/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 1987/docker-proxy\ntcp6 :::1514 :::* 1993/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2001/docker-proxy\ntcp6 :::1515 :::* 2007/docker-proxy\ntcp 0.0.0.0:3000 0.0.0.0:* 14571/node\ntcp 127.0.0.1:5432 0.0.0.0:* 1130/postgres\ntcp6 ::1:5432 :::* 1130/postgres\ntcp 0.0.0.0:8000 0.0.0.0:* 13824/python3\ntcp 127.0.0.1:8001 0.0.0.0:* 17598/python3\ntcp 0.0.0.0:9200 0.0.0.0:* 1887/docker-proxy\ntcp6 :::9200 :::* 1892/docker-proxy\ntcp 127.0.0.1:39831 0.0.0.0:* 1067/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2029/docker-proxy\ntcp6 :::55000 :::* 2036/docker-proxy",
+      "decoder": {
+        "name": "ossec"
+      },
+      "previous_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2071/docker-proxy\ntcp6 :::443 :::* 2078/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 1974/docker-proxy\nudp6 :::514 :::* 1981/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 1987/docker-proxy\ntcp6 :::1514 :::* 1993/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2001/docker-proxy\ntcp6 :::1515 :::* 2007/docker-proxy\ntcp 0.0.0.0:3000 0.0.0.0:* 14571/node\ntcp 127.0.0.1:5432 0.0.0.0:* 1130/postgres\ntcp6 ::1:5432 :::* 1130/postgres\ntcp 0.0.0.0:8000 0.0.0.0:* 13824/python3\ntcp 0.0.0.0:9200 0.0.0.0:* 1887/docker-proxy\ntcp6 :::9200 :::* 1892/docker-proxy\ntcp 127.0.0.1:39831 0.0.0.0:* 1067/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2029/docker-proxy\ntcp6 :::55000 :::* 2036/docker-proxy",
+      "location": "netstat listening ports"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "Listened ports status (netstat) changed (new port opened or closed)."
+  },
+  {
+    "id": "scenario_018_host-based_anomaly_detection_e",
+    "alert": {
+      "timestamp": "2026-09-18T13:18:29.841+0000",
+      "rule": {
+        "level": 7,
+        "description": "Host-based anomaly detection event (rootcheck).",
+        "id": "510",
+        "firedtimes": 8,
+        "mail": false,
+        "groups": [
+          "ossec",
+          "rootcheck"
+        ],
+        "pci_dss": [
+          "10.6.1"
+        ],
+        "gdpr": [
+          "IV_35.7.d"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789737509.26337",
+      "full_log": "Trojaned version of file '/usr/bin/diff' detected. Signature used: 'bash|^/bin/sh|file\\.h|proc\\.h|/dev/[^n]|^/bin/.*sh' (Generic).",
+      "decoder": {
+        "name": "rootcheck"
+      },
+      "data": {
+        "title": "Trojaned version of file detected.",
+        "file": "/usr/bin/diff"
+      },
+      "location": "rootcheck"
+    },
+    "ground_truth_verdict": "NEEDS INVESTIGATION",
+    "_hint_description": "Host-based anomaly detection event (rootcheck)."
+  },
+  {
+    "id": "scenario_019_successful_sudo_to_root_execut",
+    "alert": {
+      "timestamp": "2026-09-18T14:58:10.438+0000",
+      "rule": {
+        "level": 3,
+        "description": "Successful sudo to ROOT executed.",
+        "id": "5402",
+        "mitre": {
+          "id": [
+            "T1548.003"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Sudo and Sudo Caching"
+          ]
+        },
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+          "syslog",
+          "sudo"
+        ],
+        "pci_dss": [
+          "10.2.5",
+          "10.2.2"
+        ],
+        "gpg13": [
+          "7.6",
+          "7.8",
+          "7.13"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7",
+          "AC.6"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "002",
+        "name": "kali",
+        "ip": "192.168.80.129"
+      },
+      "manager": {
+        "name": "wazuh.manager"
+      },
+      "id": "1789743490.63945",
+      "full_log": "2026-09-18T20:28:08.670864+05:30 kali sudo:     kali : TTY=pts/1 ; PWD=/opt ; USER=root ; COMMAND=/usr/bin/unzip ghidra_12.1.3_PUBLIC_20260817.zip",
+      "predecoder": {
+        "program_name": "sudo",
+        "timestamp": "2026-09-18T20:28:08.670864+05:30"
+      },
+      "decoder": {
+        "parent": "sudo",
+        "name": "sudo",
+        "ftscomment": "First time user executed the sudo command"
+      },
+      "data": {
+        "srcuser": "kali",
+        "dstuser": "root",
+        "tty": "pts/1",
+        "pwd": "/opt",
+        "command": "/usr/bin/unzip ghidra_12.1.3_PUBLIC_20260817.zip"
+      },
+      "location": "/var/log/auth.log"
+    },
+    "ground_truth_verdict": "TRUE POSITIVE",
+    "_hint_description": "Successful sudo to ROOT executed."
+  }
+]

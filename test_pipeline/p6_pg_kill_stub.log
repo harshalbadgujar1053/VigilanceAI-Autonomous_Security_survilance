@@ -1,0 +1,48 @@
+
+== Postgres kill ==
+  seeded 60 queue rows
+  [PASS] API recovers without uvicorn restart (3s)
+      0s not-done=38
+     15s not-done=23
+     30s not-done=8
+    db unavailable: psql: error: connection to server on socket "/var/run/postgr
+    db unavailable: psql: error: connection to server on socket "/var/run/postgr
+    db unavailable: psql: error: connection to server on socket "/var/run/postgr
+    db unavailable: psql: error: connection to server on socket "/var/run/postgr
+     65s not-done=4
+     80s not-done=1
+     95s not-done=1
+    110s not-done=1
+    125s not-done=1
+    140s not-done=1
+    155s not-done=1
+    170s not-done=1
+    185s not-done=1
+    200s not-done=1
+    215s not-done=1
+    230s not-done=1
+    245s not-done=1
+    261s not-done=1
+    276s not-done=1
+    291s not-done=1
+    306s not-done=1
+    321s not-done=1
+    336s not-done=1
+    351s not-done=1
+    366s not-done=1
+    381s not-done=1
+    396s not-done=1
+    411s not-done=1
+  [FAIL] backlog drains after recovery 
+  [PASS] pg-kill: no queue rows lost (60/60)
+  [FAIL] pg-kill: every alert classified (59/60)
+  [PASS] pg-kill: no double-classification (dupes=0)
+  [FAIL] pg-kill: no stuck non-pending/non-done rows (stuck=1)
+
+== SUMMARY ==
+PASS API recovers without uvicorn restart (3s)
+FAIL backlog drains after recovery 
+PASS pg-kill: no queue rows lost (60/60)
+FAIL pg-kill: every alert classified (59/60)
+PASS pg-kill: no double-classification (dupes=0)
+FAIL pg-kill: no stuck non-pending/non-done rows (stuck=1)

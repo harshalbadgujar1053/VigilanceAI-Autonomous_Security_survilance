@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,/classify,"CatchResponseError('/classify failed: 500 {""detail"":""429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor y')",5,2026-09-19T05:07:12Z,2026-09-19T05:07:14Z

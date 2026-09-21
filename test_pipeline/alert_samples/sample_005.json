@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-09-18T08:53:57.502+0000",
+  "rule": {
+    "level": 7,
+    "description": "Listened ports status (netstat) changed (new port opened or closed).",
+    "id": "533",
+    "firedtimes": 1,
+    "mail": false,
+    "groups": [
+      "ossec"
+    ],
+    "pci_dss": [
+      "10.2.7",
+      "10.6.1"
+    ],
+    "gpg13": [
+      "10.1"
+    ],
+    "gdpr": [
+      "IV_35.7.d"
+    ],
+    "hipaa": [
+      "164.312.b"
+    ],
+    "nist_800_53": [
+      "AU.14",
+      "AU.6"
+    ],
+    "tsc": [
+      "CC6.8",
+      "CC7.2",
+      "CC7.3"
+    ]
+  },
+  "agent": {
+    "id": "002",
+    "name": "kali",
+    "ip": "192.168.80.129"
+  },
+  "manager": {
+    "name": "wazuh.manager"
+  },
+  "id": "1789721637.1700",
+  "previous_output": "Previous output:\nossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2003/docker-proxy\ntcp6 :::443 :::* 2008/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 2096/docker-proxy\nudp6 :::514 :::* 2103/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 2108/docker-proxy\ntcp6 :::1514 :::* 2116/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2124/docker-proxy\ntcp6 :::1515 :::* 2136/docker-proxy\ntcp 127.0.0.1:5432 0.0.0.0:* 1153/postgres\ntcp6 ::1:5432 :::* 1153/postgres\ntcp 127.0.0.1:8091 0.0.0.0:* 9486/\ntcp 0.0.0.0:9200 0.0.0.0:* 1973/docker-proxy\ntcp6 :::9200 :::* 1979/docker-proxy\ntcp 127.0.0.1:36313 0.0.0.0:* 1065/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2152/docker-proxy\ntcp6 :::55000 :::* 2158/docker-proxy",
+  "full_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 127.0.0.1:5432 0.0.0.0:* 1140/postgres\ntcp6 ::1:5432 :::* 1140/postgres\ntcp 127.0.0.1:46733 0.0.0.0:* 1066/containerd",
+  "decoder": {
+    "name": "ossec"
+  },
+  "previous_log": "ossec: output: 'netstat listening ports':\ntcp 0.0.0.0:22 0.0.0.0:* /usr\ntcp6 :::22 :::* /usr\ntcp 0.0.0.0:443 0.0.0.0:* 2003/docker-proxy\ntcp6 :::443 :::* 2008/docker-proxy\nudp 0.0.0.0:514 0.0.0.0:* 2096/docker-proxy\nudp6 :::514 :::* 2103/docker-proxy\ntcp 0.0.0.0:1514 0.0.0.0:* 2108/docker-proxy\ntcp6 :::1514 :::* 2116/docker-proxy\ntcp 0.0.0.0:1515 0.0.0.0:* 2124/docker-proxy\ntcp6 :::1515 :::* 2136/docker-proxy\ntcp 127.0.0.1:5432 0.0.0.0:* 1153/postgres\ntcp6 ::1:5432 :::* 1153/postgres\ntcp 127.0.0.1:8091 0.0.0.0:* 9486/\ntcp 0.0.0.0:9200 0.0.0.0:* 1973/docker-proxy\ntcp6 :::9200 :::* 1979/docker-proxy\ntcp 127.0.0.1:36313 0.0.0.0:* 1065/containerd\ntcp 0.0.0.0:55000 0.0.0.0:* 2152/docker-proxy\ntcp6 :::55000 :::* 2158/docker-proxy",
+  "location": "netstat listening ports"
+}
