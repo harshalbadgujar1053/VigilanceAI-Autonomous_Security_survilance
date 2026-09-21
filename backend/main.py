@@ -1,4 +1,5 @@
 import sys, os
+import asyncio
 import json
 import logging
 from pathlib import Path
@@ -10,15 +11,15 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "agent"))
 sys.path.insert(0, str(ROOT / "backend"))
 
-from fastapi import FastAPI, HTTPException, Depends, BackgroundTasks
+from fastapi import FastAPI, HTTPException, Depends, BackgroundTasks, Query
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from sqlalchemy.orm import Session
-from sqlalchemy import text, func
+from sqlalchemy import text, func, and_
 
-from database import SessionLocal, init_db, AlertRecord, ClassificationRecord, ReportRecord
+from database import SessionLocal, init_db, AlertRecord, ClassificationRecord, ReportRecord, ClassificationQueue
 
 # ─── Structured Logging ──────────────────────────────────
 LOG_PATH = ROOT / "vigilance.log"
@@ -42,6 +43,20 @@ from agent.classify_with_rag import classify_alert_with_rag
 from agent.alert_schema import SAMPLE_ALERTS, NormalizedAlert
 
 app = FastAPI(title="Vigilance AI", version="1.0.0")
+
+from classification_queue_worker import start_queue_worker
+
+def _log_worker_death(task):
+    if task.cancelled():
+        return
+    exc = task.exception()
+    if exc is not None:
+        logger.critical(f"Classification queue worker task died: {exc}", exc_info=exc)
+
+@app.on_event("startup")
+async def _start_background_workers():
+    worker_task = asyncio.create_task(start_queue_worker())
+    worker_task.add_done_callback(_log_worker_death)
 
 app.add_middleware(
     CORSMiddleware,
@@ -107,7 +122,15 @@ async def generate_report_endpoint(request: ReportRequest):
         logger.info(f"Report request — alert: {request.alert.get('id', 'unknown')}")
         from agent.tools.generate_report import generate_report as gen_report
         findings = f"""Alert: {request.alert}\nClassification: {request.classification or {}}"""
-        report = await run_in_threadpool(gen_report.invoke, findings)
+        cls = request.classification or {}
+        report = await run_in_threadpool(
+            gen_report.invoke,
+            {
+                "findings": findings,
+                "verdict": str(cls.get("verdict") or "NEEDS INVESTIGATION"),
+                "confidence": str(cls.get("confidence") or "MEDIUM"),
+            },
+        )
         logger.info("Report generated successfully")
         return {"success": True, "report": report}
     except Exception as e:
@@ -129,28 +152,59 @@ async def classify_sample(name: str):
 # ──────────────────────────────────────────
 
 @app.get("/alerts")
-def get_alerts(db: Session = Depends(get_db)):
-    alerts = db.query(AlertRecord).order_by(AlertRecord.created_at.desc()).all()
-
-    # Fetch the latest classification per alert_id in one query, so the
-    # frontend gets technique/reasoning/recommended_actions for free on
-    # load instead of having to trigger classification itself.
-    alert_ids = [a.id for a in alerts]
-    latest_by_alert = {}
-    if alert_ids:
-        classifications = (
-            db.query(ClassificationRecord)
-            .filter(ClassificationRecord.alert_id.in_(alert_ids))
-            .order_by(ClassificationRecord.classified_at.desc())
-            .all()
+def get_alerts(
+    db: Session = Depends(get_db),
+    limit: int = Query(50, ge=1, le=200),
+    before: str | None = Query(None, description="ISO datetime cursor — return alerts created before this"),
+    severity: str | None = Query(None),
+    verdict: str | None = Query(None),
+    search: str | None = Query(None, description="matches against description"),
+):
+    latest_classification_ids = (
+        db.query(
+            ClassificationRecord.alert_id,
+            func.max(ClassificationRecord.classified_at).label("max_classified_at"),
         )
-        for c in classifications:
-            if c.alert_id not in latest_by_alert:
-                latest_by_alert[c.alert_id] = c
+        .group_by(ClassificationRecord.alert_id)
+        .subquery()
+    )
+
+    query = (
+        db.query(AlertRecord, ClassificationRecord)
+        .outerjoin(
+            latest_classification_ids,
+            AlertRecord.id == latest_classification_ids.c.alert_id,
+        )
+        .outerjoin(
+            ClassificationRecord,
+            and_(
+                ClassificationRecord.alert_id == latest_classification_ids.c.alert_id,
+                ClassificationRecord.classified_at == latest_classification_ids.c.max_classified_at,
+            ),
+        )
+    )
+
+    if severity:
+        query = query.filter(AlertRecord.severity == severity)
+    if verdict:
+        query = query.filter(ClassificationRecord.verdict == verdict)
+    if search:
+        query = query.filter(AlertRecord.description.ilike(f"%{search}%"))
+    if before:
+        try:
+            cursor_dt = datetime.fromisoformat(before)
+            query = query.filter(AlertRecord.created_at < cursor_dt)
+        except ValueError:
+            raise HTTPException(status_code=422, detail=f"Invalid 'before' cursor: {before}")
+
+    query = query.order_by(AlertRecord.created_at.desc())
+
+    rows = query.limit(limit + 1).all()
+    has_more = len(rows) > limit
+    rows = rows[:limit]
 
     result = []
-    for a in alerts:
-        cls = latest_by_alert.get(a.id)
+    for a, cls in rows:
         entry = {
             "id": a.id,
             "timestamp": a.timestamp,
@@ -161,85 +215,105 @@ def get_alerts(db: Session = Depends(get_db)):
             "agent_ip": a.agent_ip,
             "severity": a.severity,
             "raw_data": a.raw_data,
-            "created_at": str(a.created_at)
+            "created_at": str(a.created_at),
         }
         if cls:
             entry["technique"] = cls.mitre_tactics
             entry["reasoning"] = cls.reasoning
             entry["recommended_actions"] = cls.recommended_actions
+            entry["verdict"] = cls.verdict
+            entry["confidence"] = cls.confidence
         result.append(entry)
 
-    return {"success": True, "count": len(result), "alerts": result}
+    next_cursor = str(rows[-1][0].created_at) if rows and has_more else None
+
+    return {
+        "success": True,
+        "count": len(result),
+        "alerts": result,
+        "next_cursor": next_cursor,
+        "has_more": has_more,
+    }
+
+import re as _re
+
+
+def _parse_classification_text(classification_text: str) -> dict:
+    sev = "UNKNOWN"
+    for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+        if s in classification_text.upper():
+            sev = s
+            break
+
+    verdict_m = _re.search(r"\[VERDICT\]\s*([^\n]+)", classification_text, _re.IGNORECASE)
+    confidence_m = _re.search(r"\[CONFIDENCE\]\s*(\w+)", classification_text, _re.IGNORECASE)
+    verdict = verdict_m.group(1).strip().upper() if verdict_m else "NEEDS INVESTIGATION"
+    confidence = confidence_m.group(1).strip().upper() if confidence_m else "LOW"
+
+    mitre_technique = ""
+    for line in classification_text.split("\n"):
+        if line.strip().upper().startswith("[TECHNIQUE]"):
+            mitre_technique = line.split("]", 1)[-1].strip()
+            break
+
+    m = _re.search(r"\[REASONING\]\s*([\s\S]+?)(?=\[RECOMMENDED|$)", classification_text, _re.IGNORECASE)
+    reasoning_raw = m.group(1).strip() if m else ""
+    reasoning_lines = []
+    for line in reasoning_raw.splitlines():
+        cleaned = _re.sub(r"^\s*-\s*", "", line).strip()
+        if cleaned:
+            reasoning_lines.append(cleaned)
+    reasoning_formatted = " | ".join(reasoning_lines) if reasoning_lines else reasoning_raw
+
+    recommended_actions_raw = ""
+    if "[RECOMMENDED ACTIONS]" in classification_text.upper():
+        idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
+        recommended_actions_raw = classification_text[idx + len("[RECOMMENDED ACTIONS]"):].strip()
+    recommended_actions_lines = []
+    for line in recommended_actions_raw.splitlines():
+        cleaned = _re.sub(r"^\s*[-\d.]+\s*", "", line).strip()
+        if cleaned:
+            recommended_actions_lines.append(cleaned)
+    recommended_actions = " | ".join(recommended_actions_lines) if recommended_actions_lines else recommended_actions_raw
+
+    return {
+        "severity": sev,
+        "verdict": verdict,
+        "confidence": confidence,
+        "mitre_technique": mitre_technique,
+        "reasoning": reasoning_formatted,
+        "recommended_actions": recommended_actions,
+    }
+
+
+def _save_classification_result(db, alert_id: str, rag_result: dict):
+    classification_text = rag_result.get("classification", "") if isinstance(rag_result, dict) else str(rag_result)
+    parsed = _parse_classification_text(classification_text)
+
+    record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
+    cls_record = ClassificationRecord(
+        alert_id=alert_id,
+        severity=parsed["severity"],
+        reasoning=parsed["reasoning"],
+        mitre_tactics=parsed["mitre_technique"],
+        recommended_actions=parsed["recommended_actions"],
+        verdict=parsed["verdict"],
+        confidence=parsed["confidence"],
+    )
+    db.add(cls_record)
+    if record_to_update:
+        record_to_update.severity = parsed["severity"]
+    db.commit()
+    logger.info(f"Alert {alert_id} classified as {parsed['severity']} / {parsed['verdict']}")
+
 
 def _classify_and_store(alert_id: str, alert: dict):
-    """
-    Runs in the background AFTER the /alerts/save response has already
-    been sent to the forwarder. This is intentional: ingestion must never
-    block on a slow downstream classification call (Gemini can take a
-    few seconds, and under a burst of alerts that adds up past a client's
-    request timeout). Uses its own DB session since the request-scoped
-    session from the original request is already closed by the time this runs.
-    """
+    """LEGACY PATH — kept for backward compatibility only. New alerts go
+    through the classification_queue worker instead (see save_alert)."""
     db = SessionLocal()
     try:
         rag_result = classify_alert_with_rag(alert)
-        classification_text = rag_result.get("classification", "") if isinstance(rag_result, dict) else str(rag_result)
-
-        sev = "UNKNOWN"
-        for s in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
-            if s in classification_text.upper():
-                sev = s
-                break
-
-        verdict_m = __import__("re").search(r"\[VERDICT\]\s*([^\n]+)", classification_text, __import__("re").IGNORECASE)
-        confidence_m = __import__("re").search(r"\[CONFIDENCE\]\s*(\w+)", classification_text, __import__("re").IGNORECASE)
-        verdict = verdict_m.group(1).strip().upper() if verdict_m else "NEEDS INVESTIGATION"
-        confidence = confidence_m.group(1).strip().upper() if confidence_m else "LOW"
-        mitre_technique = ""
-        for line in classification_text.split("\n"):
-            if line.strip().upper().startswith("[TECHNIQUE]"):
-                mitre_technique = line.split("]", 1)[-1].strip()
-                break
-
-        import re as _re
-        m = _re.search(r"\[REASONING\]\s*([\s\S]+?)(?=\[RECOMMENDED|$)", classification_text, _re.IGNORECASE)
-        reasoning_raw = m.group(1).strip() if m else ""
-        # PATCHED: split into individual bullet lines and pipe-join, so the
-        # frontend's alert.reasoning.split('|') produces separate <li>
-        # items instead of one run-on paragraph.
-        reasoning_lines = []
-        for line in reasoning_raw.splitlines():
-            cleaned = _re.sub(r"^\s*-\s*", "", line).strip()
-            if cleaned:
-                reasoning_lines.append(cleaned)
-        reasoning_formatted = " | ".join(reasoning_lines) if reasoning_lines else reasoning_raw
-
-        recommended_actions_raw = ""
-        if "[RECOMMENDED ACTIONS]" in classification_text.upper():
-            idx = classification_text.upper().find("[RECOMMENDED ACTIONS]")
-            recommended_actions_raw = classification_text[idx + len("[RECOMMENDED ACTIONS]"):].strip()
-        recommended_actions_lines = []
-        for line in recommended_actions_raw.splitlines():
-            cleaned = _re.sub(r"^\s*[-\d.]+\s*", "", line).strip()
-            if cleaned:
-                recommended_actions_lines.append(cleaned)
-        recommended_actions = " | ".join(recommended_actions_lines) if recommended_actions_lines else recommended_actions_raw
-
-        record_to_update = db.query(AlertRecord).filter(AlertRecord.id == alert_id).first()
-        cls_record = ClassificationRecord(
-            alert_id=alert_id,
-            severity=sev,
-            reasoning=reasoning_formatted,
-            mitre_tactics=mitre_technique,
-            recommended_actions=recommended_actions,
-            verdict=verdict,
-            confidence=confidence
-        )
-        db.add(cls_record)
-        if record_to_update:
-            record_to_update.severity = sev
-        db.commit()
-        logger.info(f"Alert {alert_id} auto-classified as {sev} (background)")
+        _save_classification_result(db, alert_id, rag_result)
     except Exception as e:
         logger.warning(f"Background auto-classification failed for {alert_id}: {e}. "
                         f"Alert stays at its last saved severity; can be classified manually later.")
@@ -267,11 +341,12 @@ def save_alert(alert: dict, background_tasks: BackgroundTasks, db: Session = Dep
     db.commit()
     logger.info(f"Alert saved: {record.id}")
 
-    # Kick off classification AFTER this response is sent — ingestion
-    # returns immediately (well under the forwarder's request timeout),
-    # and the classification result lands in Postgres a few seconds
-    # later. The frontend's next GET /alerts poll picks it up naturally.
-    background_tasks.add_task(_classify_and_store, record.id, alert)
+    # Alert is queued for classification, not classified inline — this
+    # decouples ingestion (which must stay fast) from Gemini's rate limit
+    # (15/min). A background worker drains the queue at a steady pace;
+    # queued items survive a backend restart since they're stored in Postgres.
+    db.add(ClassificationQueue(alert_id=record.id))
+    db.commit()
 
     return {"success": True, "message": "Alert saved", "id": record.id}
 
