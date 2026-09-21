@@ -25,3 +25,12 @@ __pycache__/
 .env
 *.bak*
 *.gz
+.ssh/
+output.txt
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.env
+*.bak*
+*.gz
