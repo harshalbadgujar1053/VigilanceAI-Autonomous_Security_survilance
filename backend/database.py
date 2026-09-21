@@ -2,10 +2,14 @@ from sqlalchemy import create_engine, Column, String, Integer, Text, DateTime, J
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+import os
 
-DATABASE_URL = "postgresql://vigilance:vigilance123@localhost:5432/vigilancedb"
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL",
+    "postgresql://vigilance:vigilance123@localhost:5432/vigilancedb"
+)
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_pre_ping=True, pool_recycle=1800)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -35,6 +39,16 @@ class ClassificationRecord(Base):
     verdict        = Column(String, nullable=True)
     confidence     = Column(String, nullable=True)
     classified_at  = Column(DateTime, default=datetime.utcnow)
+
+class ClassificationQueue(Base):
+    __tablename__ = "classification_queue"
+    id           = Column(Integer, primary_key=True, autoincrement=True)
+    alert_id     = Column(String, nullable=False)
+    status       = Column(String, default="pending")  # pending | processing | done | failed
+    attempts     = Column(Integer, default=0)
+    enqueued_at  = Column(DateTime, default=datetime.utcnow)
+    updated_at   = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    error        = Column(Text, nullable=True)
 
 class ReportRecord(Base):
     __tablename__ = "reports"
