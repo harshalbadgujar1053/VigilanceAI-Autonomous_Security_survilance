@@ -449,33 +449,54 @@ export const checkBackendHealth = async (): Promise<boolean> => {
 };
 
 export const fetchSiemAlerts = async (): Promise<Alert[]> => {
+  const MAX_ALERTS_TO_FETCH = 2000; // safety cap — adjust to test other scales
+  const PAGE_LIMIT = 200; // backend's max allowed limit per request
+ 
   try {
-    const res = await fetch(`${BASE_URL}/alerts`);
-    if (res.ok) {
+    let allAlerts: any[] = [];
+    let cursor: string | null = null;
+    let hasMore = true;
+ 
+    while (hasMore && allAlerts.length < MAX_ALERTS_TO_FETCH) {
+      const params = new URLSearchParams({ limit: String(PAGE_LIMIT) });
+      if (cursor) params.set('before', cursor);
+ 
+      const res = await fetch(`${BASE_URL}/alerts?${params.toString()}`);
+      if (!res.ok) break;
+ 
       const data = await res.json();
-      if (data.success && Array.isArray(data.alerts)) {
-        // Transform DB records to the shape AlertCard expects.
-        // No sample-data fallback: an empty backend means an empty
-        // dashboard, not fabricated data.
-        return data.alerts.map((a: any) => ({
-  	  id: a.id,
-	  timestamp: a.timestamp,
-	  rule: { id: a.rule_id, level: a.rule_level, description: a.description, groups: a.raw_data?.rule?.groups || [] },
-	  agent: { id: a.raw_data?.agent?.id || '', name: a.agent_name, ip: a.agent_ip },
-	  data: a.raw_data?.data || {},
-	  location: a.raw_data?.location || '',
-	  severity: a.severity,
-	  technique: a.technique,
-	  reasoning: a.reasoning,
-	  recommended_actions: a.recommended_actions,
-	  verdict: a.verdict,
-	  confidence: a.confidence,
-	  _source: 'live'
-	}))
-      }
+      if (!data.success || !Array.isArray(data.alerts)) break;
+ 
+      allAlerts = allAlerts.concat(data.alerts);
+      hasMore = !!data.has_more;
+      cursor = data.next_cursor || null;
+ 
+      if (!cursor) break; // no cursor to continue with, stop regardless of has_more
     }
-    console.warn('Backend /alerts returned no usable data.');
-    return [];
+ 
+    if (allAlerts.length === 0) {
+      console.warn('Backend /alerts returned no usable data.');
+      return [];
+    }
+ 
+    console.info(`Fetched ${allAlerts.length} alerts from backend ` +
+                 `(capped at ${MAX_ALERTS_TO_FETCH} for testing — real total may be higher).`);
+ 
+    return allAlerts.map((a: any) => ({
+      id: a.id,
+      timestamp: a.timestamp,
+      rule: { id: a.rule_id, level: a.rule_level, description: a.description, groups: a.raw_data?.rule?.groups || [] },
+      agent: { id: a.raw_data?.agent?.id || '', name: a.agent_name, ip: a.agent_ip },
+      data: a.raw_data?.data || {},
+      location: a.raw_data?.location || '',
+      severity: a.severity,
+      technique: a.technique,
+      reasoning: a.reasoning,
+      recommended_actions: a.recommended_actions,
+      verdict: a.verdict,
+      confidence: a.confidence,
+      _source: 'live'
+    }));
   } catch (e: any) {
     console.warn('Backend /alerts unreachable:', e.message);
     return [];
