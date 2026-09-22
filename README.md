@@ -1,6 +1,17 @@
 VigilanceAI
 
-Cybersecurity SOC SIEM Wazuh RAG LLM ChromaDB MITRE-ATT&CK FastAPI React PostgreSQL Gemini
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-black?style=flat-square)
+![SOC](https://img.shields.io/badge/SOC-black?style=flat-square)
+![SIEM](https://img.shields.io/badge/SIEM-black?style=flat-square)
+![Wazuh](https://img.shields.io/badge/Wazuh-005571?style=flat-square)
+![RAG](https://img.shields.io/badge/RAG-blueviolet?style=flat-square)
+![LLM](https://img.shields.io/badge/LLM-orange?style=flat-square)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-yellow?style=flat-square)
+![MITRE ATT&CK](https://img.shields.io/badge/MITRE_ATT%26CK-red?style=flat-square)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
 
 Problem Statement
 
